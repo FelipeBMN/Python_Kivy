@@ -8,14 +8,26 @@ from kivymd.uix.toolbar import MDToolbar
 
 
 class CalculadoraSolar(MDApp):
+    def menu(self):
+        print("Menu...")
+
     def build(self):
         self.state = 0 #initial state
-        #self.theme_cls.primary_palette = "DeepOrange"
+        self.theme_cls.primary_palette = "DeepOrange"
         screen = MDScreen()
         self.toobar = MDToolbar()
-        self.toobar.pos_hint = {"top": 1.05}
+        self.toobar.pos_hint = {"top": 1}
+        #self.toolbar.right_action_items = [["rotate-3d-variant", lambda x: self.menu()]]
+        self.toolbar.right_action_items = [
+            ["rotate-3d-variant", lambda x: self.flip()]]
         screen.add_widget(self.toobar)
+        #screen.add_widget(Image(
+        #    source="img\menu.png",
+        #    pos_hint = {"center_x":0.5,"center_y":0.7}
+        #    ))
+
         return screen
+
 
 if __name__ == '__main__':
     CalculadoraSolar().run()

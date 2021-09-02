@@ -6,7 +6,6 @@ from kivymd.uix.textfield import MDTextField
 from kivymd.uix.label import MDLabel
 from kivymd.uix.toolbar import MDToolbar
 
-
 class CalculadoraSolar(MDApp):
     def menu(self):
         print("Menu...")
@@ -15,16 +14,18 @@ class CalculadoraSolar(MDApp):
         self.state = 0 #initial state
         self.theme_cls.primary_palette = "DeepOrange"
         screen = MDScreen()
+
         self.toobar = MDToolbar()
-        self.toobar.pos_hint = {"top": 1}
-        #self.toolbar.right_action_items = [["rotate-3d-variant", lambda x: self.menu()]]
-        self.toolbar.right_action_items = [
-            ["rotate-3d-variant", lambda x: self.flip()]]
+        self.toobar.pos_hint = {"top": 1}        
+        self.toobar.left_action_items = [
+            ["menu", lambda x: self.menu()]]
         screen.add_widget(self.toobar)
+        
+
         #screen.add_widget(Image(
-        #    source="img\menu.png",
-        #    pos_hint = {"center_x":0.5,"center_y":0.7}
-        #    ))
+        #    source="logo_branca_pequena.png",
+        #    pos_hint = {"center_x":0.5,"center_y":0.95}
+        #))
 
         return screen
 

@@ -50,10 +50,10 @@ class CalculadoraSolar(MDApp):
         screen.add_widget(self.toobar)
         
 
-        #screen.add_widget(Image(
-        #    source="logo_branca_pequena.png",
-        #    pos_hint = {"center_x":0.5,"center_y":0.95}
-        #))
+        screen.add_widget(Image(
+            source="Logo_pequena.png",
+            pos_hint = {"center_x":0.5,"center_y":0.8}
+        ))
 
         # Menu Principal
         menu_items = [

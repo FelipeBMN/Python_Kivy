@@ -48,7 +48,7 @@ class ConverterApp(MDApp):
 
         # logo
         screen.add_widget(Image(
-            source="logo.png",
+            source="logo_branca.png",
             pos_hint = {"center_x": 0.5, "center_y":0.7}
             ))
 

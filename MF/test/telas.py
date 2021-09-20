@@ -13,6 +13,7 @@ class Test(MDApp):
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "Amber"
         self.theme_cls.surface_palette = "DeepOrange"
+        
         return Builder.load_string(
             '''
 BoxLayout:

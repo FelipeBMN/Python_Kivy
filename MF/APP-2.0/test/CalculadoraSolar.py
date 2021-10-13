@@ -89,3 +89,6 @@ class CalculadoraSolar(MDApp):
     
 if __name__ == '__main__':
     CalculadoraSolar().run()
+
+
+    

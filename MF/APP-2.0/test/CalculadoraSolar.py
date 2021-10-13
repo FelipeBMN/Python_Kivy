@@ -81,6 +81,7 @@ class CalculadoraSolar(MDApp):
         self.menu_user_deslogado = MDDropdownMenu(
             items = menu_items_user_deslogado,
             width_mult = 2,
+            
         )
         
         #return Builder.load_string(KV)
@@ -91,4 +92,3 @@ if __name__ == '__main__':
     CalculadoraSolar().run()
 
 
-    

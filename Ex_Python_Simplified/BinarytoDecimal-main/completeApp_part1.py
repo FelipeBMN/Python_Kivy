@@ -7,6 +7,7 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.toolbar import MDToolbar
 
 class ConverterApp(MDApp):
+
     def flip(self):
         # a function for the "flip" icon
         # changes the state of the app
@@ -22,7 +23,7 @@ class ConverterApp(MDApp):
         self.converted.text = ""
         self.label.text = ""
 
-    def convert(self, args):
+    def calcular(self, args):
         # a function to fint the decimal/binary equivallent
         if self.state == 0:
             # binary to decimal
@@ -36,15 +37,8 @@ class ConverterApp(MDApp):
 
     def build(self):
         self.state = 0 #initial state
-        #self.theme_cls.primary_palette = "DeepOrange"
+        self.theme_cls.primary_palette = "DeepOrange"
         screen = MDScreen()
-
-        # top toolbar
-        self.toolbar = MDToolbar(title="Binary to Decimal")
-        self.toolbar.pos_hint = {"top": 1}
-        self.toolbar.right_action_items = [
-            ["rotate-3d-variant", lambda x: self.flip()]]
-        screen.add_widget(self.toolbar)
 
         # logo
         screen.add_widget(Image(
@@ -83,7 +77,7 @@ class ConverterApp(MDApp):
             text="CONVERT",
             font_size = 17,
             pos_hint = {"center_x": 0.5, "center_y":0.15},
-            on_press = self.convert
+            on_press = self.calcular
         ))
 
         return screen

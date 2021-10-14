@@ -14,34 +14,31 @@ from kivymd.uix.snackbar import Snackbar
 
 class CalculadoraSolar(MDApp):
     user = False
-    def menu(self, button):
-        #self.menu_principal.caller = button
-        #self.menu_principal.open()
-        return 0
-
-    def menu_user(self,button):
-        if self.user == False :
-            self.user_deslogado(button)
-        if self.user == True :
-            print("User Logado!!!")
-
-
-    def user_deslogado(self, button):
-                self.menu_user_deslogado.caller = button
-                self.menu_user_deslogado.open()
-
-    def menu_callback(self, text_item):        
-        self.menu_principal.dismiss()
-        Snackbar(text=text_item).open()
-
-    def logar(self, text_item_user):        
-        self.menu_user_deslogado.dismiss()
-        Snackbar(text=text_item_user).open()
-
+    
     def calcular(self, args):
+        self.detalhes.text="121,5"
         return 0
+
+    def flip(self):
+        # a function for the "flip" icon
+        # changes the state of the app
+        if self.state == 0:
+            self.state = 1
+            self.toolbar.title = "Decimal to Binary"
+            self.input.text = "enter a decimal number"
+        else:
+            self.state = 0
+            self.toolbar.title = "Binary to Decimal"
+            self.input.text = "enter a binary number"
+        # hide labels until needed
+        self.converted.text = ""
+        self.label.text = ""
 
     def build(self):
+        self.state = 0 #initial state
+        #self.theme_cls.primary_palette = "DeepOrange"
+        screen = MDScreen()
+
         self.state = 0 #initial state
         self.theme_cls.primary_palette = "DeepOrange"
         screen = MDScreen()
@@ -59,57 +56,69 @@ class CalculadoraSolar(MDApp):
             pos_hint = {"center_x":0.5,"center_y":0.8}
         ))
 
-        #secondary + primary labels
-        self.label = MDLabel(
+        # Labels ====================================================
+        self.municipio = MDLabel(
+            text = "Município",
             halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.35},
+            pos_hint = {"center_x": 0.5, "center_y":0.62},
+            theme_text_color = "Primary",
+            font_style = "H5"
+        )
+        self.n_placas = MDLabel(
+            text = "Número de Placas",
+            halign="center",
+            pos_hint = {"center_x": 0.5, "center_y":0.5},
+            theme_text_color = "Primary",
+            font_style = "H5"
+        )
+        self.pot_placas = MDLabel(
+            text = "Potência da Placa",
+            halign="center",
+            pos_hint = {"center_x": 0.5, "center_y":0.38},
+            theme_text_color = "Primary",
+            font_style = "H5"
+        )
+        self.detalhes = MDLabel(
+            halign="center",
+            pos_hint = {"center_x": 0.9, "center_y":0.56},
             theme_text_color = "Secondary"
         )
-        screen.add_widget(self.label)
+        screen.add_widget(self.municipio)
+        screen.add_widget(self.n_placas)
+        screen.add_widget(self.pot_placas)
+        
 
-        # Input
-        self.input = MDTextField(
-            text="Digite o Numero de Placas",
+        # Inputs =======================================================================
+        self.input_municipio = MDTextField(
+            text="",
             halign="center",
             size_hint = (0.8,1),
-            pos_hint = {"center_x": 0.5, "center_y":0.5},
+            pos_hint = {"center_x": 0.5, "center_y":0.56},
             font_size = 22
         )
-        screen.add_widget(self.input)
-
-        # Menu Principal
-        #menu_items = [
-        #    {
-        #        "viewclass": "OneLineListItem",
-        #        "text": f"Item {i}",
-        #        "height": dp(56),
-        #        "on_release": lambda x=f"Item {i}": self.#menu_callback(x),
-        #     } for i in range(5)
-        #]
-        #self.menu_principal = MDDropdownMenu(
-        #    items = menu_items,
-        #    width_mult = 4,
-        #)
+        self.input_placas = MDTextField(
+            text="",
+            halign="center",
+            size_hint = (0.8,1),
+            pos_hint = {"center_x": 0.5, "center_y":0.44},
+            font_size = 22
+        )
+        self.input_pot_placas = MDTextField(
+            text="",
+            halign="center",
+            size_hint = (0.8,1),
+            pos_hint = {"center_x": 0.5, "center_y":0.32},
+            font_size = 22
+        )
+        screen.add_widget(self.input_municipio)
+        screen.add_widget(self.input_placas)
+        screen.add_widget(self.input_pot_placas)
         
-        # Menu do Usuário
-        #menu_items_user_deslogado = [
-        #    {
-        #        "viewclass": "OneLineListItem",
-        #        "text": "Logar",
-        #        "height": dp(40),
-        #        "on_release": lambda x="Login": self.logar(x),
-        #     } 
-        #]
-        #self.menu_user_deslogado = MDDropdownMenu(
-        #    items = menu_items_user_deslogado,
-        #    width_mult = 2,
-        #)
-        
-        # "CONVERT" button
+        # "CONVERT" button=============================================================
         screen.add_widget(MDFillRoundFlatButton(
             text="Calcular",
             font_size = 17,
-            pos_hint = {"center_x": 0.5, "center_y":0.15},
+            pos_hint = {"center_x": 0.5, "center_y":0.1},
             on_press = self.calcular
         ))
 

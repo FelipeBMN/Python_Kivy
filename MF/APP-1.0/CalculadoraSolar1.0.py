@@ -16,8 +16,12 @@ class CalculadoraSolar(MDApp):
     user = False
     calculado = 0
     screen = MDScreen()
+    def menu(self):
+        return 0
     # Função para o botão Calcular
     def calcular(self, args):
+        self.pot_sist.text = "Potência: 5,0 kWp"
+        self.ger_mensal.text = "Geração Mensal: 545 kWh"
         if self.calculado == 0:
             self.screen.remove_widget(self.input_municipio)
             self.screen.remove_widget(self.input_placas)
@@ -27,6 +31,8 @@ class CalculadoraSolar(MDApp):
 
     # Função para o botão Limpar
     def limpar(self, args):
+        self.pot_sist.text = ""
+        self.ger_mensal.text = ""
         if self.calculado == 1:
             self.screen.add_widget(self.input_municipio)
             self.screen.add_widget(self.input_placas)
@@ -42,7 +48,7 @@ class CalculadoraSolar(MDApp):
         self.toobar = MDToolbar()
         self.toobar.title = 'Calculadora Solar'
         self.toobar.pos_hint = {"top": 1}        
-        self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
+        self.toobar.left_action_items = [["menu", lambda x: self.menu()]]
         # self.toobar.right_action_items = [["account-circle", lambda x: self.menu_user(x)]]
         self.screen.add_widget(self.toobar)
         
@@ -75,31 +81,28 @@ class CalculadoraSolar(MDApp):
             font_style = "H5"
         )
         
+        self.screen.add_widget(self.municipio)
+        self.screen.add_widget(self.n_placas)
+        self.screen.add_widget(self.pot_placas)
+        
+        
+        # Labels Answers ====================================================
+
         self.pot_sist = MDLabel(
-            text = "Potência: 5,0 kWp",
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.25},
             theme_text_color = "ContrastParentBackground",
             font_style = "H5"
         )
         self.ger_mensal = MDLabel(
-            text = "Geração Mensal: 545 kWh",
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.20},
             theme_text_color = "ContrastParentBackground",
             font_style = "H5"
         )
-        
-        self.screen.add_widget(self.municipio)
-        self.screen.add_widget(self.n_placas)
-        self.screen.add_widget(self.pot_placas)
+
         self.screen.add_widget(self.ger_mensal)
         self.screen.add_widget(self.pot_sist)
-        
-        # Labels Answers ====================================================
-
-
-
         # Inputs ========================================================
         self.input_municipio = MDTextField(
             text="",

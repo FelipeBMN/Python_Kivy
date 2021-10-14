@@ -50,39 +50,49 @@ class CalculadoraSolar(MDApp):
         # self.toobar.right_action_items = [["account-circle", lambda x: self.menu_user(x)]]
         screen.add_widget(self.toobar)
         
-
+        # Logo
         screen.add_widget(Image(
             source="Logo_pequena.png",
             pos_hint = {"center_x":0.5,"center_y":0.8}
         ))
 
-        # Menu Principal
-        menu_items = [
-            {
-                "viewclass": "OneLineListItem",
-                "text": f"Item {i}",
-                "height": dp(56),
-                "on_release": lambda x=f"Item {i}": self.menu_callback(x),
-             } for i in range(5)
-        ]
-        self.menu_principal = MDDropdownMenu(
-            items = menu_items,
-            width_mult = 4,
+        # Input
+        self.input = MDTextField(
+            text="Digite o Numero de Placas",
+            halign="center",
+            size_hint = (0.8,1),
+            pos_hint = {"center_x": 0.5, "center_y":0.5},
+            font_size = 22
         )
+        screen.add_widget(self.input)
+
+        # Menu Principal
+        #menu_items = [
+        #    {
+        #        "viewclass": "OneLineListItem",
+        #        "text": f"Item {i}",
+        #        "height": dp(56),
+        #        "on_release": lambda x=f"Item {i}": self.#menu_callback(x),
+        #     } for i in range(5)
+        #]
+        #self.menu_principal = MDDropdownMenu(
+        #    items = menu_items,
+        #    width_mult = 4,
+        #)
         
         # Menu do Usuário
-        menu_items_user_deslogado = [
-            {
-                "viewclass": "OneLineListItem",
-                "text": "Logar",
-                "height": dp(40),
-                "on_release": lambda x="Login": self.logar(x),
-             } 
-        ]
-        self.menu_user_deslogado = MDDropdownMenu(
-            items = menu_items_user_deslogado,
-            width_mult = 2,
-        )
+        #menu_items_user_deslogado = [
+        #    {
+        #        "viewclass": "OneLineListItem",
+        #        "text": "Logar",
+        #        "height": dp(40),
+        #        "on_release": lambda x="Login": self.logar(x),
+        #     } 
+        #]
+        #self.menu_user_deslogado = MDDropdownMenu(
+        #    items = menu_items_user_deslogado,
+        #    width_mult = 2,
+        #)
         
         #return Builder.load_string(KV)
         return screen

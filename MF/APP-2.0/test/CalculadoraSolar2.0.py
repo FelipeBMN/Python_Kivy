@@ -15,8 +15,9 @@ from kivymd.uix.snackbar import Snackbar
 class CalculadoraSolar(MDApp):
     user = False
     def menu(self, button):
-                self.menu_principal.caller = button
-                self.menu_principal.open()
+        #self.menu_principal.caller = button
+        #self.menu_principal.open()
+        return 0
 
     def menu_user(self,button):
         if self.user == False :
@@ -43,10 +44,10 @@ class CalculadoraSolar(MDApp):
         screen = MDScreen()
 
         self.toobar = MDToolbar()
-        self.toobar.title = 'Diario de Obra'
+        self.toobar.title = 'Calculadora Solar'
         self.toobar.pos_hint = {"top": 1}        
         self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
-        self.toobar.right_action_items = [["account-circle", lambda x: self.menu_user(x)]]
+        # self.toobar.right_action_items = [["account-circle", lambda x: self.menu_user(x)]]
         screen.add_widget(self.toobar)
         
 

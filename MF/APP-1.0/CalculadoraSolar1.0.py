@@ -338,21 +338,21 @@ class CalculadoraSolar(MDApp):
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.7},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
+            font_style = "H6"
         )
         self.n_placas = MDLabel(
             text = "Número de Placas",
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.54},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
+            font_style = "H6"
         )
         self.pot_placas = MDLabel(
             text = "Potência da Placa",
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.42},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
+            font_style = "H6"
         )
         
         self.screen.add_widget(self.municipio)
@@ -365,34 +365,34 @@ class CalculadoraSolar(MDApp):
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.64},
             theme_text_color = "Error",
-            font_style = "H5"
+            font_style = "H6"
         )
 
         self.n_placas_ans = MDLabel(
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.48},
             theme_text_color = "Error",
-            font_style = "H5"
+            font_style = "H6"
         )
 
         self.pot_placas_ans = MDLabel(
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.36},
             theme_text_color = "Error",
-            font_style = "H5"
+            font_style = "H6"
         )
 
         self.pot_sist = MDLabel(
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.28},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
+            font_style = "H6"
         )
         self.ger_mensal = MDLabel(
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.20},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
+            font_style = "H6"
         )
 
         self.screen.add_widget(self.ger_mensal)
@@ -403,21 +403,21 @@ class CalculadoraSolar(MDApp):
             halign="center",
             size_hint = (0.8,1),
             pos_hint = {"center_x": 0.5, "center_y":0.64},
-            font_size = 22
+            font_size = 21
         )
         self.input_n_placas = MDTextField(
             text="",
             halign="center",
             size_hint = (0.8,1),
             pos_hint = {"center_x": 0.5, "center_y":0.48},
-            font_size = 22,
+            font_size = 21,
         )
         self.input_pot_placas = MDTextField(
             text="",
             halign="center",
             size_hint = (0.8,1),
             pos_hint = {"center_x": 0.5, "center_y":0.36},
-            font_size = 22
+            font_size = 21
         )
         self.screen.add_widget(self.input_municipio)
         self.screen.add_widget(self.input_n_placas)

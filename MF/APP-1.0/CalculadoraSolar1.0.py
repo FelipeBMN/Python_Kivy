@@ -289,7 +289,7 @@ class CalculadoraSolar(MDApp):
 
          # Mostrando respostas
         try:
-            self.municipio_ans.text = self.input_municipio.text + " -> Fator Solar:" + str(fator_solar)
+            self.municipio_ans.text = self.input_municipio.text + " -> Fator Solar: " + str(fator_solar)
             self.n_placas_ans.text = self.input_n_placas.text
             self.pot_placas_ans.text = self.input_pot_placas.text
         except:

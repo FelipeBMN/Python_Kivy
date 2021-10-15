@@ -9,6 +9,8 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.toolbar import MDToolbar
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.snackbar import Snackbar
+import unicodedata
+
 
 
 class CalculadoraSolar(MDApp):
@@ -263,7 +265,8 @@ class CalculadoraSolar(MDApp):
         try:
             fator_solar = 0
             for fator_solar_dados in self.fator_solares :
-                if fator_solar_dados[0] == self.input_municipio.text:
+                distrito = self.fator_solares[0]
+                if  unicodedata.normalize('NFKD', fator_solar_dados[0].lower()).encode('ASCII','ignore').decode('ASCII') == unicodedata.normalize('NFKD', self.input_municipio.text.lower()).encode('ASCII','ignore').decode('ASCII'):
                      fator_solar = fator_solar_dados[1]
             geracao = round(potencia * fator_solar,2)
             if  potencia > 0:
@@ -289,7 +292,7 @@ class CalculadoraSolar(MDApp):
 
          # Mostrando respostas
         try:
-            self.municipio_ans.text = self.input_municipio.text + " -> Fator Solar: " + str(fator_solar)
+            self.municipio_ans.text = self.input_municipio.text.upper() + " -> Fator Solar: " + str(fator_solar)
             self.n_placas_ans.text = self.input_n_placas.text
             self.pot_placas_ans.text = self.input_pot_placas.text
         except:
@@ -310,7 +313,7 @@ class CalculadoraSolar(MDApp):
             self.screen.add_widget(self.input_pot_placas)
         self.calculado = 0
         return 0
-
+    
     def build(self):
 
         self.state = 0 #initial state
@@ -399,7 +402,7 @@ class CalculadoraSolar(MDApp):
             text="",
             halign="center",
             size_hint = (0.8,1),
-            pos_hint = {"center_x": 0.5, "center_y":0.60},
+            pos_hint = {"center_x": 0.5, "center_y":0.64},
             font_size = 22
         )
         self.input_n_placas = MDTextField(

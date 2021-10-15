@@ -248,20 +248,13 @@ class CalculadoraSolar(MDApp):
     # Função para o botão Calcular
     def calcular(self, args):
         potencia = 0
-        # Mostrando respostas
-        try:
-            self.municipio_ans.text = self.input_municipio.text
-            self.n_placas_ans.text = self.input_n_placas.text
-            self.pot_placas_ans.text = self.input_pot_placas.text
-        except:
-            print("Erro nas repostas")
 
         try:
             pot_placas = int(self.input_pot_placas.text)
             n_placas = int(self.input_n_placas.text)
             if pot_placas in self.dados_placas:
-                potencia = round((pot_placas * n_placas)/1000,2)
-                self.pot_sist.text = "Potência: "+str(potencia)+" kWp" 
+                potencia = (pot_placas * n_placas)/1000
+                self.pot_sist.text = "Potência: "+str(round(potencia,2))+" kWp" 
             else:
                 self.pot_sist.text = "Potência de Placas Não Cadastrada" 
         except:
@@ -270,11 +263,14 @@ class CalculadoraSolar(MDApp):
         try:
             fator_solar = 0
             for fator_solar_dados in self.fator_solares :
-                if fator_solar_dados[0] == "Fortaleza":
+                if fator_solar_dados[0] == self.input_municipio.text:
                      fator_solar = fator_solar_dados[1]
             geracao = round(potencia * fator_solar,2)
             if  potencia > 0:
-                self.ger_mensal.text = "Geração Mensal: "+ str(geracao)+" kWh"
+                if fator_solar > 0:
+                    self.ger_mensal.text = "Geração Mensal: "+ str(geracao)+" kWh"
+                else:
+                    self.ger_mensal.text = "Municipio Não Cadastrado"
             else: 
                 self.ger_mensal.text = ""
         except:
@@ -290,7 +286,16 @@ class CalculadoraSolar(MDApp):
             self.screen.add_widget(self.n_placas_ans)
             self.screen.add_widget(self.pot_placas_ans)
         self.calculado = 1
-        return 0
+
+         # Mostrando respostas
+        try:
+            self.municipio_ans.text = self.input_municipio.text + " -> Fator Solar:" + str(fator_solar)
+            self.n_placas_ans.text = self.input_n_placas.text
+            self.pot_placas_ans.text = self.input_pot_placas.text
+        except:
+            print("Erro nas repostas")
+
+
 
     # Função para o botão Limpar
     def limpar(self, args):

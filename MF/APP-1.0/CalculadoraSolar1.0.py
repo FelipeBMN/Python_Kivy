@@ -333,7 +333,7 @@ class CalculadoraSolar(MDApp):
         self.municipio = MDLabel(
             text = "Município",
             halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.66},
+            pos_hint = {"center_x": 0.5, "center_y":0.7},
             theme_text_color = "ContrastParentBackground",
             font_style = "H5"
         )
@@ -360,7 +360,7 @@ class CalculadoraSolar(MDApp):
         # Labels Answers ====================================================
         self.municipio_ans = MDLabel(
             halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.60},
+            pos_hint = {"center_x": 0.5, "center_y":0.64},
             theme_text_color = "Error",
             font_style = "H5"
         )
@@ -381,7 +381,7 @@ class CalculadoraSolar(MDApp):
 
         self.pot_sist = MDLabel(
             halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.25},
+            pos_hint = {"center_x": 0.5, "center_y":0.28},
             theme_text_color = "ContrastParentBackground",
             font_style = "H5"
         )
@@ -420,7 +420,7 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.input_n_placas)
         self.screen.add_widget(self.input_pot_placas)
         
-        # "CONVERT" button=============================================================
+        #  button=============================================================
         self.screen.add_widget(MDFillRoundFlatButton(
             text="Calcular",
             font_size = 17,

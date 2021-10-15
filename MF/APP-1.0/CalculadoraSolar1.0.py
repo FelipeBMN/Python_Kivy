@@ -60,6 +60,8 @@ class CalculadoraSolar(MDApp):
         # Mostrando respostas
         try:
             self.municipio_ans.text = self.input_municipio.text
+            self.n_placas_ans.text = self.input_n_placas.text
+            self.pot_placas_ans.text = self.input_pot_placas.text
         except:
             print("Erro nas repostas")
 
@@ -67,7 +69,7 @@ class CalculadoraSolar(MDApp):
             pot_placas = int(self.input_pot_placas.text)
             n_placas = int(self.input_n_placas.text)
             if pot_placas in self.dados_placas:
-                potencia = (pot_placas * n_placas)/1000
+                potencia = round((pot_placas * n_placas)/1000,2)
                 self.pot_sist.text = "Potência: "+str(potencia)+" kWp" 
             else:
                 self.pot_sist.text = "Potência de Placas Não Cadastrada" 
@@ -76,7 +78,7 @@ class CalculadoraSolar(MDApp):
 
         try:
             fator_solar = 118
-            geracao = potencia * fator_solar
+            geracao = round(potencia * fator_solar,2)
             if  potencia > 0 :
                 self.ger_mensal.text = "Geração Mensal: "+ str(geracao)+" kWh"
             else: 
@@ -91,6 +93,8 @@ class CalculadoraSolar(MDApp):
             self.screen.remove_widget(self.input_n_placas)
             self.screen.remove_widget(self.input_pot_placas)
             self.screen.add_widget(self.municipio_ans)
+            self.screen.add_widget(self.n_placas_ans)
+            self.screen.add_widget(self.pot_placas_ans)
         self.calculado = 1
         return 0
 
@@ -100,6 +104,8 @@ class CalculadoraSolar(MDApp):
         self.ger_mensal.text = ""
         if self.calculado == 1:
             self.screen.remove_widget(self.municipio_ans)
+            self.screen.remove_widget(self.n_placas_ans)
+            self.screen.remove_widget(self.pot_placas_ans)
             self.screen.add_widget(self.input_municipio)
             self.screen.add_widget(self.input_n_placas)
             self.screen.add_widget(self.input_pot_placas)
@@ -156,6 +162,20 @@ class CalculadoraSolar(MDApp):
         self.municipio_ans = MDLabel(
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.60},
+            theme_text_color = "Error",
+            font_style = "H5"
+        )
+
+        self.n_placas_ans = MDLabel(
+            halign="center",
+            pos_hint = {"center_x": 0.5, "center_y":0.48},
+            theme_text_color = "Error",
+            font_style = "H5"
+        )
+
+        self.pot_placas_ans = MDLabel(
+            halign="center",
+            pos_hint = {"center_x": 0.5, "center_y":0.36},
             theme_text_color = "Error",
             font_style = "H5"
         )

@@ -239,7 +239,8 @@ class CalculadoraSolar(MDApp):
                     ["Tapuio",121],
                     ["Lisieux",120],
                     ["Jaibaras",121],
-                    ["Aprazível",123]]
+                    ["Aprazível",123],
+                    ["campanario",121]]
     
 
     user = False

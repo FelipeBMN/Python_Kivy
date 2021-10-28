@@ -433,9 +433,11 @@ class CalculadoraSolar(MDApp):
                     ["Jaibaras",121],
                     ["Aprazivel",123]]
     
-
+    tela = 1
+    pc_android = 1
     user = False
     calculado = 0
+
     screen = MDScreen()
     def menu(self):
         return 0
@@ -505,7 +507,232 @@ class CalculadoraSolar(MDApp):
             self.screen.add_widget(self.input_pot_placas)
         self.calculado = 0
         return 0
-    
+#---------------------------------------------------------------------------------------------------------
+    def tela1(self):
+        if self.pc_android == 1:
+            # Logo
+            self.screen.add_widget(Image(
+                source="logo.png",
+                pos_hint = {"center_x":0.5,"center_y":0.8}
+            ))
+
+            # Labels Form ====================================================
+            self.municipio = MDLabel(
+                text = "Município",
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.7},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+            self.n_placas = MDLabel(
+                text = "Número de Placas",
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.54},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+            self.pot_placas = MDLabel(
+                text = "Potência da Placa",
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.42},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+            
+            self.screen.add_widget(self.municipio)
+            self.screen.add_widget(self.n_placas)
+            self.screen.add_widget(self.pot_placas)
+            
+            
+            # Labels Answers ====================================================
+            self.municipio_ans = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.64},
+                theme_text_color = "Error",
+                font_style = "H5"
+            )
+
+            self.n_placas_ans = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.48},
+                theme_text_color = "Error",
+                font_style = "H5"
+            )
+
+            self.pot_placas_ans = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.36},
+                theme_text_color = "Error",
+                font_style = "H5"
+            )
+
+            self.pot_sist = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.28},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+            self.ger_mensal = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.20},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+
+            self.screen.add_widget(self.ger_mensal)
+            self.screen.add_widget(self.pot_sist)
+            # Inputs ========================================================
+            self.input_municipio = MDTextField(
+                text="",
+                halign="center",
+                size_hint = (0.8,1),
+                pos_hint = {"center_x": 0.5, "center_y":0.64},
+                font_size = 45
+            )
+            self.input_n_placas = MDTextField(
+                text="",
+                halign="center",
+                size_hint = (0.8,1),
+                pos_hint = {"center_x": 0.5, "center_y":0.48},
+                font_size = 45
+            )
+            self.input_pot_placas = MDTextField(
+                text="",
+                halign="center",
+                size_hint = (0.8,1),
+                pos_hint = {"center_x": 0.5, "center_y":0.36},
+                font_size = 45
+            )
+            self.screen.add_widget(self.input_municipio)
+            self.screen.add_widget(self.input_n_placas)
+            self.screen.add_widget(self.input_pot_placas)
+            
+            #  button=============================================================
+            self.screen.add_widget(MDFillRoundFlatButton(
+                text="Calcular",
+                font_size = 17,
+                pos_hint = {"center_x": 0.8, "center_y":0.1},
+                on_press = self.calcular
+            ))
+            self.screen.add_widget(MDFillRoundFlatButton(
+                text="Corrigir",
+                font_size = 17,
+                pos_hint = {"center_x": 0.2, "center_y":0.1},
+                on_press = self.limpar
+            ))
+
+        else:
+            # Logo
+            self.screen.add_widget(Image(
+                source="logo_pequena.png",
+                pos_hint = {"center_x":0.5,"center_y":0.8}
+            ))
+
+            # Labels Form ====================================================
+            self.municipio = MDLabel(
+                text = "Município",
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.7},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+            self.n_placas = MDLabel(
+                text = "Número de Placas",
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.54},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+            self.pot_placas = MDLabel(
+                text = "Potência da Placa",
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.42},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+            
+            self.screen.add_widget(self.municipio)
+            self.screen.add_widget(self.n_placas)
+            self.screen.add_widget(self.pot_placas)
+            
+            
+            # Labels Answers ====================================================
+            self.municipio_ans = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.64},
+                theme_text_color = "Error",
+                font_style = "H5"
+            )
+
+            self.n_placas_ans = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.48},
+                theme_text_color = "Error",
+                font_style = "H5"
+            )
+
+            self.pot_placas_ans = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.36},
+                theme_text_color = "Error",
+                font_style = "H5"
+            )
+
+            self.pot_sist = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.28},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+            self.ger_mensal = MDLabel(
+                halign="center",
+                pos_hint = {"center_x": 0.5, "center_y":0.20},
+                theme_text_color = "ContrastParentBackground",
+                font_style = "H5"
+            )
+
+            self.screen.add_widget(self.ger_mensal)
+            self.screen.add_widget(self.pot_sist)
+            # Inputs ========================================================
+            self.input_municipio = MDTextField(
+                text="",
+                halign="center",
+                size_hint = (0.8,1),
+                pos_hint = {"center_x": 0.5, "center_y":0.64},
+                font_size = 22
+            )
+            self.input_n_placas = MDTextField(
+                text="",
+                halign="center",
+                size_hint = (0.8,1),
+                pos_hint = {"center_x": 0.5, "center_y":0.48},
+                font_size = 22
+            )
+            self.input_pot_placas = MDTextField(
+                text="",
+                halign="center",
+                size_hint = (0.8,1),
+                pos_hint = {"center_x": 0.5, "center_y":0.36},
+                font_size = 22
+            )
+            self.screen.add_widget(self.input_municipio)
+            self.screen.add_widget(self.input_n_placas)
+            self.screen.add_widget(self.input_pot_placas)
+            
+            #  button=============================================================
+            self.screen.add_widget(MDFillRoundFlatButton(
+                text="Calcular",
+                font_size = 17,
+                pos_hint = {"center_x": 0.8, "center_y":0.1},
+                on_press = self.calcular
+            ))
+            self.screen.add_widget(MDFillRoundFlatButton(
+                text="Corrigir",
+                font_size = 17,
+                pos_hint = {"center_x": 0.2, "center_y":0.1},
+                on_press = self.limpar
+            ))
+#----------------------------------------------------------------------------------------------------------------
     def build(self):
 
         self.state = 0 #initial state
@@ -518,116 +745,10 @@ class CalculadoraSolar(MDApp):
         # self.toobar.right_action_items = [["account-circle", lambda x: self.menu_user(x)]]
         self.screen.add_widget(self.toobar)
         
-        # Logo
-        self.screen.add_widget(Image(
-            source="logo.png",
-            pos_hint = {"center_x":0.5,"center_y":0.8}
-        ))
-
-        # Labels Form ====================================================
-        self.municipio = MDLabel(
-            text = "Município",
-            halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.7},
-            theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
-        )
-        self.n_placas = MDLabel(
-            text = "Número de Placas",
-            halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.54},
-            theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
-        )
-        self.pot_placas = MDLabel(
-            text = "Potência da Placa",
-            halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.42},
-            theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
-        )
         
-        self.screen.add_widget(self.municipio)
-        self.screen.add_widget(self.n_placas)
-        self.screen.add_widget(self.pot_placas)
+        if self.tela == 1:
+            self.tela1()
         
-        
-        # Labels Answers ====================================================
-        self.municipio_ans = MDLabel(
-            halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.64},
-            theme_text_color = "Error",
-            font_style = "H5"
-        )
-
-        self.n_placas_ans = MDLabel(
-            halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.48},
-            theme_text_color = "Error",
-            font_style = "H5"
-        )
-
-        self.pot_placas_ans = MDLabel(
-            halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.36},
-            theme_text_color = "Error",
-            font_style = "H5"
-        )
-
-        self.pot_sist = MDLabel(
-            halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.28},
-            theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
-        )
-        self.ger_mensal = MDLabel(
-            halign="center",
-            pos_hint = {"center_x": 0.5, "center_y":0.20},
-            theme_text_color = "ContrastParentBackground",
-            font_style = "H5"
-        )
-
-        self.screen.add_widget(self.ger_mensal)
-        self.screen.add_widget(self.pot_sist)
-        # Inputs ========================================================
-        self.input_municipio = MDTextField(
-            text="",
-            halign="center",
-            size_hint = (0.8,1),
-            pos_hint = {"center_x": 0.5, "center_y":0.64},
-            font_size = 45
-        )
-        self.input_n_placas = MDTextField(
-            text="",
-            halign="center",
-            size_hint = (0.8,1),
-            pos_hint = {"center_x": 0.5, "center_y":0.48},
-            font_size = 45
-        )
-        self.input_pot_placas = MDTextField(
-            text="",
-            halign="center",
-            size_hint = (0.8,1),
-            pos_hint = {"center_x": 0.5, "center_y":0.36},
-            font_size = 45
-        )
-        self.screen.add_widget(self.input_municipio)
-        self.screen.add_widget(self.input_n_placas)
-        self.screen.add_widget(self.input_pot_placas)
-        
-        #  button=============================================================
-        self.screen.add_widget(MDFillRoundFlatButton(
-            text="Calcular",
-            font_size = 17,
-            pos_hint = {"center_x": 0.8, "center_y":0.1},
-            on_press = self.calcular
-        ))
-        self.screen.add_widget(MDFillRoundFlatButton(
-            text="Corrigir",
-            font_size = 17,
-            pos_hint = {"center_x": 0.2, "center_y":0.1},
-            on_press = self.limpar
-        ))
 
         return self.screen
 

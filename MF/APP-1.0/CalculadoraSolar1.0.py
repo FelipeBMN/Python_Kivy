@@ -1,15 +1,15 @@
+import kivy
+kivy.require('2.0.0')
+import kivymd
+
 from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
 from kivy.uix.image import Image
-from kivy.lang import Builder
-from kivy.metrics import dp
 from kivymd.uix.button import MDFillRoundFlatIconButton, MDFillRoundFlatButton
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.label import MDLabel
 from kivymd.uix.toolbar import MDToolbar
-from kivymd.uix.menu import MDDropdownMenu
-from kivymd.uix.snackbar import Snackbar
-import unicodedata
+from kivy.lang import Builder
 
 
 
@@ -240,7 +240,198 @@ class CalculadoraSolar(MDApp):
                     ["Lisieux",120],
                     ["Jaibaras",121],
                     ["Aprazível",123],
-                    ["campanario",121]]
+                    
+                    ["Sobral",118],
+                    ["Carire",122],
+                    ["Pires Ferreira",121],
+                    ["Varjota",124],
+                    ["Reriutaba",123],
+                    ["Graça",120],
+                    ["Pacuja",122],
+                    ["Mucambo",121],
+                    ["Groairas",120],
+                    ["Forquilha",119],
+                    ["Frecheirinha",120],
+                    ["Coreau",118],
+                    ["Alcantaras",122],
+                    ["Moraujo",121],
+                    ["Meruoca",122],
+                    ["Massape",119],
+                    ["Senador Sa",120],
+                    ["Santana",119],
+                    ["Viçosa do Ceara",123],
+                    ["Tiangua",127],
+                    ["Ubajara",123],
+                    ["Ibiapina",124],
+                    ["São Benedito",124],
+                    ["Carnaubal",130],
+                    ["Guaraciaba do Norte",123],
+                    ["Croata",130],
+                    ["Ipu",117],
+                    ["Amontada",121],
+                    ["Miraima",119],
+                    ["Irauçuba",122],
+                    ["Itapipoca",121],
+                    ["Itapaje",117],
+                    ["Tejuçuoca",120],
+                    ["Tururu",116],
+                    ["Uruburetama",110],
+                    ["Umirim",119],
+                    ["Pentecoste",122],
+                    ["General Sampaio",117],
+                    ["Apuiares",118],
+                    ["Barroquinha",123],
+                    ["Chaval",125],
+                    ["Granja",119],
+                    ["Camocim",126],
+                    ["Martinópole",121],
+                    ["Uruoca",121],
+                    ["Jijoca de Jericoacara",123],
+                    ["Bela Cruz",122],
+                    ["Marco",122],
+                    ["Morrinhos",120],
+                    ["Acarau",127],
+                    ["Itarema",130],
+                    ["Poranga",129],
+                    ["Hidrolandia",123],
+                    ["Ipueiras",121],
+                    ["Ararenda",121],
+                    ["Nova Russas",123],
+                    ["Ipaporanga",122],
+                    ["Crateus",124],
+                    ["Novo Oriente",125],
+                    ["Independencia",124],
+                    ["Tamboril",121],
+                    ["Monsenhor Tabosa",121],
+                    ["Catunda",122],
+                    ["Santa Quiteria",122],
+                    ["Boa Viagem",124],
+                    ["Madalena",121],
+                    ["Itatira",122],
+                    ["Caninde",122],
+                    ["Caridade",121],
+                    ["Paramoti",120],
+                    ["Quiterianopolis",123],
+                    ["Parambu",125],
+                    ["Taua",124],
+                    ["Arneiroz",125],
+                    ["Aiuaba",126],
+                    ["Trairi",130],
+                    ["Paraipaba",127],
+                    ["Paracuru",132],
+                    ["São Luis do Curu",121],
+                    ["São Gonçalo do Amarante",126],
+                    ["Caucaia",126],
+                    ["Fortaleza",130],
+                    ["Maranguape",116],
+                    ["Maracanau",124],
+                    ["Eusebio",129],
+                    ["Pacatuba",112],
+                    ["Guaiuba",117],
+                    ["Itaitinga",123],
+                    ["Aquiraz",131],
+                    ["Horizonte",125],
+                    ["Pacajus",125],
+                    ["Chorozinho",122],
+                    ["Cascavel",120],
+                    ["Pindoretama",130],
+                    ["Palmacia",120],
+                    ["Pacoti",120],
+                    ["Redençao",114],
+                    ["Guaramiranga",116],
+                    ["Acarape",115],
+                    ["Barreira",119],
+                    ["Baturite",112],
+                    ["Mulungu",123],
+                    ["Aratuba",120],
+                    ["Capistrano",117],
+                    ["Aracoiaba",118],
+                    ["Itapiuna",119],
+                    ["Ocara",121],
+                    ["Beberibe",133],
+                    ["Fortim",133],
+                    ["Aracati",133],
+                    ["Itaiçaba",127],
+                    ["Jaguaruana",125],
+                    ["Icapui",138],
+                    ["Choro",123],
+                    ["Ibaretama",123],
+                    ["Quixada",123],
+                    ["Ibicuitinga",125],
+                    ["Quixeramobim",124],
+                    ["Banabuiu",125],
+                    ["Pedra Branca",123],
+                    ["Mombaça",124],
+                    ["Senador Pompeu",124],
+                    ["Milha",126],
+                    ["Solonópole",127],
+                    ["Piquet Carneiro",125],
+                    ["Dep. Irapuan Pinheiro",125],
+                    ["Palhano",125],
+                    ["Russas",125],
+                    ["Morada Nova",128],
+                    ["Limoeiro do Norte",125],
+                    ["Quixere",123],
+                    ["Tabuleiro do Norte",125],
+                    ["São João do Jaguaribe",125],
+                    ["Alto Santo",127],
+                    ["Potiretama",129],
+                    ["Iracema",128],
+                    ["Erere",129],
+                    ["Pereiro",131],
+                    ["Jaguaribe",129],
+                    ["Jaguaribara",128],
+                    ["Jaguaretama",131],
+                    ["Catarina",128],
+                    ["Saboeiro",128],
+                    ["Acopiara",126],
+                    ["Jucas",123],
+                    ["Carius",127],
+                    ["Iguatu",129],
+                    ["Quixelo",132],
+                    ["Oros",127],
+                    ["Ico",129],
+                    ["Cedro",130],
+                    ["Umari",130],
+                    ["Baixio",131],
+                    ["Ipaumirim",131],
+                    ["Salitre",128],
+                    ["Campos Sales",128],
+                    ["Antonina do Norte",126],
+                    ["Tarrafas",126],
+                    ["Araripe",126],
+                    ["Potengi",126],
+                    ["Assare",128],
+                    ["Altaneira",130],
+                    ["Santana do Cariri",124],
+                    ["Nova Olinda",128],
+                    ["Farias Brito",127],
+                    ["Varzea Alegre",130],
+                    ["Granjeiro",129],
+                    ["Caririaçu",129],
+                    ["Juazeiro do Norte",130],
+                    ["Barbalha",130],
+                    ["Lavras da Mangabeira",129],
+                    ["Aurora",129],
+                    ["Missão Velha",129],
+                    ["Jardim",123],
+                    ["Porteiras",124],
+                    ["Abaiara",130],
+                    ["Milagres",129],
+                    ["Barro",126],
+                    ["Mauriti",127],
+                    ["Brejo Santo",129],
+                    ["Jati",124],
+                    ["Penaforte",125],
+                    ["Crato",128],
+                    ["Taperuaba",121],
+                    ["Aracatiaçu",121],
+                    ["Ubauna",122],
+                    ["Alto lindo",132],
+                    ["Tapuio",121],
+                    ["Lisieux",120],
+                    ["Jaibaras",121],
+                    ["Aprazivel",123]]
     
 
     user = False
@@ -267,7 +458,7 @@ class CalculadoraSolar(MDApp):
             fator_solar = 0
             for fator_solar_dados in self.fator_solares :
                 distrito = self.fator_solares[0]
-                if  unicodedata.normalize('NFKD', fator_solar_dados[0].lower()).encode('ASCII','ignore').decode('ASCII') == unicodedata.normalize('NFKD', self.input_municipio.text.lower()).encode('ASCII','ignore').decode('ASCII'):
+                if   fator_solar_dados[0].lower() == self.input_municipio.text.lower():
                      fator_solar = fator_solar_dados[1]
             geracao = round(potencia * fator_solar,2)
             if  potencia > 0:
@@ -323,13 +514,13 @@ class CalculadoraSolar(MDApp):
         self.toobar = MDToolbar()
         self.toobar.title = 'Calculadora Solar'
         self.toobar.pos_hint = {"top": 1}        
-        self.toobar.left_action_items = [["menu", lambda x: self.menu()]]
+        #self.toobar.left_action_items = [["menu", lambda x: self.menu()]]
         # self.toobar.right_action_items = [["account-circle", lambda x: self.menu_user(x)]]
         self.screen.add_widget(self.toobar)
         
         # Logo
         self.screen.add_widget(Image(
-            source="Logo_pequena.png",
+            source="logo.png",
             pos_hint = {"center_x":0.5,"center_y":0.8}
         ))
 
@@ -339,21 +530,21 @@ class CalculadoraSolar(MDApp):
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.7},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H6"
+            font_style = "H5"
         )
         self.n_placas = MDLabel(
             text = "Número de Placas",
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.54},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H6"
+            font_style = "H5"
         )
         self.pot_placas = MDLabel(
             text = "Potência da Placa",
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.42},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H6"
+            font_style = "H5"
         )
         
         self.screen.add_widget(self.municipio)
@@ -366,34 +557,34 @@ class CalculadoraSolar(MDApp):
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.64},
             theme_text_color = "Error",
-            font_style = "H6"
+            font_style = "H5"
         )
 
         self.n_placas_ans = MDLabel(
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.48},
             theme_text_color = "Error",
-            font_style = "H6"
+            font_style = "H5"
         )
 
         self.pot_placas_ans = MDLabel(
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.36},
             theme_text_color = "Error",
-            font_style = "H6"
+            font_style = "H5"
         )
 
         self.pot_sist = MDLabel(
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.28},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H6"
+            font_style = "H5"
         )
         self.ger_mensal = MDLabel(
             halign="center",
             pos_hint = {"center_x": 0.5, "center_y":0.20},
             theme_text_color = "ContrastParentBackground",
-            font_style = "H6"
+            font_style = "H5"
         )
 
         self.screen.add_widget(self.ger_mensal)
@@ -404,21 +595,21 @@ class CalculadoraSolar(MDApp):
             halign="center",
             size_hint = (0.8,1),
             pos_hint = {"center_x": 0.5, "center_y":0.64},
-            font_size = 21
+            font_size = 35
         )
         self.input_n_placas = MDTextField(
             text="",
             halign="center",
             size_hint = (0.8,1),
             pos_hint = {"center_x": 0.5, "center_y":0.48},
-            font_size = 21,
+            font_size = 35
         )
         self.input_pot_placas = MDTextField(
             text="",
             halign="center",
             size_hint = (0.8,1),
             pos_hint = {"center_x": 0.5, "center_y":0.36},
-            font_size = 21
+            font_size = 35
         )
         self.screen.add_widget(self.input_municipio)
         self.screen.add_widget(self.input_n_placas)

@@ -595,21 +595,21 @@ class CalculadoraSolar(MDApp):
             halign="center",
             size_hint = (0.8,1),
             pos_hint = {"center_x": 0.5, "center_y":0.64},
-            font_size = 35
+            font_size = 45
         )
         self.input_n_placas = MDTextField(
             text="",
             halign="center",
             size_hint = (0.8,1),
             pos_hint = {"center_x": 0.5, "center_y":0.48},
-            font_size = 35
+            font_size = 45
         )
         self.input_pot_placas = MDTextField(
             text="",
             halign="center",
             size_hint = (0.8,1),
             pos_hint = {"center_x": 0.5, "center_y":0.36},
-            font_size = 35
+            font_size = 45
         )
         self.screen.add_widget(self.input_municipio)
         self.screen.add_widget(self.input_n_placas)

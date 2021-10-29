@@ -4,7 +4,7 @@
 title = MF Energy
 
 # (str) Package name
-package.name = MF Energy
+package.name = MF_Energy
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = www.mfenergy.com.br

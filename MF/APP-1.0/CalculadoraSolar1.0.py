@@ -432,8 +432,8 @@ class CalculadoraSolar(MDApp):
         ["Jaibaras", 121],
         ["Aprazivel", 123]]
 
-    tela = 1
-    pc_android = 1
+    tela = 2
+    pc_android = 0
     user = False
     calculado = 0
     screen = MDScreen()

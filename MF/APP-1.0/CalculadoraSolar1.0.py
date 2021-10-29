@@ -706,7 +706,12 @@ class CalculadoraSolar(MDApp):
             pos_hint = {"center_x": 0.2, "center_y":0.1},
             on_press = self.limpar
         ))
-    def tala2_pc:
+    def tala2_pc(self):
+        # Logo
+        self.screen.add_widget(Image(
+            source="logo_pequena.png",
+            pos_hint={"center_x": 0.5, "center_y": 0.8}
+        ))
 
     #-----------------------------------------------------------------------------------------------------
     def build(self):
@@ -714,8 +719,8 @@ class CalculadoraSolar(MDApp):
         self.theme_cls.primary_palette = "DeepOrange"
         self.toobar = MDToolbar()
         self.toobar.title = 'Calculadora Solar'
-        self.toobar.pos_hint = {"top": 1}        
-        # self.toobar.left_action_items = [["menu", lambda x: self.menu()]]
+        self.toobar.pos_hint = {"top": 1}
+        self.toobar.left_action_items = [["menu", lambda x: self.menu()]]
         # self.toobar.right_action_items = [["account-circle", lambda x: self.menu_user(x)]]
         self.screen.add_widget(self.toobar)
         if self.tela == 1:

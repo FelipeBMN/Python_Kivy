@@ -796,7 +796,7 @@ class CalculadoraSolar(MDApp):
         ]
         self.menu_principal = MDDropdownMenu(
             items=menu_items,
-            width_mult=4,
+            width_mult=2,
         )
 
         if self.tela == 1:
@@ -804,11 +804,7 @@ class CalculadoraSolar(MDApp):
                 self.tela1_andrid()
             else:
                 self.tela1_pc()
-        if self.tela == 2:
-            if self.pc_android == 1:
-                self.tela2_android()
-            else:
-                self.tela2_pc()
+
         return self.screen
 
 

@@ -12,6 +12,9 @@ from kivymd.uix.toolbar import MDToolbar
 from kivy.lang import Builder
 from kivymd.uix.menu import MDDropdownMenu
 from kivy.metrics import dp
+from kivy.uix.dropdown import DropDown
+from kivy.uix.button import Button
+from kivy.base import runTouchApp
 
 
 
@@ -435,10 +438,11 @@ class CalculadoraSolar(MDApp):
         ["Jaibaras", 121],
         ["Aprazivel", 123]]
 
-    tela = 1
+    tela = 2
     pc_android = 0
     user = False
     calculado = 0
+    inf = 0
     screen = MDScreen()
 
     # Funções para o Menu =====================================================
@@ -495,6 +499,14 @@ class CalculadoraSolar(MDApp):
             self.screen.remove_widget(self.marca)
             self.screen.remove_widget(self.inversor)
             self.screen.remove_widget(self.pot_placas)
+            self.screen.remove_widget(self.button_placas)
+            self.screen.remove_widget(self.n_placas_ans)
+            self.screen.remove_widget(self.button_marcas)
+            self.screen.remove_widget(self.button_inversores)
+            self.screen.remove_widget(self.button_placas)
+            self.screen.remove_widget(self. button_inform)
+            self.screen.remove_widget(self.button_limpar2)
+
 
         
     def calcular(self, args):
@@ -554,11 +566,25 @@ class CalculadoraSolar(MDApp):
 
     # Função para o botão Limpar2
     def limpar2(self, args):
-        return 0
+        self.screen.remove_widget(self.n_placas_ans)
+        self.screen.remove_widget(self.disjuntor_ans)
+        self.screen.remove_widget(self.cabos_ans)
+        self.inf = 0
 
     # Função para o botão informações
-    def inform(self):
-        return 0
+    def inform(self,arg):
+        self.n_placas_ans.text = "Número de Placas: "+self.button_placas.text
+        if self.inf == 0:
+            if self.button_placas.text == "Potência":
+                self.n_placas_ans.text = "Potencia das placas não informada!"
+            self.screen.add_widget(self.n_placas_ans)
+            self.screen.add_widget(self.disjuntor_ans)
+            self.screen.add_widget(self.cabos_ans)
+        self.inf = 1
+
+
+    
+            
 
     # --------------------------------------------------------- TELAS ------------------------------------------------------------------------
     def tela1_andrid(self):
@@ -794,7 +820,7 @@ class CalculadoraSolar(MDApp):
             font_style="H5"
         )
         self.inversor = MDLabel(
-            text="inversor",
+            text="Inversor",
             halign="center",
             pos_hint={"center_x": 0.5, "center_y": 0.64},
             theme_text_color="ContrastParentBackground",
@@ -811,21 +837,101 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.inversor)
         self.screen.add_widget(self.pot_placas)
 
-        #  button =============================================================
-        self.screen.add_widget(MDFillRoundFlatButton(
-            text="Informações",
-            font_size=17,
-            pos_hint={"center_x": 0.8, "center_y": 0.1},
-            on_press=self.inform
-        ))
-        self.screen.add_widget(MDFillRoundFlatButton(
+        # Buttons marcas ===========================================================
+        self.dropdown_marcas = DropDown()
+        def atualizar_inversores(self):
+            self.screen.remove_widget(self.button_inversores)
+            self.screen.add_widget(self.button_inversores)
+
+
+
+        for index in range(10):
+            btn_marcas = Button(text='Value %d' % index, size_hint_y=None, height=44)
+            btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
+            self.dropdown_marcas.add_widget(btn_marcas)
+        # create a big main button
+        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(None, 0.072))
+        self.button_marcas.bind(on_release=self.dropdown_marcas.open)
+
+        # one last thing, listen for the selection in the dropdown list and
+        # assign the data to the button text.
+        self.dropdown_marcas.bind(on_select=lambda instance, x: setattr(self.button_marcas, 'text', x))
+        
+        self.screen.add_widget(self.button_marcas)
+
+        # Buttons inversores ===========================================================
+        self.dropdown_inversores = DropDown()
+        for index in range(10):
+            btn_inversores = Button(text='Value %d' % index, size_hint_y=None, height=44)
+            btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
+            self.dropdown_inversores.add_widget(btn_inversores)
+        # create a big main button
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(None, 0.072))
+        self.button_inversores.bind(on_release=self.dropdown_inversores.open)
+
+        # one last thing, listen for the selection in the dropdown list and
+        # assign the data to the button text.
+        
+
+        self.dropdown_inversores.bind(on_select=lambda instance, x: setattr(self.button_inversores, 'text', x))
+        
+        self.screen.add_widget(self.button_inversores)
+        
+        # Buttons placas ===========================================================
+        self.dropdown_placas = DropDown()
+        for index in self.dados_placas:
+            btn_placas = Button(text = str(index), size_hint_y=None, height=44)
+            btn_placas.bind(on_release=lambda btn_placas: self.dropdown_placas.select(btn_placas.text))
+            self.dropdown_placas.add_widget(btn_placas)
+        # create a big main button
+        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(None, 0.072))
+        self.button_placas.bind(on_release=self.dropdown_placas.open)
+
+        # one last thing, listen for the selection in the dropdown list and
+        # assign the data to the button text.
+        self.dropdown_placas.bind(on_select=lambda instance, x: setattr(self.button_placas, 'text', x))
+        
+        self.screen.add_widget(self.button_placas)
+
+        # Answers ==================================================
+        self.n_placas_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.34},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+        )
+        self.disjuntor_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.28},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+            text = "Disjuntor: 32 A "
+        )
+        self.cabos_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.22},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+            text = "Cabos: 6 mm² "
+        )
+
+         # button =============================================================
+        self.button_inform = MDFillRoundFlatButton(
+        text="Informações",
+        font_size=17,
+        pos_hint={"center_x": 0.8, "center_y": 0.1},
+        on_press=self.inform
+        )
+        
+        self.button_limpar2 = MDFillRoundFlatButton(
             text="Limpar",
             font_size=17,
             pos_hint={"center_x": 0.2, "center_y": 0.1},
             on_press=self.limpar2
-        ))
-
-    # ---------------------------------------------------------Principal---------------------------------------------------------
+        )
+        self.screen.add_widget(self.button_inform)
+        self.screen.add_widget(self.button_limpar2)
+    #---------------------------------------------------------Principal---------------------------------------------------------
     def build(self):
         self.state = 0  # initial state
         self.theme_cls.primary_palette = "DeepOrange"
@@ -861,7 +967,11 @@ class CalculadoraSolar(MDApp):
                 self.tela1_andrid()
             else:
                 self.tela1_pc()
-
+        if self.tela == 2: 
+            if self.pc_android == 1:
+                self.tela2_andrid()
+            else:
+                self.tela2_pc()
         return self.screen
 
 

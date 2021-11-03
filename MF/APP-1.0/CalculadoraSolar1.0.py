@@ -10,6 +10,10 @@ from kivymd.uix.textfield import MDTextField
 from kivymd.uix.label import MDLabel
 from kivymd.uix.toolbar import MDToolbar
 from kivy.lang import Builder
+from kivymd.uix.menu import MDDropdownMenu
+from kivymd.uix.snackbar import Snackbar
+from kivy.metrics import dp
+
 
 
 class CalculadoraSolar(MDApp):
@@ -432,15 +436,20 @@ class CalculadoraSolar(MDApp):
         ["Jaibaras", 121],
         ["Aprazivel", 123]]
 
-    tela = 2
-    pc_android = 0
+    tela = 1
+    pc_android = 1
     user = False
     calculado = 0
     screen = MDScreen()
 
-    def menu(self):
+    # Funções para o Menu
+    def menu(self, button):
+        self.menu_principal.caller = button
+        self.menu_principal.open()
 
-        return 0
+    def menu_callback(self, text_item):
+        self.menu_principal.dismiss()
+        Snackbar(text=text_item).open()
 
     # Função para o botão Calcular
     def calcular(self, args):
@@ -766,19 +775,36 @@ class CalculadoraSolar(MDApp):
         self.toobar = MDToolbar()
         self.toobar.title = 'Calculadora Solar'
         self.toobar.pos_hint = {"top": 1}
-        self.toobar.left_action_items = [["menu", lambda x: self.menu()]]
+        self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
         # self.toobar.right_action_items = [["account-circle", lambda x: self.menu_user(x)]]
         self.screen.add_widget(self.toobar)
+
+        # Menu Principal
+        menu_items = [
+            {
+                "viewclass": "OneLineListItem",
+                "text": "Fator Solar",
+                "height": dp(56),
+                "on_release": lambda x="Item 1": self.menu_callback(x),
+            },
+            {
+                "viewclass": "OneLineListItem",
+                "text": "Inversores",
+                "height": dp(56),
+                "on_release": lambda x="Item 2": self.menu_callback(x),
+            }
+        ]
+        self.menu_principal = MDDropdownMenu(
+            items=menu_items,
+            width_mult=2,
+        )
+
         if self.tela == 1:
             if self.pc_android == 1:
                 self.tela1_andrid()
             else:
                 self.tela1_pc()
-        if self.tela == 2:
-            if self.pc_android == 1:
-                self.tela2_android()
-            else:
-                self.tela2_pc()
+
         return self.screen
 
 

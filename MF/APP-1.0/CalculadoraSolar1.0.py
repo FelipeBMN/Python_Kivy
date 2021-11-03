@@ -581,8 +581,11 @@ class CalculadoraSolar(MDApp):
             self.screen.add_widget(self.disjuntor_ans)
             self.screen.add_widget(self.cabos_ans)
         self.inf = 1
-
-
+    # Arualiza a seleção de inversores com para os novos
+    def atualizar_inversores(self,args):
+            self.screen.remove_widget(self.button_inversores)
+            self.button_inversores.text = "Inversor"
+            self.screen.add_widget(self.button_inversores)
     
             
 
@@ -850,7 +853,7 @@ class CalculadoraSolar(MDApp):
         # one last thing, listen for the selection in the dropdown list and
         # assign the data to the button text.
         self.dropdown_marcas.bind(on_select=lambda instance, x: setattr(self.button_marcas, 'text', x))
-        
+        self.dropdown_marcas.on_select = self.atualizar_inversores
         self.screen.add_widget(self.button_marcas)
 
         # Buttons inversores ===========================================================
@@ -883,10 +886,7 @@ class CalculadoraSolar(MDApp):
 
         # one last thing, listen for the selection in the dropdown list and
         # assign the data to the button text.
-        def teste():
-            return 0
         self.dropdown_placas.bind(on_select=lambda instance, x: setattr(self.button_placas, 'text', x))
-        self.dropdown_placas.on_press = teste
         self.screen.add_widget(self.button_placas)
 
         # Answers ==================================================

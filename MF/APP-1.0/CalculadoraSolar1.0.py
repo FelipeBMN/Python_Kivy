@@ -449,14 +449,19 @@ class CalculadoraSolar(MDApp):
     def menu_callback(self, text_item):
         self.menu_principal.dismiss()
         if (text_item == 1) and (self.tela != 1):
-            # self.remove_tela2("all")
+            self.tela = 1
+            self.remove_tela2("all")
             if self.pc_android == 0: 
                 self.tela1_pc()
             else: 
-                self.tela1_pc
+                self.tela1_android()
         if (text_item == 2) and (self.tela != 2):
             self.tela = 2
             self.remove_tela1("all")
+            if self.pc_android == 0: 
+                self.tela2_pc()
+            else: 
+                self.tela2_android()
             
 
     # Função para o botão Calcular ============================================          
@@ -486,7 +491,10 @@ class CalculadoraSolar(MDApp):
             self.screen.remove_widget(self.logo1)
 
     def remove_tela2(self, type):
-        return 0
+        if type == "all":
+            self.screen.remove_widget(self.marca)
+            self.screen.remove_widget(self.inversor)
+            self.screen.remove_widget(self.pot_placas)
 
         
     def calcular(self, args):
@@ -781,21 +789,21 @@ class CalculadoraSolar(MDApp):
         self.marca = MDLabel(
             text="Marca",
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.86},
+            pos_hint={"center_x": 0.5, "center_y": 0.80},
             theme_text_color="ContrastParentBackground",
             font_style="H5"
         )
         self.inversor = MDLabel(
             text="inversor",
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.7},
+            pos_hint={"center_x": 0.5, "center_y": 0.64},
             theme_text_color="ContrastParentBackground",
             font_style="H5"
         )
         self.pot_placas = MDLabel(
             text="Potência da Placa",
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.54},
+            pos_hint={"center_x": 0.5, "center_y": 0.49},
             theme_text_color="ContrastParentBackground",
             font_style="H5"
         )

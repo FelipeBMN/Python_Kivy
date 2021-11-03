@@ -839,12 +839,6 @@ class CalculadoraSolar(MDApp):
 
         # Buttons marcas ===========================================================
         self.dropdown_marcas = DropDown()
-        def atualizar_inversores(self):
-            self.screen.remove_widget(self.button_inversores)
-            self.screen.add_widget(self.button_inversores)
-
-
-
         for index in range(10):
             btn_marcas = Button(text='Value %d' % index, size_hint_y=None, height=44)
             btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
@@ -889,8 +883,10 @@ class CalculadoraSolar(MDApp):
 
         # one last thing, listen for the selection in the dropdown list and
         # assign the data to the button text.
+        def teste():
+            return 0
         self.dropdown_placas.bind(on_select=lambda instance, x: setattr(self.button_placas, 'text', x))
-        
+        self.dropdown_placas.on_press = teste
         self.screen.add_widget(self.button_placas)
 
         # Answers ==================================================

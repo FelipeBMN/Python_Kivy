@@ -448,31 +448,18 @@ class CalculadoraSolar(MDApp):
 
     def menu_callback(self, text_item):
         self.menu_principal.dismiss()
-        if text_item == 1:
-            self.add_tela1("input")
-            
-        if text_item == 2:
+        if (text_item == 1) and (self.tela != 1):
+            # self.remove_tela2("all")
+            if self.pc_android == 0: 
+                self.tela1_pc()
+            else: 
+                self.tela1_pc
+        if (text_item == 2) and (self.tela != 2):
+            self.tela = 2
             self.remove_tela1("all")
             
 
-    # Função para o botão Calcular ============================================
-    def add_tela1(self, type):
-        if type == "input":
-            self.screen.add_widget(self.pot_placas)
-            self.screen.add_widget(self.municipio)
-            self.screen.add_widget(self.n_placas)
-            self.screen.add_widget(self.input_municipio)
-            self.screen.add_widget(self.input_n_placas)
-            self.screen.add_widget(self.input_pot_placas)
-            self.screen.add_widget(self.button_calcular)
-            self.screen.add_widget(self.button_corrigir)
-            self.screen.add_widget(self.logo1)
-        if type == "ans":
-            self.screen.add_widget(self.municipio_ans)
-            self.screen.add_widget(self.n_placas_ans)
-            self.screen.add_widget(self.pot_placas_ans)
-        
-            
+    # Função para o botão Calcular ============================================          
     def remove_tela1(self, type):
         if type == "input":
             self.screen.remove_widget(self.input_municipio)
@@ -497,6 +484,9 @@ class CalculadoraSolar(MDApp):
             self.screen.remove_widget(self.button_calcular)
             self.screen.remove_widget(self.button_corrigir)
             self.screen.remove_widget(self.logo1)
+
+    def remove_tela2(self, type):
+        return 0
 
         
     def calcular(self, args):

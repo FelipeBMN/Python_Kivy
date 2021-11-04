@@ -626,6 +626,10 @@ class CalculadoraSolar(MDApp):
       
     def remove_tela3(self, type):
         if self.tela == 3:
+
+            if type == "input":
+                self.screen.remove_widget(self.input_municipio)
+                self.screen.remove_widget(self.input_pot_sistema)
             if type == "all":
                 self.calculado = 0
                 self.inf = 0
@@ -716,9 +720,9 @@ class CalculadoraSolar(MDApp):
     def calcular3(self,args):
         potencia = 0
         try:
-            potencia = int(self.pot_sistema.text)
+            potencia = float(self.input_pot_sistema.text)
         except:
-            self.geracao.text = "Digite apenas numeros"
+            self.geracao.text = "Digite apenas numeros para descrever a potência"
         if  not self.geracao.text == "Digite apenas numeros" : 
             try:
                 fator_solar = 0
@@ -745,7 +749,7 @@ class CalculadoraSolar(MDApp):
         # Mostrando respostas
         try:
             self.municipio_ans.text = self.input_municipio.text.upper() + " -> Fator Solar: " + str(fator_solar)
-            self.pot_sistema_ans.text = self.pot_sistema.text + " kWp"
+            self.pot_sistema_ans.text = self.input_pot_sistema.text + " kWp"
         except:
             print("Erro nas repostas")
 
@@ -753,6 +757,8 @@ class CalculadoraSolar(MDApp):
     def limpar3(self,args):
         self.geracao.text = ""
         self.calculado = 0
+        self.screen.add_widget(self.input_municipio)
+        self.screen.add_widget(self.input_pot_sistema)
         self.screen.remove_widget(self.municipio_ans)
         self.screen.remove_widget(self.pot_sistema_ans)
 
@@ -1227,19 +1233,19 @@ class CalculadoraSolar(MDApp):
         menu_items = [
             {
                 "viewclass": "OneLineListItem",
-                "text": "Fator Solar",
+                "text": "Geração Por Placas",
                 "height": dp(56),
                 "on_release": lambda x=1: self.menu_callback(x),
             },
             {
                 "viewclass": "OneLineListItem",
-                "text": "Inversores",
+                "text": "Info. - Inversores",
                 "height": dp(56),
                 "on_release": lambda x=2: self.menu_callback(x),
             },
             {
                 "viewclass": "OneLineListItem",
-                "text": "Geração",
+                "text": "Geração por kWp",
                 "height": dp(56),
                 "on_release": lambda x=3: self.menu_callback(x),
             }

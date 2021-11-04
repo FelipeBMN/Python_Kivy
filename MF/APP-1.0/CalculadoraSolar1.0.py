@@ -17,9 +17,10 @@ from kivy.uix.button import Button
 from kivy.base import runTouchApp
 
 
-
+# Função principal =====================================================
 class CalculadoraSolar(MDApp):
-    # Potências de placas comercializadas
+
+    # Dados Para o Programa =====================================================
     dados_placas = [325,
                     330,
                     335,
@@ -53,6 +54,7 @@ class CalculadoraSolar(MDApp):
                     540,
                     545,
                     550]
+
     fator_solares = [
         ["Sobral", 118],
         ["Cariré", 122],
@@ -438,7 +440,105 @@ class CalculadoraSolar(MDApp):
         ["Jaibaras", 121],
         ["Aprazivel", 123]]
 
-    tela = 2
+    Marcas = [  "GROWATT",
+                "HOYMILES",
+                "SMA",
+                "SOLIS",
+                "CANADIAN",
+                "LIVOLTEK" ]
+
+    Inversores = [  ["GROWATT",	"MID 15KTL3-X"],
+                    ["GROWATT",	"MID 17KTL3-X"],
+                    ["GROWATT",	"MID 20KTL3-X"],
+                    ["GROWATT",	"MID 22KTL3-X"],
+                    ["GROWATT",	"MID 25KTL3-X"],
+                    ["GROWATT",	"MID 25KTL3-X"],
+                    ["GROWATT",	"7000MTL-S"],
+                    ["GROWATT",	"8000MTL-S"],
+                    ["GROWATT",	"7000MTL-S"],
+                    ["GROWATT",	"MIN 2500TL-X"],
+                    ["GROWATT",	"MIN 2500TL-X"],
+                    ["GROWATT",	"MIN 3600TL-X"],
+                    ["GROWATT",	"MIN 4200TL-X"],
+                    ["GROWATT",	"MIN 4600TL-X"],
+                    ["GROWATT",	"MIN 5000TL-X"],
+                    ["GROWATT",	"MIN 6000TL-X"],
+                    ["GROWATT",	"MAX 50KTL3 LV"],
+                    ["GROWATT",	"MAX 60KTL3 LV"],
+                    ["GROWATT",	"MAX 70KTL3 LV"],
+                    ["GROWATT",	"MAX 80KTL3 LV"],
+                    ["SOLIS", "Solis-1P7K-4G"],
+                    ["SOLIS", "Solis-1P8K-4G"],
+                    ["SOLIS", "Solis-1P9K-4G"],
+                    ["SOLIS", "Solis-1P10K-4G"],
+                    ["SOLIS", "Solis-25K-5G"],
+                    ["SOLIS", "Solis-30K-5G"],
+                    ["SOLIS", "Solis-33K-5G"],
+                    ["SOLIS", "Solis-36K-5G"],
+                    ["SOLIS", "Solis-40K-5G"],
+                    ["SOLIS", "Solis-40K-HV-5G"],
+                    ["SOLIS", "Solis-50K-HV-5G"],
+                    ["SOLIS", "Solis-50K"],
+                    ["SOLIS", "Solis-50K-HV"],
+                    ["SOLIS", "Solis-60K-HV"],
+                    ["SOLIS", "Solis-60K-4G"],
+                    ["SOLIS", "Solis-75K-5G"],
+                    ["SOLIS", "Solis-80K-5G"],
+                    ["SOLIS", "Solis-1P2.5K-4G"],
+                    ["SOLIS", "Solis-1P3K-4G"],
+                    ["SOLIS", "Solis-1P3.6K-4G"],
+                    ["SOLIS", "Solis-1P4K-4G"],
+                    ["SOLIS", "Solis-1P4.6K-4G"],
+                    ["SOLIS", "Solis-1P5K-4G"],
+                    ["SOLIS", "Solis-1P6K-4G"],
+                    ["SOLIS", "Solis-3P5K-4G"],
+                    ["SOLIS", "Solis-3P6K-4G"],
+                    ["SOLIS", "Solis-3P8K-4G"],
+                    ["SOLIS", "Solis-3P9K-4G"],
+                    ["SOLIS", "Solis-3P10K-4G"],
+                    ["SOLIS", "Solis-3P12K-4G"],
+                    ["SOLIS", "Solis-3P15K-4G"],
+                    ["SOLIS", "Solis-3P17K-4G"],
+                    ["SOLIS", "Solis-3P20K-4G"],
+                    ["SMA",	"Sunny Tripower 15000TL"],
+                    ["SMA",	"Sunny Tripower 20000TL"],
+                    ["SMA",	"Sunny Tripower 25000TL"],
+                    ["SMA",	"Sunny Tripower CORE1"],
+                    ["LIVOLTEK", "GT1-3K-S"],
+                    ["LIVOLTEK", "GT1-5K-D"],
+                    ["LIVOLTEK", "GT1-6K-D"],
+                    ["LIVOLTEK", "GT1-5K-D"],
+                    ["LIVOLTEK", "GT1-6K-D"],
+                    ["CANADIAN", "CSI-3K-S22002-ED"],
+                    ["CANADIAN", "CSI-5K-S22002-ED"],
+                    ["CANADIAN", "CSI-5KTL1P-FL"],
+                    ["CANADIAN", "CSI-7K-S22002-ED"],
+                    ["CANADIAN", "CSI-8KTL1P-GI-FL"],
+                    ["CANADIAN", "CSI-15K-T400GL01-E"],
+                    ["CANADIAN", "CSI-20KTL-GI-LFL"],
+                    ["CANADIAN", "CSI-25K-T400GL02-E"],
+                    ["CANADIAN", "CSI-25KTL-GI-L"],
+                    ["CANADIAN", "CSI-30KTL-GI-L"],
+                    ["CANADIAN", "CSI-50KTL-GI"],
+                    ["CANADIAN", "CSI-60KTL-GI"],
+                    ["CANADIAN", "CSI-75K-T400GL02-E"],
+                    ["CANADIAN", "CSI-100K-T400GL02-E"],
+                    ["LIVOLTEK", "GT1 8K"],
+                    ["LIVOLTEK", "GT1 10K"],
+                    ["LIVOLTEK", "GT3-25K"],
+                    ["LIVOLTEK", "GT3-30K"],
+                    ["HOYMILES", "MI-1000"],
+                    ["HOYMILES", "MI-1200"],
+                    ["HOYMILES", "MI-1500"],
+                    ["HOYMILES", "HMS-1800"],
+                    ["HOYMILES", "HMS-2000"],
+                    ["GROWATT",	"MAC 30KTL3-X LV"],
+                    ["GROWATT",	"MAC 40KTL3-X LV"],
+                    ["GROWATT",	"MAC 50KTL3-X LV"],
+                    ["GROWATT",	"MAC 60KTL3-X LV"],
+                    ["CANADIAN", "CSI-9K-S2202-E"]]
+    # Variaveis do Programa =======================]==============================
+    tela = 1
     pc_android = 0
     user = False
     calculado = 0
@@ -465,8 +565,7 @@ class CalculadoraSolar(MDApp):
             if self.pc_android == 0: 
                 self.tela2_pc()
             else: 
-                self.tela2_android()
-            
+                self.tela2_android()      
 
     # Função para o botão Calcular ============================================          
     def remove_tela1(self, type):
@@ -479,6 +578,8 @@ class CalculadoraSolar(MDApp):
             self.screen.remove_widget(self.n_placas_ans)
             self.screen.remove_widget(self.pot_placas_ans)
         if type == "all":
+            self.calculado = 0
+            self.inf = 0
             self.screen.remove_widget(self.input_municipio)
             self.screen.remove_widget(self.input_n_placas)
             self.screen.remove_widget(self.input_pot_placas)
@@ -496,6 +597,8 @@ class CalculadoraSolar(MDApp):
 
     def remove_tela2(self, type):
         if type == "all":
+            self.calculado = 0
+            self.inf = 0
             self.screen.remove_widget(self.marca)
             self.screen.remove_widget(self.inversor)
             self.screen.remove_widget(self.pot_placas)
@@ -506,6 +609,9 @@ class CalculadoraSolar(MDApp):
             self.screen.remove_widget(self.button_placas)
             self.screen.remove_widget(self. button_inform)
             self.screen.remove_widget(self.button_limpar2)
+            self.screen.remove_widget(self.disjuntor_ans)
+            self.screen.remove_widget(self.cabos_ans)
+            
 
 
         
@@ -581,11 +687,30 @@ class CalculadoraSolar(MDApp):
             self.screen.add_widget(self.disjuntor_ans)
             self.screen.add_widget(self.cabos_ans)
         self.inf = 1
+
     # Arualiza a seleção de inversores com para os novos
     def atualizar_inversores(self,args):
+        try:
             self.screen.remove_widget(self.button_inversores)
-            self.button_inversores.text = "Inversor"
-            self.screen.add_widget(self.button_inversores)
+        except:
+            print("Erro self.button_inversores nao existe")
+        self.dropdown_inversores = DropDown()
+        for index in self.Inversores:
+            if index[0] == self.button_marcas.text:
+                self.btn_inversores = Button(text= index[1], size_hint_y=None, height=44)
+                self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
+                self.dropdown_inversores.add_widget(self.btn_inversores)
+        # create a big main button
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.25, 0.072))
+        self.button_inversores.bind(on_release=self.dropdown_inversores.open)
+
+        # one last thing, listen for the selection in the dropdown list and
+        # assign the data to the button text.
+        
+
+        self.dropdown_inversores.bind(on_select=lambda instance, x: setattr(self.button_inversores, 'text', x))
+        
+        self.screen.add_widget(self.button_inversores)
     
             
 
@@ -842,8 +967,8 @@ class CalculadoraSolar(MDApp):
 
         # Buttons marcas ===========================================================
         self.dropdown_marcas = DropDown()
-        for index in range(10):
-            btn_marcas = Button(text='Value %d' % index, size_hint_y=None, height=44)
+        for index in self.Marcas:
+            btn_marcas = Button(text = index, size_hint_y=None, height=44)
             btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
             self.dropdown_marcas.add_widget(btn_marcas)
         # create a big main button
@@ -857,13 +982,15 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.button_marcas)
 
         # Buttons inversores ===========================================================
+
         self.dropdown_inversores = DropDown()
-        for index in range(10):
-            btn_inversores = Button(text='Value %d' % index, size_hint_y=None, height=44)
-            btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
-            self.dropdown_inversores.add_widget(btn_inversores)
+        for index in self.Inversores:
+            if index[0] == self.button_marcas.text:
+                self.btn_inversores = Button(text= index[1], size_hint_y=None, height=44)
+                self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
+                self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(None, 0.072))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.25, 0.072))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -927,6 +1054,8 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.button_inform)
         self.screen.add_widget(self.button_limpar2)
+        
+
     #---------------------------------------------------------Principal---------------------------------------------------------
     def build(self):
         self.state = 0  # initial state

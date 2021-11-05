@@ -538,7 +538,7 @@ class CalculadoraSolar(MDApp):
                     ["GROWATT",	"MAC 60KTL3-X LV"],
                     ["CANADIAN", "CSI-9K-S2202-E"]]
     # Variaveis do Programa =======================]==============================
-    tela = 3
+    tela = 1
     pc_android = 0
     user = False
     calculado = 0

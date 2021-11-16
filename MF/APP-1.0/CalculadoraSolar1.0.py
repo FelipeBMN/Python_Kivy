@@ -540,7 +540,7 @@ class CalculadoraSolar(MDApp):
                     
     # Variaveis do Programa =======================]==============================
     tela = 4
-    pc_android = 0
+    pc_android = 1
     calculado = 0
     inf = 0
     screen = MDScreen()
@@ -549,7 +549,8 @@ class CalculadoraSolar(MDApp):
 
 
     def menu(self, button):
-        self.ir_tela4()
+        if self.tela != 4: 
+            self.ir_tela4()
         return 0
 
 
@@ -563,7 +564,7 @@ class CalculadoraSolar(MDApp):
             self.remove_tela4("all")
 
         if self.pc_android == 1:
-            self.tela1_andrid()
+            self.tela1_android()
         else:
             self.tela1_pc()
         self.tela = 1
@@ -577,7 +578,7 @@ class CalculadoraSolar(MDApp):
         if self.tela == 4:
             self.remove_tela4("all")
         if self.pc_android == 1:
-            self.tela2_andrid()
+            self.tela2_android()
         else:
             self.tela2_pc()
         self.tela = 2
@@ -590,7 +591,7 @@ class CalculadoraSolar(MDApp):
         if self.tela == 4:
             self.remove_tela4("all")
         if self.pc_android == 1:
-            self.tela3_andrid()
+            self.tela3_android()
         else:
             self.tela3_pc()
         self.tela = 3
@@ -603,7 +604,7 @@ class CalculadoraSolar(MDApp):
         if self.tela == 3:
             self.remove_tela3("all")
         if self.pc_android == 1:
-            self.tela4_andrid()
+            self.tela4_android()
         else:
             self.tela4_pc()
         self.tela = 4
@@ -839,7 +840,7 @@ class CalculadoraSolar(MDApp):
 
 
     # --------------------------------------------------------- TELAS ------------------------------------------------------------------------
-    def tela1_andrid(self):
+    def tela1_android(self):
         # Logo
         # self.logo1 = Image(
         #     source="logo.png",
@@ -1179,6 +1180,123 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.button_inform)
         self.screen.add_widget(self.button_limpar2)
+
+    def tela2_android(self):
+        # Labels Form ====================================================
+        self.marca = MDLabel(
+            text="Marca",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.80},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5"
+        )
+        self.inversor = MDLabel(
+            text="Inversor",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.64},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5"
+        )
+        self.pot_placas = MDLabel(
+            text="Potência da Placa",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.49},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5"
+        )
+        self.screen.add_widget(self.marca)
+        self.screen.add_widget(self.inversor)
+        self.screen.add_widget(self.pot_placas)
+
+        # Buttons marcas ===========================================================
+        self.dropdown_marcas = DropDown()
+        for index in self.Marcas:
+            btn_marcas = Button(text = index, size_hint_y=None, height=44)
+            btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
+            self.dropdown_marcas.add_widget(btn_marcas)
+        # create a big main button
+        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(None, 0.072))
+        self.button_marcas.bind(on_release=self.dropdown_marcas.open)
+
+        # one last thing, listen for the selection in the dropdown list and
+        # assign the data to the button text.
+        self.dropdown_marcas.bind(on_select=lambda instance, x: setattr(self.button_marcas, 'text', x))
+        self.dropdown_marcas.on_select = self.atualizar_inversores
+        self.screen.add_widget(self.button_marcas)
+
+        # Buttons inversores ===========================================================
+
+        self.dropdown_inversores = DropDown()
+        for index in self.Inversores:
+            if index[0] == self.button_marcas.text:
+                self.btn_inversores = Button(text= index[1], size_hint_y=None, height=44)
+                self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
+                self.dropdown_inversores.add_widget(self.btn_inversores)
+        # create a big main button
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.25, 0.072))
+        self.button_inversores.bind(on_release=self.dropdown_inversores.open)
+
+        # one last thing, listen for the selection in the dropdown list and
+        # assign the data to the button text.
+        
+
+        self.dropdown_inversores.bind(on_select=lambda instance, x: setattr(self.button_inversores, 'text', x))
+        
+        self.screen.add_widget(self.button_inversores)
+        
+        # Buttons placas ===========================================================
+        self.dropdown_placas = DropDown()
+        for index in self.dados_placas:
+            btn_placas = Button(text = str(index), size_hint_y=None, height=44)
+            btn_placas.bind(on_release=lambda btn_placas: self.dropdown_placas.select(btn_placas.text))
+            self.dropdown_placas.add_widget(btn_placas)
+        # create a big main button
+        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(None, 0.072))
+        self.button_placas.bind(on_release=self.dropdown_placas.open)
+
+        # one last thing, listen for the selection in the dropdown list and
+        # assign the data to the button text.
+        self.dropdown_placas.bind(on_select=lambda instance, x: setattr(self.button_placas, 'text', x))
+        self.screen.add_widget(self.button_placas)
+
+        # Answers ==================================================
+        self.n_placas_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.34},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+        )
+        self.disjuntor_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.28},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+            text = "Disjuntor: 32 A "
+        )
+        self.cabos_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.22},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+            text = "Cabos: 6 mm² "
+        )
+
+         # button =============================================================
+        self.button_inform = MDFillRoundFlatButton(
+        text="Informações",
+        font_size=17,
+        pos_hint={"center_x": 0.8, "center_y": 0.1},
+        on_press=self.inform
+        )
+        
+        self.button_limpar2 = MDFillRoundFlatButton(
+            text="Limpar",
+            font_size=17,
+            pos_hint={"center_x": 0.2, "center_y": 0.1},
+            on_press=self.limpar2
+        )
+        self.screen.add_widget(self.button_inform)
+        self.screen.add_widget(self.button_limpar2)    
         
     def tela3_pc(self):
         #self.logo1 = Image(
@@ -1266,9 +1384,94 @@ class CalculadoraSolar(MDApp):
             on_press=self.limpar3
         )
         self.screen.add_widget(self.button_corrigir3)
+    
 
-    def tela3_android():
-        return 0
+    def tela3_android(self):
+        #self.logo1 = Image(
+        #    source="logo_pequena.png",
+        #    pos_hint={"center_x": 0.5, "center_y": 0.8}
+        #)
+        #self.screen.add_widget(self.logo1)
+
+        # Labels Form ====================================================
+        self.municipio = MDLabel(
+            text="Município",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.7},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+        )
+        self.pot_sistema = MDLabel(
+            text="Potência [kWp]",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.54},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5"
+        )
+        self.screen.add_widget(self.municipio)
+        self.screen.add_widget(self.pot_sistema)
+
+        # Labels label input ====================================================
+        self.municipio_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.64},
+            theme_text_color="Error",
+            font_style="H5",
+            text = ""
+        )
+        self.pot_sistema_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.48},
+            theme_text_color="Error",
+            font_style="H5",
+            text = ""
+        )
+        
+
+        # Labels Answers ====================================================
+        self.geracao = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.30},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+            text = ""
+        )
+       
+        self.screen.add_widget(self.geracao)
+
+        # Inputs ========================================================
+        self.input_municipio = MDTextField(
+            text="",
+            halign="center",
+            size_hint=(0.8, 1),
+            pos_hint={"center_x": 0.5, "center_y": 0.64},
+            font_size=22
+        )
+        self.input_pot_sistema = MDTextField(
+            text="",
+            halign="center",
+            size_hint=(0.8, 1),
+            pos_hint={"center_x": 0.5, "center_y": 0.48},
+            font_size=22
+        )
+        self.screen.add_widget(self.input_municipio)
+        self.screen.add_widget(self.input_pot_sistema)
+        # button =============================================================
+        self.button_calcular3 = MDFillRoundFlatButton(
+                text="Calcular",
+                font_size=17,
+                pos_hint={"center_x": 0.8, "center_y": 0.1},
+                on_press=self.calcular3
+            )
+        self.screen.add_widget(self.button_calcular3)
+
+        self.button_corrigir3 = MDFillRoundFlatButton(
+            text="Corrigir",
+            font_size=17,
+            pos_hint={"center_x": 0.2, "center_y": 0.1},
+            on_press=self.limpar3
+        )
+        self.screen.add_widget(self.button_corrigir3)
     
     # Tela 4 ================================================================================
     def tela4_pc(self):
@@ -1305,8 +1508,38 @@ class CalculadoraSolar(MDApp):
 
 
 
-    def tela4_android():
-        return 0
+    def tela4_android(self):
+        self.logo1 = Image(
+            source="logo_pequena.png",
+            pos_hint={"center_x": 0.5, "center_y": 0.8}
+        )
+        self.screen.add_widget(self.logo1)
+
+        # button =============================================================
+        self.button_tela1 = MDFillRoundFlatButton(
+            text="Geração - Modulo",
+            font_size=20,
+            pos_hint={"center_x": 0.5, "center_y": 0.7},
+            on_press=self.ir_tela1
+        )
+        self.screen.add_widget(self.button_tela1)
+
+        self.button_tela2 = MDFillRoundFlatButton(
+            text="Inversores",
+            font_size=20,
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            on_press=self.ir_tela2
+        )
+        self.screen.add_widget(self.button_tela2)
+
+        self.button_tela3 = MDFillRoundFlatButton(
+            text="Geração - kWp",
+            font_size=20,
+            pos_hint={"center_x": 0.5, "center_y": 0.6},
+            on_press=self.ir_tela3
+        )
+        self.screen.add_widget(self.button_tela3)
+        
     #---------------------------------------------------------Principal---------------------------------------------------------
     def build(self):
         self.state = 0  # initial state

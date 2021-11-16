@@ -539,44 +539,74 @@ class CalculadoraSolar(MDApp):
                     ["CANADIAN", "CSI-9K-S2202-E"]]
                     
     # Variaveis do Programa =======================]==============================
-    tela = 1
+    tela = 4
     pc_android = 0
-    user = False
     calculado = 0
     inf = 0
     screen = MDScreen()
 
     # Funções para o Menu =====================================================
-    def menu(self, button):
-        self.menu_principal.caller = button
-        self.menu_principal.open()
 
-    def menu_callback(self, text_item):
-        self.menu_principal.dismiss()
-        if (text_item == 1) and (self.tela != 1):
+
+    def menu(self, button):
+        self.ir_tela4()
+        return 0
+
+
+
+    def ir_tela1(self, args):
+        if self.tela == 2:
             self.remove_tela2("all")
+        if self.tela == 3:
             self.remove_tela3("all")
-            if self.pc_android == 0: 
-                self.tela1_pc()
-            else: 
-                self.tela1_android()
-            self.tela = 1
-        if (text_item == 2) and (self.tela != 2):
+        if self.tela == 4:
+            self.remove_tela4("all")
+
+        if self.pc_android == 1:
+            self.tela1_andrid()
+        else:
+            self.tela1_pc()
+        self.tela = 1
+        
+    
+    def ir_tela2(self, args):
+        if self.tela == 1:
             self.remove_tela1("all")
+        if self.tela == 3:
             self.remove_tela3("all")
-            if self.pc_android == 0: 
-                self.tela2_pc()
-            else: 
-                self.tela2_android() 
-            self.tela = 2
-        if (text_item == 3) and (self.tela != 3):
+        if self.tela == 4:
+            self.remove_tela4("all")
+        if self.pc_android == 1:
+            self.tela2_andrid()
+        else:
+            self.tela2_pc()
+        self.tela = 2
+    
+    def ir_tela3(self, args):
+        if self.tela == 1:
             self.remove_tela1("all")
+        if self.tela == 2:
             self.remove_tela2("all")
-            if self.pc_android == 0: 
-                self.tela3_pc()
-            else: 
-                self.tela3_android()   
-            self.tela = 3    
+        if self.tela == 4:
+            self.remove_tela4("all")
+        if self.pc_android == 1:
+            self.tela3_andrid()
+        else:
+            self.tela3_pc()
+        self.tela = 3
+
+    def ir_tela4(self):
+        if self.tela == 1:
+            self.remove_tela1("all")
+        if self.tela == 2:
+            self.remove_tela2("all")
+        if self.tela == 3:
+            self.remove_tela3("all")
+        if self.pc_android == 1:
+            self.tela4_andrid()
+        else:
+            self.tela4_pc()
+        self.tela = 4
 
     # Função para o botão Calcular ============================================          
     def remove_tela1(self, type):
@@ -592,6 +622,7 @@ class CalculadoraSolar(MDApp):
             if type == "all":
                 self.calculado = 0
                 self.inf = 0
+                #self.screen.remove_widget(self.logo1)
                 self.screen.remove_widget(self.input_municipio)
                 self.screen.remove_widget(self.input_n_placas)
                 self.screen.remove_widget(self.input_pot_placas)
@@ -605,7 +636,6 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.pot_sist)
                 self.screen.remove_widget(self.button_calcular)
                 self.screen.remove_widget(self.button_corrigir)
-                self.screen.remove_widget(self.logo1)
 
     def remove_tela2(self, type):
         if self.tela == 2:
@@ -634,19 +664,30 @@ class CalculadoraSolar(MDApp):
             if type == "all":
                 self.calculado = 0
                 self.inf = 0
-                self.screen.remove_widget(self.logo1)
+                #self.screen.remove_widget(self.logo1)
                 self.screen.remove_widget(self.municipio)
                 self.screen.remove_widget(self.pot_sistema)
                 self.screen.remove_widget(self.municipio_ans)
                 self.screen.remove_widget(self.pot_sistema_ans)
                 self.screen.remove_widget(self.geracao)
                 self.screen.remove_widget(self.input_municipio)
+                self.screen.remove_widget(self.button_calcular3)
+                self.screen.remove_widget(self.button_corrigir3)
                 self.screen.remove_widget(self.input_pot_sistema)
 
-
+    def remove_tela4(self, type):
+        if type == "all":
+            self.screen.remove_widget(self.logo1)
+            self.screen.remove_widget(self.button_tela1)
+            self.screen.remove_widget(self.button_tela2)
+            self.screen.remove_widget(self.button_tela3)
         
+        
+    # botoes =================================================================
     def calcular(self, args):
         potencia = 0
+        erro = 0
+
         try:
             pot_placas = int(self.input_pot_placas.text)
             n_placas = int(self.input_n_placas.text)
@@ -657,22 +698,25 @@ class CalculadoraSolar(MDApp):
                 self.pot_sist.text = "Potência de Placas Não Cadastrada"
         except:
             self.pot_sist.text = "Numero ou Potência das Placas Incorretos"
-        try:
-            fator_solar = 0
-            for fator_solar_dados in self.fator_solares:
-                distrito = self.fator_solares[0]
-                if fator_solar_dados[0].lower() == self.input_municipio.text.lower():
-                    fator_solar = fator_solar_dados[1]
-            geracao = round(potencia * fator_solar, 2)
-            if potencia > 0:
-                if fator_solar > 0:
-                    self.ger_mensal.text = "Geração Mensal: " + str(geracao) + " kWh"
+            erro = 1
+
+        if erro == 0 :  
+            try:
+                fator_solar = 0
+                for fator_solar_dados in self.fator_solares:
+                    municipio = self.input_municipio.text.lower().split()[0]
+                    if fator_solar_dados[0].lower() == municipio:
+                        fator_solar = fator_solar_dados[1]
+                geracao = round(potencia * fator_solar, 2)
+                if potencia > 0:
+                    if fator_solar > 0:
+                        self.ger_mensal.text = "Geração Mensal: " + str(geracao) + " kWh"
+                    else:
+                        self.ger_mensal.text = "Municipio Não Cadastrado"
                 else:
-                    self.ger_mensal.text = "Municipio Não Cadastrado"
-            else:
-                self.ger_mensal.text = ""
-        except:
-            self.ger_mensal.text = "Município Não Encontrado"
+                    self.ger_mensal.text = ""
+            except:
+                self.ger_mensal.text = "Município Não Encontrado"
         # retira os campo os de input
         if self.calculado == 0:
             self.remove_tela1("input")
@@ -720,40 +764,45 @@ class CalculadoraSolar(MDApp):
 
     def calcular3(self,args):
         potencia = 0
+        erro = 0
         try:
-            potencia = float(self.input_pot_sistema.text)
+            potencia_sem_virgula = self.input_pot_sistema.text.replace(",",".")
+            potencia = float(potencia_sem_virgula)
         except:
             self.geracao.text = "Digite apenas numeros para descrever a potência"
-        if  not self.geracao.text == "Digite apenas numeros" : 
+            erro = 1
+
+        if erro == 0 :
             try:
                 fator_solar = 0
+                municipio = self.input_municipio.text.lower().split()[0]
+                print(municipio)
                 for fator_solar_dados in self.fator_solares:
-                    distrito = self.fator_solares[0]
-                    if fator_solar_dados[0].lower() == self.input_municipio.text.lower():
+                    if fator_solar_dados[0].lower() == municipio:
                         fator_solar = fator_solar_dados[1]
                 geracao = round(potencia * fator_solar, 2)
                 if potencia > 0:
                     if fator_solar > 0:
                         self.geracao.text = "Geração Mensal: " + str(geracao) + " kWh"
                     else:
-                        self.ger_mensal.text = "Municipio Não Cadastrado"
+                        self.geracao.text = "Municipio Não Cadastrado"
                 else:
                     self.geracao.text = "Digite a Potência do Sistema"
             except:
-                self.ger_mensal.text = "Município Não Encontrado"
-        # retira os campo os de input
-        if self.calculado == 0:
-            self.remove_tela3("input")
-            self.screen.add_widget(self.municipio_ans)
-            self.screen.add_widget(self.pot_sistema_ans)
-        self.calculado = 1
-        # Mostrando respostas
-        try:
-            self.municipio_ans.text = self.input_municipio.text.upper() + " -> Fator Solar: " + str(fator_solar)
-            self.pot_sistema_ans.text = self.input_pot_sistema.text + " kWp"
-        except:
-            print("Erro nas repostas")
+                self.geracao.text = "Município Não Encontrado"
 
+            # retira os campo os de input
+            if self.calculado == 0:
+                self.remove_tela3("input")
+                self.screen.add_widget(self.municipio_ans)
+                self.screen.add_widget(self.pot_sistema_ans)
+            self.calculado = 1
+            # Mostrando respostas
+            try:
+                self.municipio_ans.text = self.input_municipio.text.upper() + " -> Fator Solar: " + str(fator_solar)
+                self.pot_sistema_ans.text = self.input_pot_sistema.text + " kWp"
+            except:
+                print("Erro nas repostas")
         
     def limpar3(self,args):
         self.geracao.text = ""
@@ -792,11 +841,11 @@ class CalculadoraSolar(MDApp):
     # --------------------------------------------------------- TELAS ------------------------------------------------------------------------
     def tela1_andrid(self):
         # Logo
-        self.logo1 = Image(
-            source="logo.png",
-            pos_hint={"center_x": 0.5, "center_y": 0.8}
-        )
-        self.screen.add_widget(self.logo1)
+        # self.logo1 = Image(
+        #     source="logo.png",
+        #     pos_hint={"center_x": 0.5, "center_y": 0.8}
+        # )
+        # self.screen.add_widget(self.logo1)
 
         # Labels Form ====================================================
         self.municipio = MDLabel(
@@ -903,11 +952,11 @@ class CalculadoraSolar(MDApp):
 
     # Telas Para PC ========================================================   
     def tela1_pc(self):
-        self.logo1 = Image(
-            source="logo_pequena.png",
-            pos_hint={"center_x": 0.5, "center_y": 0.8}
-        )
-        self.screen.add_widget(self.logo1)
+        #self.logo1 = Image(
+        #    source="logo_pequena.png",
+        #    pos_hint={"center_x": 0.5, "center_y": 0.8}
+        #)
+        #self.screen.add_widget(self.logo1)
 
         # Labels Form ====================================================
         self.municipio = MDLabel(
@@ -996,7 +1045,7 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.input_n_placas)
         self.screen.add_widget(self.input_pot_placas)
 
-        #  button =============================================================
+        #  button ========================================================
         self.button_calcular = MDFillRoundFlatButton(
                 text="Calcular",
                 font_size=17,
@@ -1132,11 +1181,11 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.button_limpar2)
         
     def tela3_pc(self):
-        self.logo1 = Image(
-            source="logo_pequena.png",
-            pos_hint={"center_x": 0.5, "center_y": 0.8}
-        )
-        self.screen.add_widget(self.logo1)
+        #self.logo1 = Image(
+        #    source="logo_pequena.png",
+        #    pos_hint={"center_x": 0.5, "center_y": 0.8}
+        #)
+        #self.screen.add_widget(self.logo1)
 
         # Labels Form ====================================================
         self.municipio = MDLabel(
@@ -1201,7 +1250,7 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.input_municipio)
         self.screen.add_widget(self.input_pot_sistema)
-         #  button =============================================================
+        # button =============================================================
         self.button_calcular3 = MDFillRoundFlatButton(
                 text="Calcular",
                 font_size=17,
@@ -1217,8 +1266,47 @@ class CalculadoraSolar(MDApp):
             on_press=self.limpar3
         )
         self.screen.add_widget(self.button_corrigir3)
+
     def tela3_android():
         return 0
+    
+    # Tela 4 ================================================================================
+    def tela4_pc(self):
+        self.logo1 = Image(
+            source="logo_pequena.png",
+            pos_hint={"center_x": 0.5, "center_y": 0.8}
+        )
+        self.screen.add_widget(self.logo1)
+
+        # button =============================================================
+        self.button_tela1 = MDFillRoundFlatButton(
+            text="Geração - Modulo",
+            font_size=20,
+            pos_hint={"center_x": 0.5, "center_y": 0.7},
+            on_press=self.ir_tela1
+        )
+        self.screen.add_widget(self.button_tela1)
+
+        self.button_tela2 = MDFillRoundFlatButton(
+            text="Inversores",
+            font_size=20,
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            on_press=self.ir_tela2
+        )
+        self.screen.add_widget(self.button_tela2)
+
+        self.button_tela3 = MDFillRoundFlatButton(
+            text="Geração - kWp",
+            font_size=20,
+            pos_hint={"center_x": 0.5, "center_y": 0.6},
+            on_press=self.ir_tela3
+        )
+        self.screen.add_widget(self.button_tela3)
+
+
+
+    def tela4_android():
+        return 0;
     #---------------------------------------------------------Principal---------------------------------------------------------
     def build(self):
         self.state = 0  # initial state
@@ -1227,50 +1315,10 @@ class CalculadoraSolar(MDApp):
         self.toobar.title = 'Calculadora Solar'
         self.toobar.pos_hint = {"top": 1}
         self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
-        # self.toobar.right_action_items = [["account-circle", lambda x: self.menu_user(x)]]
         self.screen.add_widget(self.toobar)
 
-        # Menu Principal
-        menu_items = [
-            {
-                "viewclass": "OneLineListItem",
-                "text": "Geração Por Placas",
-                "height": dp(56),
-                "on_release": lambda x=1: self.menu_callback(x),
-            },
-            {
-                "viewclass": "OneLineListItem",
-                "text": "Info. - Inversores",
-                "height": dp(56),
-                "on_release": lambda x=2: self.menu_callback(x),
-            },
-            {
-                "viewclass": "OneLineListItem",
-                "text": "Geração por kWp",
-                "height": dp(56),
-                "on_release": lambda x=3: self.menu_callback(x),
-            }
-        ]
-        self.menu_principal = MDDropdownMenu(
-            items=menu_items,
-            width_mult=3,
-        )
-
-        if self.tela == 1:
-            if self.pc_android == 1:
-                self.tela1_andrid()
-            else:
-                self.tela1_pc()
-        if self.tela == 2: 
-            if self.pc_android == 1:
-                self.tela2_andrid()
-            else:
-                self.tela2_pc()
-        if self.tela == 3: 
-            if self.pc_android == 1:
-                self.tela3_andrid()
-            else:
-                self.tela3_pc()
+        self.ir_tela4()
+        
         return self.screen
 
 

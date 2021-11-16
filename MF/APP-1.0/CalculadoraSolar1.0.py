@@ -1306,7 +1306,7 @@ class CalculadoraSolar(MDApp):
 
 
     def tela4_android():
-        return 0;
+        return 0
     #---------------------------------------------------------Principal---------------------------------------------------------
     def build(self):
         self.state = 0  # initial state

@@ -1527,8 +1527,10 @@ class CalculadoraSolar(MDApp):
             text="MENU",
             halign="center",
             pos_hint={"center_x": 0.5, "center_y": 0.7},
-            theme_text_color="ContrastParentBackground",
-            font_style="H5",
+            theme_text_color= "Custom",
+            text_color= [0.8, 0.5, 0, 1],
+            font_style="H2",
+            bold='True'
         )
         self.screen.add_widget(self.Menu)
         # button =============================================================

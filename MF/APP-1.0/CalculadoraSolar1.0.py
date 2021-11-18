@@ -5,7 +5,7 @@ import kivymd
 from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
 from kivy.uix.image import Image
-from kivymd.uix.button import MDFillRoundFlatIconButton, MDFillRoundFlatButton
+from kivymd.uix.button import MDFillRoundFlatIconButton, MDFillRoundFlatButton, MDRaisedButton
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.label import MDLabel
 from kivymd.uix.toolbar import MDToolbar
@@ -637,6 +637,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.pot_sist)
                 self.screen.remove_widget(self.button_calcular)
                 self.screen.remove_widget(self.button_corrigir)
+                self.screen.remove_widget(self.button_menu)
 
     def remove_tela2(self, type):
         if self.tela == 2:
@@ -655,6 +656,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.button_limpar2)
                 self.screen.remove_widget(self.disjuntor_ans)
                 self.screen.remove_widget(self.cabos_ans)
+                self.screen.remove_widget(self.button_menu)
       
     def remove_tela3(self, type):
         if self.tela == 3:
@@ -675,6 +677,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.button_calcular3)
                 self.screen.remove_widget(self.button_corrigir3)
                 self.screen.remove_widget(self.input_pot_sistema)
+                self.screen.remove_widget(self.button_menu)
 
     def remove_tela4(self, type):
         if type == "all":
@@ -943,6 +946,17 @@ class CalculadoraSolar(MDApp):
             on_press=self.calcular
         )
         self.screen.add_widget(self.button_calcular)
+
+        self.button_menu = MDRaisedButton(
+            text="Menu",
+            font_size=17,
+            theme_text_color= "Custom",
+            text_color= [1, 1, 1, 1],
+            md_bg_color =[1,0.2,0,0.6],
+            pos_hint={"center_x": 0.1, "center_y": 0.8},
+            on_press=self.menu
+        )
+        self.screen.add_widget(self.button_menu)
 
         self.button_corrigir = MDFillRoundFlatButton(
             text="Corrigir",
@@ -1298,7 +1312,17 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.button_inform)
         self.screen.add_widget(self.button_limpar2)    
-        
+        self.button_menu = MDRaisedButton(
+            text="Menu",
+            font_size=17,
+            theme_text_color= "Custom",
+            text_color= [1, 1, 1, 1],
+            md_bg_color =[1,0.2,0,0.6],
+            pos_hint={"center_x": 0.1, "center_y": 0.8},
+            on_press=self.menu
+        )
+        self.screen.add_widget(self.button_menu)
+
     def tela3_pc(self):
         #self.logo1 = Image(
         #    source="logo_pequena.png",
@@ -1473,6 +1497,17 @@ class CalculadoraSolar(MDApp):
             on_press=self.limpar3
         )
         self.screen.add_widget(self.button_corrigir3)
+        
+        self.button_menu = MDRaisedButton(
+            text="Menu",
+            font_size=17,
+            theme_text_color= "Custom",
+            text_color= [1, 1, 1, 1],
+            md_bg_color =[1,0.2,0,0.6],
+            pos_hint={"center_x": 0.1, "center_y": 0.8},
+            on_press=self.menu
+        )
+        self.screen.add_widget(self.button_menu)
     
     # Tela 4 ================================================================================
     def tela4_pc(self):

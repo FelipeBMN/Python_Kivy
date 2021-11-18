@@ -1480,6 +1480,14 @@ class CalculadoraSolar(MDApp):
             pos_hint={"center_x": 0.5, "center_y": 0.8}
         )
         self.screen.add_widget(self.logo1)
+        # Labels Form ====================================================
+        self.Menu = MDLabel(
+            text="MENU",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.7},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+        )
 
         # button =============================================================
         self.button_tela1 = MDFillRoundFlatButton(
@@ -1514,12 +1522,20 @@ class CalculadoraSolar(MDApp):
             pos_hint={"center_x": 0.5, "center_y": 0.8}
         )
         self.screen.add_widget(self.logo1)
-
+        # Labels Form ====================================================
+        self.Menu = MDLabel(
+            text="MENU",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.7},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+        )
+        self.screen.add_widget(self.Menu)
         # button =============================================================
         self.button_tela1 = MDFillRoundFlatButton(
             text="Geração - Modulo",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.7},
+            pos_hint={"center_x": 0.5, "center_y": 0.6},
             on_press=self.ir_tela1
         )
         self.screen.add_widget(self.button_tela1)
@@ -1527,7 +1543,7 @@ class CalculadoraSolar(MDApp):
         self.button_tela2 = MDFillRoundFlatButton(
             text="Inversores",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            pos_hint={"center_x": 0.5, "center_y": 0.4},
             on_press=self.ir_tela2
         )
         self.screen.add_widget(self.button_tela2)
@@ -1535,7 +1551,7 @@ class CalculadoraSolar(MDApp):
         self.button_tela3 = MDFillRoundFlatButton(
             text="Geração - kWp",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.6},
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
             on_press=self.ir_tela3
         )
         self.screen.add_widget(self.button_tela3)

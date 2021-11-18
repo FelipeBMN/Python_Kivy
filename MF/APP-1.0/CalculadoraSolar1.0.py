@@ -682,6 +682,7 @@ class CalculadoraSolar(MDApp):
             self.screen.remove_widget(self.button_tela1)
             self.screen.remove_widget(self.button_tela2)
             self.screen.remove_widget(self.button_tela3)
+            self.screen.remove_widget(self.Menu)
         
         
     # botoes =================================================================
@@ -914,21 +915,21 @@ class CalculadoraSolar(MDApp):
             halign="center",
             size_hint=(0.8, 1),
             pos_hint={"center_x": 0.5, "center_y": 0.64},
-            font_size=50
+            font_size=60
         )
         self.input_n_placas = MDTextField(
             text="",
             halign="center",
             size_hint=(0.8, 1),
             pos_hint={"center_x": 0.5, "center_y": 0.48},
-            font_size=50
+            font_size=60
         )
         self.input_pot_placas = MDTextField(
             text="",
             halign="center",
             size_hint=(0.8, 1),
             pos_hint={"center_x": 0.5, "center_y": 0.36},
-            font_size=50
+            font_size=60
         )
         self.screen.add_widget(self.input_municipio)
         self.screen.add_widget(self.input_n_placas)
@@ -1215,7 +1216,7 @@ class CalculadoraSolar(MDApp):
             btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
             self.dropdown_marcas.add_widget(btn_marcas)
         # create a big main button
-        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(None, 0.072))
+        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(0.25, 0.1))
         self.button_marcas.bind(on_release=self.dropdown_marcas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1233,7 +1234,7 @@ class CalculadoraSolar(MDApp):
                 self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
                 self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.25, 0.072))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.25, 0.1))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1251,7 +1252,7 @@ class CalculadoraSolar(MDApp):
             btn_placas.bind(on_release=lambda btn_placas: self.dropdown_placas.select(btn_placas.text))
             self.dropdown_placas.add_widget(btn_placas)
         # create a big main button
-        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(None, 0.072))
+        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(0.25, 0.1))
         self.button_placas.bind(on_release=self.dropdown_placas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1445,14 +1446,14 @@ class CalculadoraSolar(MDApp):
             halign="center",
             size_hint=(0.8, 1),
             pos_hint={"center_x": 0.5, "center_y": 0.64},
-            font_size=22
+            font_size=60
         )
         self.input_pot_sistema = MDTextField(
             text="",
             halign="center",
             size_hint=(0.8, 1),
             pos_hint={"center_x": 0.5, "center_y": 0.48},
-            font_size=22
+            font_size=60
         )
         self.screen.add_widget(self.input_municipio)
         self.screen.add_widget(self.input_pot_sistema)
@@ -1481,13 +1482,12 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.logo1)
         # Labels Form ====================================================
-        self.Menu = MDLabel(
-            text="MENU",
-            halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.7},
-            theme_text_color="ContrastParentBackground",
-            font_style="H5",
+        self.Menu = Image(
+            source="menu.png",
+            pos_hint={"center_x": 0.5, "center_y": 0.65},
+            size = {"x":0.5,"y":0.5}
         )
+        self.screen.add_widget(self.Menu)
 
         # button =============================================================
         self.button_tela1 = MDFillRoundFlatButton(
@@ -1518,26 +1518,21 @@ class CalculadoraSolar(MDApp):
 
     def tela4_android(self):
         self.logo1 = Image(
-            source="logo_pequena.png",
+            source="logo.png",
             pos_hint={"center_x": 0.5, "center_y": 0.8}
         )
         self.screen.add_widget(self.logo1)
         # Labels Form ====================================================
-        self.Menu = MDLabel(
-            text="MENU",
-            halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.7},
-            theme_text_color= "Custom",
-            text_color= [0.8, 0.5, 0, 1],
-            font_style="H2",
-            bold='True'
+        self.Menu = Image(
+            source="menu.png",
+            pos_hint={"center_x": 0.5, "center_y": 0.65},
         )
         self.screen.add_widget(self.Menu)
         # button =============================================================
         self.button_tela1 = MDFillRoundFlatButton(
             text="Geração - Modulo",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.6},
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
             on_press=self.ir_tela1
         )
         self.screen.add_widget(self.button_tela1)
@@ -1545,7 +1540,7 @@ class CalculadoraSolar(MDApp):
         self.button_tela2 = MDFillRoundFlatButton(
             text="Inversores",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.4},
+            pos_hint={"center_x": 0.5, "center_y": 0.3},
             on_press=self.ir_tela2
         )
         self.screen.add_widget(self.button_tela2)
@@ -1553,7 +1548,7 @@ class CalculadoraSolar(MDApp):
         self.button_tela3 = MDFillRoundFlatButton(
             text="Geração - kWp",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            pos_hint={"center_x": 0.5, "center_y": 0.4},
             on_press=self.ir_tela3
         )
         self.screen.add_widget(self.button_tela3)

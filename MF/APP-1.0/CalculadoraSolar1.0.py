@@ -1226,7 +1226,7 @@ class CalculadoraSolar(MDApp):
         # Buttons marcas ===========================================================
         self.dropdown_marcas = DropDown()
         for index in self.Marcas:
-            btn_marcas = Button(text = index, size=None, height=44)
+            btn_marcas = Button(text = index, size_hint_y=None, height=44)
             btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
             self.dropdown_marcas.add_widget(btn_marcas)
         # create a big main button

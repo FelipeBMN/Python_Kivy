@@ -637,7 +637,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.pot_sist)
                 self.screen.remove_widget(self.button_calcular)
                 self.screen.remove_widget(self.button_corrigir)
-                self.screen.remove_widget(self.button_menu)
+                
 
     def remove_tela2(self, type):
         if self.tela == 2:
@@ -656,7 +656,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.button_limpar2)
                 self.screen.remove_widget(self.disjuntor_ans)
                 self.screen.remove_widget(self.cabos_ans)
-                self.screen.remove_widget(self.button_menu)
+                
       
     def remove_tela3(self, type):
         if self.tela == 3:
@@ -677,7 +677,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.button_calcular3)
                 self.screen.remove_widget(self.button_corrigir3)
                 self.screen.remove_widget(self.input_pot_sistema)
-                self.screen.remove_widget(self.button_menu)
+                
 
     def remove_tela4(self, type):
         if type == "all":
@@ -830,7 +830,7 @@ class CalculadoraSolar(MDApp):
                 self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
                 self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.3, 0.072))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.4, 0.072), background_color = (0.,0.,0.,0.9))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -947,16 +947,8 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.button_calcular)
 
-        self.button_menu = MDRaisedButton(
-            text="Menu",
-            font_size=17,
-            theme_text_color= "Custom",
-            text_color= [1, 1, 1, 1],
-            md_bg_color =[1,0.2,0,0.6],
-            pos_hint={"center_x": 0.1, "center_y": 0.8},
-            on_press=self.menu
-        )
-        self.screen.add_widget(self.button_menu)
+        
+        
 
         self.button_corrigir = MDFillRoundFlatButton(
             text="Corrigir",
@@ -1109,11 +1101,11 @@ class CalculadoraSolar(MDApp):
         # Buttons marcas ===========================================================
         self.dropdown_marcas = DropDown()
         for index in self.Marcas:
-            btn_marcas = Button(text = index, size_hint_y=None, height=44)
+            btn_marcas = Button(text = index, size_hint_y=None, height=100, background_color = (0.,0.,0.,0.9))
             btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
             self.dropdown_marcas.add_widget(btn_marcas)
         # create a big main button
-        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(None, 0.072))
+        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(0.4, 0.072))
         self.button_marcas.bind(on_release=self.dropdown_marcas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1127,11 +1119,11 @@ class CalculadoraSolar(MDApp):
         self.dropdown_inversores = DropDown()
         for index in self.Inversores:
             if index[0] == self.button_marcas.text:
-                self.btn_inversores = Button(text= index[1], size_hint_y=None, height=44)
+                self.btn_inversores = Button(text= index[1], size_hint_y=None, height=100, background_color = (0.,0.,0.,0.9))
                 self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
                 self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.25, 0.072))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.4, 0.072))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1145,11 +1137,11 @@ class CalculadoraSolar(MDApp):
         # Buttons placas ===========================================================
         self.dropdown_placas = DropDown()
         for index in self.dados_placas:
-            btn_placas = Button(text = str(index), size_hint_y=None, height=44)
+            btn_placas = Button(text = str(index), size_hint_y=None, height=100, background_color = (0.,0.,0.,0.9))
             btn_placas.bind(on_release=lambda btn_placas: self.dropdown_placas.select(btn_placas.text))
             self.dropdown_placas.add_widget(btn_placas)
         # create a big main button
-        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(None, 0.072))
+        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(0.4, 0.072))
         self.button_placas.bind(on_release=self.dropdown_placas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1230,7 +1222,7 @@ class CalculadoraSolar(MDApp):
             btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
             self.dropdown_marcas.add_widget(btn_marcas)
         # create a big main button
-        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(0.30, 0.1))
+        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(0.30, 0.1),background_color = (0.,0.,0.,0.9))
         self.button_marcas.bind(on_release=self.dropdown_marcas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1248,7 +1240,7 @@ class CalculadoraSolar(MDApp):
                 self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
                 self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.30, 0.1))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.30, 0.1),background_color = (0.,0.,0.,0.9))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1266,7 +1258,7 @@ class CalculadoraSolar(MDApp):
             btn_placas.bind(on_release=lambda btn_placas: self.dropdown_placas.select(btn_placas.text))
             self.dropdown_placas.add_widget(btn_placas)
         # create a big main button
-        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(0.30, 0.1))
+        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(0.30, 0.1), background_color = (0.,0.,0.,0.9))
         self.button_placas.bind(on_release=self.dropdown_placas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1312,16 +1304,8 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.button_inform)
         self.screen.add_widget(self.button_limpar2)    
-        self.button_menu = MDRaisedButton(
-            text="Menu",
-            font_size=17,
-            theme_text_color= "Custom",
-            text_color= [1, 1, 1, 1],
-            md_bg_color =[1,0.2,0,0.6],
-            pos_hint={"center_x": 0.1, "center_y": 0.8},
-            on_press=self.menu
-        )
-        self.screen.add_widget(self.button_menu)
+        
+        
 
     def tela3_pc(self):
         #self.logo1 = Image(
@@ -1498,16 +1482,8 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.button_corrigir3)
         
-        self.button_menu = MDRaisedButton(
-            text="Menu",
-            font_size=17,
-            theme_text_color= "Custom",
-            text_color= [1, 1, 1, 1],
-            md_bg_color =[1,0.2,0,0.6],
-            pos_hint={"center_x": 0.1, "center_y": 0.8},
-            on_press=self.menu
-        )
-        self.screen.add_widget(self.button_menu)
+        
+        
     
     # Tela 4 ================================================================================
     def tela4_pc(self):

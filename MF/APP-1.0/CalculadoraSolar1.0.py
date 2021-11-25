@@ -15,6 +15,7 @@ from kivy.metrics import dp
 from kivy.uix.dropdown import DropDown
 from kivy.uix.button import Button
 from kivy.base import runTouchApp
+from kivy.core.window import Window
 
 
 # Função principal =====================================================
@@ -808,7 +809,7 @@ class CalculadoraSolar(MDApp):
                 self.pot_sistema_ans.text = self.input_pot_sistema.text + " kWp"
             except:
                 print("Erro nas repostas")
-        
+
     def limpar3(self,args):
         self.geracao.text = ""
         self.calculado = 0
@@ -830,7 +831,7 @@ class CalculadoraSolar(MDApp):
                 self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
                 self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.4, 0.072), background_color = (0.,0.,0.,0.9))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.6, 0.072), background_color = (0.,0.,0.,0.9))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -841,10 +842,19 @@ class CalculadoraSolar(MDApp):
         
         self.screen.add_widget(self.button_inversores)
     
+    # Funções do teclado
+    def on_pre_enter(self):
+        Window.bind(on_keyboard=self.voltar)
 
+    def voltar(self,window,key, *args):
+        if (key==27 and not(self.tela == 4)):
+            self.ir_tela4()
+        print(key)
+        return True
 
-    # --------------------------------------------------------- TELAS ------------------------------------------------------------------------
+    #-------------------------------------------------------- TELAS ------------------------------------------------------------------------
     def tela1_android(self):
+        self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
         # Logo
         # self.logo1 = Image(
         #     source="logo.png",
@@ -1105,7 +1115,7 @@ class CalculadoraSolar(MDApp):
             btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
             self.dropdown_marcas.add_widget(btn_marcas)
         # create a big main button
-        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(0.4, 0.072))
+        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(0.6, 0.072))
         self.button_marcas.bind(on_release=self.dropdown_marcas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1123,7 +1133,7 @@ class CalculadoraSolar(MDApp):
                 self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
                 self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.4, 0.072))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.6, 0.072))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1141,7 +1151,7 @@ class CalculadoraSolar(MDApp):
             btn_placas.bind(on_release=lambda btn_placas: self.dropdown_placas.select(btn_placas.text))
             self.dropdown_placas.add_widget(btn_placas)
         # create a big main button
-        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(0.4, 0.072))
+        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(0.6, 0.072))
         self.button_placas.bind(on_release=self.dropdown_placas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1189,6 +1199,7 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.button_limpar2)
 
     def tela2_android(self):
+        self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
         # Labels Form ====================================================
         self.marca = MDLabel(
             text="Marca",
@@ -1222,7 +1233,7 @@ class CalculadoraSolar(MDApp):
             btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
             self.dropdown_marcas.add_widget(btn_marcas)
         # create a big main button
-        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(0.30, 0.1),background_color = (0.,0.,0.,0.9))
+        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Marca', size_hint=(0.60, 0.1),background_color = (0.,0.,0.,0.9))
         self.button_marcas.bind(on_release=self.dropdown_marcas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1240,7 +1251,7 @@ class CalculadoraSolar(MDApp):
                 self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
                 self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.30, 0.1),background_color = (0.,0.,0.,0.9))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.60, 0.1),background_color = (0.,0.,0.,0.9))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1258,7 +1269,7 @@ class CalculadoraSolar(MDApp):
             btn_placas.bind(on_release=lambda btn_placas: self.dropdown_placas.select(btn_placas.text))
             self.dropdown_placas.add_widget(btn_placas)
         # create a big main button
-        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(0.30, 0.1), background_color = (0.,0.,0.,0.9))
+        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(0.60, 0.1), background_color = (0.,0.,0.,0.9))
         self.button_placas.bind(on_release=self.dropdown_placas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1396,6 +1407,8 @@ class CalculadoraSolar(MDApp):
     
 
     def tela3_android(self):
+        self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
+        self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
         #self.logo1 = Image(
         #    source="logo_pequena.png",
         #    pos_hint={"center_x": 0.5, "center_y": 0.8}
@@ -1528,6 +1541,7 @@ class CalculadoraSolar(MDApp):
 
 
     def tela4_android(self):
+        self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
         self.logo1 = Image(
             source="logo.png",
             pos_hint={"center_x": 0.5, "center_y": 0.8}
@@ -1575,7 +1589,7 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.toobar)
 
         self.ir_tela4()
-        
+        self.on_pre_enter()
         return self.screen
 
 

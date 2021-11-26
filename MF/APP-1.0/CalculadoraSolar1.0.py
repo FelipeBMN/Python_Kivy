@@ -538,6 +538,96 @@ class CalculadoraSolar(MDApp):
                     ["GROWATT",	"MAC 50KTL3-X LV"],
                     ["GROWATT",	"MAC 60KTL3-X LV"],
                     ["CANADIAN", "CSI-9K-S2202-E"]]
+
+    dados_inversores = [['GROWATT', 'MID 15KTL3-X', '24,2', 25],
+       ['GROWATT', 'MID 17KTL3-X', '27,4', 32],
+       ['GROWATT', 'MID 20KTL3-X', '31,9', 32],
+       ['GROWATT', 'MID 22KTL3-X', '35,5', 40],
+       ['GROWATT', 'MID 25KTL3-X', '35,5', 40],
+       ['GROWATT', 'MID 25KTL3-X', '40,2', 50],
+       ['GROWATT', '7000MTL-S', '33,5', 40],
+       ['GROWATT', '8000MTL-S', '35,7', 40],
+       ['GROWATT', '7000MTL-S', '33,5', 40],
+       ['GROWATT', '8000MTL-S', '35,7', 40],
+       ['GROWATT', 'MIN 2500TL-X', '11,3', 16],
+       ['GROWATT', 'MIN 2500TL-X', '11,3', 16],
+       ['GROWATT', 'MIN 3600TL-X', '16', 20],
+       ['GROWATT', 'MIN 4200TL-X', '19', 20],
+       ['GROWATT', 'MIN 4600TL-X', '20,9', 25],
+       ['GROWATT', 'MIN 5000TL-X', '22,7', 25],
+       ['GROWATT', 'MIN 6000TL-X', '27,2', 25],
+       ['GROWATT', 'MAX 50KTL3 LV', '80,5', 100],
+       ['GROWATT', 'MAX 60KTL3 LV', '96,6', 100],
+       ['GROWATT', 'MAX 70KTL3 LV', '112,7', 125],
+       ['GROWATT', 'MAX 80KTL3 LV', '128,8', 150],
+       ['SOLIS', 'Solis-1P7K-4G', '33,7', 40],
+       ['SOLIS', 'Solis-1P8K-4G', '36,6', 40],
+       ['SOLIS', 'Solis-1P9K-4G', '41,3', 50],
+       ['SOLIS', 'Solis-1P10K-4G', '45,9', 50],
+       ['SOLIS', 'Solis-25K-5G', '41,8', 50],
+       ['SOLIS', 'Solis-30K-5G', '50,2', 63],
+       ['SOLIS', 'Solis-33K-5G', '55,1', 63],
+       ['SOLIS', 'Solis-36K-5G', '60,2', 63],
+       ['SOLIS', 'Solis-40K-5G', '66,9', 80],
+       ['SOLIS', 'Solis-40K-HV-5G', '53', 63],
+       ['SOLIS', 'Solis-50K-HV-5G', '66,2', 70],
+       ['SOLIS', 'Solis-50K', '83,3', 100],
+       ['SOLIS', 'Solis-50K-HV', '66,2', 70],
+       ['SOLIS', 'Solis-60K-HV', '80', 100],
+       ['SOLIS', 'Solis-60K-4G', '100', 125],
+       ['SOLIS', 'Solis-75K-5G', '114', 125],
+       ['SOLIS', 'Solis-80K-5G', '133,7', 150],
+       ['SOLIS', 'Solis-1P2.5K-4G', '13,3', 16],
+       ['SOLIS', 'Solis-1P3K-4G', '15,7', 16],
+       ['SOLIS', 'Solis-1P3.6K-4G', '16', 20],
+       ['SOLIS', 'Solis-1P4K-4G', '21', 25],
+       ['SOLIS', 'Solis-1P4.6K-4G', '23,8', 25],
+       ['SOLIS', 'Solis-1P5K-4G', '25', 32],
+       ['SOLIS', 'Solis-1P6K-4G', '27,3', 32],
+       ['SOLIS', 'Solis-3P5K-4G', '7,9', 10],
+       ['SOLIS', 'Solis-3P6K-4G', '9,5', 10],
+       ['SOLIS', 'Solis-3P8K-4G', '12,7', 16],
+       ['SOLIS', 'Solis-3P9K-4G', '14,3', 16],
+       ['SOLIS', 'Solis-3P10K-4G', '15,9', 16],
+       ['SOLIS', 'Solis-3P12K-4G', '19,1', 25],
+       ['SOLIS', 'Solis-3P15K-4G', '23,8', 25],
+       ['SOLIS', 'Solis-3P17K-4G', '27', 32],
+       ['SOLIS', 'Solis-3P20K-4G', '31,8', 32],
+       ['SMA', 'Sunny Tripower 15000TL', '29', 32],
+       ['SMA', 'Sunny Tripower 20000TL', '29', 32],
+       ['SMA', 'Sunny Tripower 25000TL', '36,2', 40],
+       ['SMA', 'Sunny Tripower CORE1', '72,5', 80],
+       ['LIVOLTEK', 'GT1-3K-S', '15', 16],
+       ['LIVOLTEK', 'GT1-5K-D', '25', 32],
+       ['LIVOLTEK', 'GT1-6K-D', '27,3', 32],
+       ['CANADIAN', 'CSI-3K-S22002-ED', '13,6', 16],
+       ['CANADIAN', 'CSI-5K-S22002-ED', '25', 32],
+       ['CANADIAN', 'CSI-5KTL1P-FL', '25', 32],
+       ['CANADIAN', 'CSI-7K-S22002-ED', '35', 40],
+       ['CANADIAN', 'CSI-8KTL1P-GI-FL', '36,4', 40],
+       ['CANADIAN', 'CSI-15K-T400GL01-E', '23,8', 25],
+       ['CANADIAN', 'CSI-20KTL-GI-LFL', '31,8', 32],
+       ['CANADIAN', 'CSI-25K-T400GL02-E', '41,8', 50],
+       ['CANADIAN', 'CSI-25KTL-GI-L', '65,6', 80],
+       ['CANADIAN', 'CSI-30KTL-GI-L', '78,8', 80],
+       ['CANADIAN', 'CSI-50KTL-GI', '76', 80],
+       ['CANADIAN', 'CSI-60KTL-GI', '86,6', 100],
+       ['CANADIAN', 'CSI-75K-T400GL02-E', '114', 125],
+       ['CANADIAN', 'CSI-100K-T400GL02-E', '152', 175],
+       ['LIVOLTEK', 'GT1 8K', '40', 50],
+       ['LIVOLTEK', 'GT1 10K', '45,5', 50],
+       ['LIVOLTEK', 'GT3-25K', '40', 50],
+       ['LIVOLTEK', 'GT3-30K', '48', 50],
+       ['Hoymiles', 'MI-1000', '4,54', 10],
+       ['HOYMILES', 'MI-1200', '5,45', 10],
+       ['HOYMILES', 'MI-1500', '6,2', 10],
+       ['HOYMILES', 'HMS-1800', '8,18', 10],
+       ['HOYMILES', 'HMS-2000', '9,09', 10],
+       ['GROWATT', 'MAC 30KTL3-X LV', '48,3', 50],
+       ['GROWATT', 'MAC 40KTL3-X LV', '64,4', 80],
+       ['GROWATT', 'MAC 50KTL3-X LV', '80,5', 100],
+       ['GROWATT', 'MAC 60KTL3-X LV', '96,6', 100],
+       ['CANADIAN', 'CSI-9K-S2202-E', '40,9', 50]]
                     
     # Variaveis do Programa =======================]==============================
     tela = 4
@@ -798,10 +888,34 @@ class CalculadoraSolar(MDApp):
 
     # Função para o botão informações
     def inform(self,arg):
-        self.n_placas_ans.text = "Número de Placas: "+self.button_placas.text
+        n_placas = 0
+        disj_encontrado = 0
+        vet_inversores = self.dados_inversores
+        for i in range(len(vet_inversores)):
+            print(vet_inversores[i][1]," = ",self.button_inversores.text)
+            if (vet_inversores[i][1]==self.button_inversores.text):
+                if not(self.button_placas.text == "Potência") :
+                    tensao_maxima = 600
+                    potencia_maxima = 24 * 1000
+                    tensao_placa = 50
+                    n_mppt = 2
+                    n_placas_1 = potencia_maxima / int(self.button_placas.text)
+                    n_placas_2 = (tensao_maxima / tensao_placa) * n_mppt
+                    if (n_placas_1 > n_placas_2):
+                        self.n_placas_ans.text = "Número de Placas: " + str(int(n_placas_2))
+                    else:
+                        self.n_placas_ans.text = "Número de Placas: " + str(int(n_placas_1))
+                self.disjuntor_ans.text = "Disjuntor: " + str(vet_inversores[i][3])
+                self.cabos_ans.text = "Cabos :" + str(vet_inversores[i][3])
+                disj_encontrado = 1
+                break
+        if self.button_placas.text == "Potência":
+            self.n_placas_ans.text = "Potencia das placas não informada!"
+        if (disj_encontrado == 0):
+            self.n_placas_ans.text = "Informações do Disjuntor Não Encontrada"
+            self.disjuntor_ans.text = ""
+            self.cabos_ans.text = "" 
         if self.inf == 0:
-            if self.button_placas.text == "Potência":
-                self.n_placas_ans.text = "Potencia das placas não informada!"
             self.screen.add_widget(self.n_placas_ans)
             self.screen.add_widget(self.disjuntor_ans)
             self.screen.add_widget(self.cabos_ans)

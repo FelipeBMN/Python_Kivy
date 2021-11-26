@@ -892,11 +892,11 @@ class CalculadoraSolar(MDApp):
         disj_encontrado = 0
         vet_inversores = self.dados_inversores
         for i in range(len(vet_inversores)):
-            print(vet_inversores[i][1]," = ",self.button_inversores.text)
+            p
             if (vet_inversores[i][1]==self.button_inversores.text):
                 if not(self.button_placas.text == "Potência") :
-                    tensao_maxima = 600
-                    potencia_maxima = vet_inversores[i][4] * 1000
+                    tensao_maxima = vet_inversores[i][6]
+                    potencia_maxima = vet_inversores[i][5] * 1000
                     tensao_placa = 50
                     n_mppt = 2
                     n_placas_1 = potencia_maxima / int(self.button_placas.text)

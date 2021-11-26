@@ -22,20 +22,7 @@ from kivy.core.window import Window
 class CalculadoraSolar(MDApp):
 
     # Dados Para o Programa =====================================================
-    dados_placas = [325,
-                    330,
-                    335,
-                    340,
-                    345,
-                    350,
-                    355,
-                    360,
-                    370,
-                    375,
-                    380,
-                    385,
-                    390,
-                    395,
+    dados_placas = [
                     400,
                     405,
                     410,
@@ -597,10 +584,10 @@ class CalculadoraSolar(MDApp):
        ['SMA', 'Sunny Tripower 20000TL', '29', 32, 6, '20', 1000],
        ['SMA', 'Sunny Tripower 25000TL', '36,2', 40, 6, '25', 1000],
        ['SMA', 'Sunny Tripower CORE1', '72,5', 80, 25, '75', 1000],
-       ['LIVOLTEK', 'GT1-3K-S', '15', 16, 4, '3', 600],
+       ['LIVOLTEK', 'GT1-3K-S', '15', 16, 4, '4,4', 600],
        ['LIVOLTEK', 'GT1-5K-D', '25', 32, 6, '5', 600],
        ['LIVOLTEK', 'GT1-6K-D', '27,3', 32, 6, '6', 600],
-       ['CANADIAN', 'CSI-3K-S22002-ED', '13,6', 16, 4, '3', 600],
+       ['CANADIAN', 'CSI-3K-S22002-ED', '13,6', 16, 4, '4,4', 600],
        ['CANADIAN', 'CSI-5K-S22002-ED', '25', 32, 6, '5', 600],
        ['CANADIAN', 'CSI-5KTL1P-FL', '25', 32, 6, '6,5', 600],
        ['CANADIAN', 'CSI-7K-S22002-ED', '35', 40, 6, '9,1', 600],
@@ -892,11 +879,10 @@ class CalculadoraSolar(MDApp):
         disj_encontrado = 0
         vet_inversores = self.dados_inversores
         for i in range(len(vet_inversores)):
-            p
             if (vet_inversores[i][1]==self.button_inversores.text):
                 if not(self.button_placas.text == "Potência") :
-                    tensao_maxima = vet_inversores[i][6]
-                    potencia_maxima = vet_inversores[i][5] * 1000
+                    tensao_maxima = float(vet_inversores[i][6])
+                    potencia_maxima = float(vet_inversores[i][5].replace(',','.')) * 1000
                     tensao_placa = 50
                     n_mppt = 2
                     n_placas_1 = potencia_maxima / int(self.button_placas.text)

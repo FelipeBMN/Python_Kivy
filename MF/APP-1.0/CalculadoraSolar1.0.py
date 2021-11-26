@@ -563,6 +563,8 @@ class CalculadoraSolar(MDApp):
             self.remove_tela3("all")
         if self.tela == 4:
             self.remove_tela4("all")
+        if self.tela == 4:
+            self.remove_tela5("all")
 
         if self.pc_android == 1:
             self.tela1_android()
@@ -578,6 +580,8 @@ class CalculadoraSolar(MDApp):
             self.remove_tela3("all")
         if self.tela == 4:
             self.remove_tela4("all")
+        if self.tela == 5:
+            self.remove_tela5("all")
         if self.pc_android == 1:
             self.tela2_android()
         else:
@@ -591,6 +595,8 @@ class CalculadoraSolar(MDApp):
             self.remove_tela2("all")
         if self.tela == 4:
             self.remove_tela4("all")
+        if self.tela == 5:
+            self.remove_tela5("all")
         if self.pc_android == 1:
             self.tela3_android()
         else:
@@ -604,12 +610,26 @@ class CalculadoraSolar(MDApp):
             self.remove_tela2("all")
         if self.tela == 3:
             self.remove_tela3("all")
+        if self.tela == 5:
+            self.remove_tela5("all")
         if self.pc_android == 1:
             self.tela4_android()
         else:
             self.tela4_pc()
         self.tela = 4
 
+    def ir_tela5(self, args):
+        if self.tela == 1:
+            self.remove_tela1("all")
+        if self.tela == 2:
+            self.remove_tela2("all")
+        if self.tela == 4:
+            self.remove_tela4("all")
+        if self.pc_android == 1:
+            self.tela5_android()
+        else:
+            self.tela5_pc()
+        self.tela = 5
     # Função para o botão Calcular ============================================          
     def remove_tela1(self, type):
         if self.tela == 1 :
@@ -687,8 +707,27 @@ class CalculadoraSolar(MDApp):
             self.screen.remove_widget(self.button_tela2)
             self.screen.remove_widget(self.button_tela3)
             self.screen.remove_widget(self.Menu)
-        
-        
+            self.screen.remove_widget(self.button_tela5)
+    
+    def remove_tela5(self, type):
+        if self.tela == 5:
+            if type == "input":
+                self.screen.remove_widget(self.input_municipio)
+                self.screen.remove_widget(self.input_pot_consumo)
+            if type == "all":
+                self.calculado = 0
+                self.inf = 0
+                #self.screen.remove_widget(self.logo1)
+                self.screen.remove_widget(self.municipio)
+                self.screen.remove_widget(self.pot_consumo)
+                self.screen.remove_widget(self.municipio_ans)
+                self.screen.remove_widget(self.pot_consumo_ans)
+                self.screen.remove_widget(self.geracao)
+                self.screen.remove_widget(self.input_municipio)
+                self.screen.remove_widget(self.button_calcular4)
+                self.screen.remove_widget(self.button_corrigir4)
+                self.screen.remove_widget(self.input_pot_consumo)
+
     # botoes =================================================================
     def calcular(self, args):
         potencia = 0
@@ -849,9 +888,18 @@ class CalculadoraSolar(MDApp):
     def voltar(self,window,key, *args):
         if (key==27 and not(self.tela == 4)):
             self.ir_tela4()
-        print(key)
         return True
+    # Funções para tela 5
+    def limpar4(self,args):
+        self.geracao.text = ""
+        self.calculado = 0
+        self.screen.add_widget(self.input_municipio)
+        self.screen.add_widget(self.input_pot_consumo)
+        self.screen.remove_widget(self.municipio_ans)
+        self.screen.remove_widget(self.pot_consumo_ans)
 
+    def calcular4(self,args):
+        return 0
     #-------------------------------------------------------- TELAS ------------------------------------------------------------------------
     def tela1_android(self):
         self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
@@ -961,7 +1009,7 @@ class CalculadoraSolar(MDApp):
         
 
         self.button_corrigir = MDFillRoundFlatButton(
-            text="Corrigir",
+            text="Alterar",
             font_size=17,
             pos_hint={"center_x": 0.2, "center_y": 0.1},
             on_press=self.limpar
@@ -1073,7 +1121,7 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.button_calcular)
 
         self.button_corrigir = MDFillRoundFlatButton(
-            text="Corrigir",
+            text="Alterar",
             font_size=17,
             pos_hint={"center_x": 0.2, "center_y": 0.1},
             on_press=self.limpar
@@ -1280,20 +1328,20 @@ class CalculadoraSolar(MDApp):
         # Answers ==================================================
         self.n_placas_ans = MDLabel(
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.34},
+            pos_hint={"center_x": 0.5, "center_y": 0.32},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
         )
         self.disjuntor_ans = MDLabel(
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.28},
+            pos_hint={"center_x": 0.5, "center_y": 0.25},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
             text = "Disjuntor: 32 A "
         )
         self.cabos_ans = MDLabel(
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.22},
+            pos_hint={"center_x": 0.5, "center_y": 0.2},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
             text = "Cabos: 6 mm² "
@@ -1398,7 +1446,7 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.button_calcular3)
 
         self.button_corrigir3 = MDFillRoundFlatButton(
-            text="Corrigir",
+            text="Alterar",
             font_size=17,
             pos_hint={"center_x": 0.2, "center_y": 0.1},
             on_press=self.limpar3
@@ -1488,7 +1536,7 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.button_calcular3)
 
         self.button_corrigir3 = MDFillRoundFlatButton(
-            text="Corrigir",
+            text="Alterar",
             font_size=17,
             pos_hint={"center_x": 0.2, "center_y": 0.1},
             on_press=self.limpar3
@@ -1515,7 +1563,7 @@ class CalculadoraSolar(MDApp):
 
         # button =============================================================
         self.button_tela1 = MDFillRoundFlatButton(
-            text="Geração - Modulo",
+            text="Sistema por Modulos",
             font_size=20,
             pos_hint={"center_x": 0.5, "center_y": 0.7},
             on_press=self.ir_tela1
@@ -1531,12 +1579,20 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.button_tela2)
 
         self.button_tela3 = MDFillRoundFlatButton(
-            text="Geração - kWp",
+            text="Sistema por kWp",
             font_size=20,
             pos_hint={"center_x": 0.5, "center_y": 0.6},
             on_press=self.ir_tela3
         )
         self.screen.add_widget(self.button_tela3)
+
+        self.button_tela5 = MDFillRoundFlatButton(
+            text="Sistema por Consumo",
+            font_size=20,
+            pos_hint={"center_x": 0.5, "center_y": 0.4},
+            on_press=self.ir_tela5
+        )
+        self.screen.add_widget(self.button_tela5)
 
 
 
@@ -1555,7 +1611,7 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.Menu)
         # button =============================================================
         self.button_tela1 = MDFillRoundFlatButton(
-            text="Geração - Modulo",
+            text=" Sistema - Modulo",
             font_size=20,
             pos_hint={"center_x": 0.5, "center_y": 0.5},
             on_press=self.ir_tela1
@@ -1571,12 +1627,111 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.button_tela2)
 
         self.button_tela3 = MDFillRoundFlatButton(
-            text="Geração - kWp",
+            text="Sistema - kWp",
             font_size=20,
             pos_hint={"center_x": 0.5, "center_y": 0.4},
             on_press=self.ir_tela3
         )
         self.screen.add_widget(self.button_tela3)
+
+        self.button_tela5 = MDFillRoundFlatButton(
+            text="Sistema - Consumo",
+            font_size=20,
+            pos_hint={"center_x": 0.5, "center_y": 0.4},
+            on_press=self.ir_tela5
+        )
+        #self.screen.add_widget(self.button_tela5)
+        
+    def tela5_pc(self):
+        return 0
+
+    def tela5_android(self):
+        self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
+        #self.logo1 = Image(
+        #    source="logo_pequena.png",
+        #    pos_hint={"center_x": 0.5, "center_y": 0.8}
+        #)
+        #self.screen.add_widget(self.logo1)
+
+        # Labels Form ====================================================
+        self.municipio = MDLabel(
+            text="Município",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.8},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+        )
+        self.pot_consumo = MDLabel(
+            text="Consumo [kWh]",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.6},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5"
+        )
+        self.screen.add_widget(self.municipio)
+        self.screen.add_widget(self.pot_consumo)
+
+        # Labels label input ====================================================
+        self.municipio_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.8},
+            theme_text_color="Error",
+            font_style="H5",
+            text = ""
+        )
+        self.pot_consumo_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.6},
+            theme_text_color="Error",
+            font_style="H5",
+            text = ""
+        )
+        
+
+        # Labels Answers ====================================================
+        self.geracao = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.30},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+            text = "Sera necessario instalar um sistema de: 4.5 kWp"
+        )
+       
+        self.screen.add_widget(self.geracao)
+
+        # Inputs ========================================================
+        self.input_municipio = MDTextField(
+            text="",
+            halign="center",
+            size_hint=(0.8, 1),
+            pos_hint={"center_x": 0.5, "center_y": 0.7},
+            font_size=60
+        )
+        self.input_pot_consumo = MDTextField(
+            text="",
+            halign="center",
+            size_hint=(0.8, 1),
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            font_size=60
+        )
+        self.screen.add_widget(self.input_municipio)
+        self.screen.add_widget(self.input_pot_consumo)
+        # button =============================================================
+        self.button_calcular4 = MDFillRoundFlatButton(
+                text="Calcular",
+                font_size=17,
+                pos_hint={"center_x": 0.8, "center_y": 0.1},
+                on_press=self.calcular3
+            )
+        self.screen.add_widget(self.button_calcular4)
+
+        self.button_corrigir4 = MDFillRoundFlatButton(
+            text="Alterar",
+            font_size=17,
+            pos_hint={"center_x": 0.2, "center_y": 0.1},
+            on_press=self.limpar4
+        )
+        self.screen.add_widget(self.button_corrigir4)
         
     #---------------------------------------------------------Principal---------------------------------------------------------
     def build(self):

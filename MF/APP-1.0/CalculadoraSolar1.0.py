@@ -756,6 +756,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self. button_inform)
                 self.screen.remove_widget(self.button_limpar2)
                 self.screen.remove_widget(self.disjuntor_ans)
+                self.screen.remove_widget(self.potencia_inv_ans)
                 self.screen.remove_widget(self.cabos_ans)
                 
       
@@ -872,6 +873,7 @@ class CalculadoraSolar(MDApp):
     # Função para o botão Limpar2
     def limpar2(self, args):
         self.screen.remove_widget(self.n_placas_ans)
+        self.screen.remove_widget(self.potencia_inv_ans)
         self.screen.remove_widget(self.disjuntor_ans)
         self.screen.remove_widget(self.cabos_ans)
         self.inf = 0
@@ -894,12 +896,13 @@ class CalculadoraSolar(MDApp):
                     n_placas_2 = int(tensao_maxima / tensao_placa) * n_mppt
                     print("N placas por potencia",n_placas_1)
                     print("N placas por tensão",n_placas_2)
+                    self.potencia_inv_ans.text = "Potência Max. Inv. : " + str(potencia_maxima/1000) + " kWp"
                     if (n_placas_1 > n_placas_2):
                         self.n_placas_ans.text = "Verificar com Engenheiro" 
                     else:
                         self.n_placas_ans.text = "Número de Placas: " + str(int(n_placas_1))
-                self.disjuntor_ans.text = "Disjuntor: " + str(vet_inversores[i][3])
-                self.cabos_ans.text = "Cabos :" + str(vet_inversores[i][4])
+                self.disjuntor_ans.text = "Disjuntor: " + str(vet_inversores[i][3]) + " A"
+                self.cabos_ans.text = "Cabos :" + str(vet_inversores[i][4]) + " mm²"
                 disj_encontrado = 1
                 break
         if self.button_placas.text == "Potência":
@@ -911,6 +914,7 @@ class CalculadoraSolar(MDApp):
         if self.inf == 0:
             self.screen.add_widget(self.n_placas_ans)
             self.screen.add_widget(self.disjuntor_ans)
+            self.screen.add_widget(self.potencia_inv_ans)
             self.screen.add_widget(self.cabos_ans)
         self.inf = 1
 
@@ -1433,22 +1437,28 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.button_placas)
 
         # Answers ==================================================
-        self.n_placas_ans = MDLabel(
+        self.potencia_inv_ans = MDLabel(
             halign="center",
             pos_hint={"center_x": 0.5, "center_y": 0.30},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
         )
-        self.disjuntor_ans = MDLabel(
+        self.n_placas_ans = MDLabel(
             halign="center",
             pos_hint={"center_x": 0.5, "center_y": 0.25},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
-            text = ""
         )
         self.cabos_ans = MDLabel(
             halign="center",
             pos_hint={"center_x": 0.5, "center_y": 0.2},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+            text = ""
+        )
+        self.disjuntor_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.15},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
             text = ""

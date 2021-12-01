@@ -1859,7 +1859,7 @@ class CalculadoraSolar(MDApp):
         self.toobar.pos_hint = {"top": 1}
         self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
         self.screen.add_widget(self.toobar)
-
+        self.icon = "logo256.png"
         self.ir_tela4()
         self.on_pre_enter()
         return self.screen

@@ -1716,7 +1716,7 @@ class CalculadoraSolar(MDApp):
     def tela4_android(self):
         self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
         self.logo1 = Image(
-            source="logo1.png",
+            source="logomenu.png",
             pos_hint={"center_x": 0.5, "center_y": 0.8}
         )
         self.screen.add_widget(self.logo1)

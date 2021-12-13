@@ -495,8 +495,6 @@ class CalculadoraSolar(MDApp):
                     ["LIVOLTEK", "GT1-3K-S"],
                     ["LIVOLTEK", "GT1-5K-D"],
                     ["LIVOLTEK", "GT1-6K-D"],
-                    ["LIVOLTEK", "GT1-5K-D"],
-                    ["LIVOLTEK", "GT1-6K-D"],
                     ["CANADIAN", "CSI-3K-S22002-ED"],
                     ["CANADIAN", "CSI-5K-S22002-ED"],
                     ["CANADIAN", "CSI-5KTL1P-FL"],
@@ -859,19 +857,24 @@ class CalculadoraSolar(MDApp):
             if type == "input":
                 self.screen.remove_widget(self.input_municipio)
                 self.screen.remove_widget(self.input_pot_sistema)
+                self.screen.remove_widget(self.input_pot_sistema_kwh)
+
             if type == "all":
                 self.calculado = 0
                 self.inf = 0
                 #self.screen.remove_widget(self.logo1)
                 self.screen.remove_widget(self.municipio)
                 self.screen.remove_widget(self.pot_sistema)
+                self.screen.remove_widget(self.pot_sistema_kwh)
                 self.screen.remove_widget(self.municipio_ans)
                 self.screen.remove_widget(self.pot_sistema_ans)
+                self.screen.remove_widget(self.pot_sistema_kwh_ans)
                 self.screen.remove_widget(self.geracao)
                 self.screen.remove_widget(self.input_municipio)
                 self.screen.remove_widget(self.button_calcular3)
                 self.screen.remove_widget(self.button_corrigir3)
                 self.screen.remove_widget(self.input_pot_sistema)
+                self.screen.remove_widget(self.input_pot_sistema_kwh)
                 
 
     def remove_tela4(self, type):
@@ -891,6 +894,7 @@ class CalculadoraSolar(MDApp):
                 #self.screen.remove_widget(self.logo1)
                 self.screen.remove_widget(self.equipamento)
                 self.screen.remove_widget(self.equipamento_ans)
+                self.screen.remove_widget(self.equipamento_horas_ans)
                 self.screen.remove_widget(self.button_consumo)
 
    
@@ -915,7 +919,7 @@ class CalculadoraSolar(MDApp):
         if erro == 0 :  
             try:
                 fator_solar = 0
-                for fator_solar_dados in self.fator_solares:
+                for fator_solar_dados in self .fator_solares:
                     municipio = self.input_municipio.text.lower().split()[0]
                     if fator_solar_dados[0].lower() == municipio:
                         fator_solar = fator_solar_dados[1]
@@ -971,9 +975,10 @@ class CalculadoraSolar(MDApp):
         vet_inversores = self.dados_inversores
         for i in range(len(vet_inversores)):
             if (vet_inversores[i][1]==self.button_inversores.text):
+                potencia_maxima = float(vet_inversores[i][5].replace(',','.')) * 1000
+                self.potencia_inv_ans.text = "Potência Max. Inv. : " + str(potencia_maxima/1000) + " kWp"
                 if not(self.button_placas.text == "Potência") :
                     tensao_maxima = float(vet_inversores[i][6])
-                    potencia_maxima = float(vet_inversores[i][5].replace(',','.')) * 1000
                     tensao_placa = 50
                     n_mppt = vet_inversores[i][8]
                     print("mppt: ",n_mppt)
@@ -982,9 +987,8 @@ class CalculadoraSolar(MDApp):
                     n_placas_2 = int(tensao_maxima / tensao_placa) * n_mppt
                     print("N placas por potencia",n_placas_1)
                     print("N placas por tensão",n_placas_2)
-                    self.potencia_inv_ans.text = "Potência Max. Inv. : " + str(potencia_maxima/1000) + " kWp"
                     if (n_placas_1 > n_placas_2):
-                        self.n_placas_ans.text = "Verificar com Engenheiro" 
+                        self.n_placas_ans.text = "Número de Placas: " + str(int(n_placas_2)) + " (VERIFICAR)"
                     else:
                         self.n_placas_ans.text = "Número de Placas: " + str(int(n_placas_1))
                 self.disjuntor_ans.text = "Disjuntor: " + str(vet_inversores[i][3]) + " A"
@@ -1008,14 +1012,55 @@ class CalculadoraSolar(MDApp):
         potencia = 0
         erro = 0
         fator_solar = 0
-        try:
-            potencia_sem_virgula = self.input_pot_sistema.text.replace(",",".")
-            potencia = float(potencia_sem_virgula)
-        except:
-            self.geracao.text = "Digite apenas numeros para descrever a potência"
-            erro = 1
+        self.calculado = 1 
+        print(self.input_pot_sistema.text)
+        if self.input_pot_sistema.text.strip(" ") != "" and self.input_pot_sistema_kwh.text.strip(" ") == "":
+            print("kwp")
+            try:
+                potencia_sem_virgula = self.input_pot_sistema.text.replace(",",".")
+                potencia = float(potencia_sem_virgula)
+            except:
+                self.geracao.text = "Digite apenas numeros para descrever a potência"
+                erro = 1
 
-        if erro == 0 :
+            if erro == 0 :
+                try:
+                    fator_solar = 0
+                    municipio = self.input_municipio.text.lower().split()[0]
+                    print(municipio)
+                    for fator_solar_dados in self.fator_solares:
+                        if fator_solar_dados[0].lower() == municipio:
+                            fator_solar = fator_solar_dados[1]
+                    geracao = round(potencia * fator_solar, 2)
+                    if potencia > 0:
+                        if fator_solar > 0:
+                            self.geracao.text = "Geração Mensal: " + str(geracao) + " kWh"
+                        else:
+                            self.geracao.text = "Municipio Não Cadastrado"
+                    else:
+                        self.geracao.text = "Digite a Potência do Sistema"
+                except:
+                    self.geracao.text = "Município Não Encontrado"
+
+                # retira os campo os de input
+                if self.calculado == 0:
+                    self.remove_tela3("input")
+                    self.screen.add_widget(self.municipio_ans)
+                self.calculado = 1
+                # Mostrando respostas
+                try:
+                    self.municipio_ans.text = self.input_municipio.text.upper() + " -> Fator Solar: " + str(fator_solar)
+                    self.pot_sistema_ans.text = self.input_pot_sistema.text + " kWp"
+                except:
+                    print("Erro nas repostas")
+        elif self.input_pot_sistema_kwh.text.strip(" ") != "" and self.input_pot_sistema.text.strip(" ") == "":
+            print("iniciando calculo kwh")
+            try:
+                potencia_sem_virgula = self.input_pot_sistema_kwh.text.replace(",",".")
+                potencia = float(potencia_sem_virgula)
+            except:
+                self.geracao_kwh.text = "Digite apenas numeros para descrever a potência"
+                erro = 1
             try:
                 fator_solar = 0
                 municipio = self.input_municipio.text.lower().split()[0]
@@ -1023,37 +1068,42 @@ class CalculadoraSolar(MDApp):
                 for fator_solar_dados in self.fator_solares:
                     if fator_solar_dados[0].lower() == municipio:
                         fator_solar = fator_solar_dados[1]
-                geracao = round(potencia * fator_solar, 2)
+                geracao = round(potencia / fator_solar, 2)
                 if potencia > 0:
                     if fator_solar > 0:
-                        self.geracao.text = "Geração Mensal: " + str(geracao) + " kWh"
+                        self.geracao_kwh.text = "Geração Mensal: " + str(geracao) + " kWh"
                     else:
-                        self.geracao.text = "Municipio Não Cadastrado"
+                        self.geracao_kwh.text = "Municipio Não Cadastrado"
                 else:
-                    self.geracao.text = "Digite a Potência do Sistema"
+                    self.geracao_kwh.text = "Digite a Potência do Sistema"
             except:
-                self.geracao.text = "Município Não Encontrado"
-
-            # retira os campo os de input
-            if self.calculado == 0:
-                self.remove_tela3("input")
-                self.screen.add_widget(self.municipio_ans)
-                self.screen.add_widget(self.pot_sistema_ans)
-            self.calculado = 1
-            # Mostrando respostas
+                self.geracao_kwh.text = "Município Não Encontrado"
             try:
-                self.municipio_ans.text = self.input_municipio.text.upper() + " -> Fator Solar: " + str(fator_solar)
-                self.pot_sistema_ans.text = self.input_pot_sistema.text + " kWp"
+                    self.municipio_ans.text = self.input_municipio.text.upper() + " -> Fator Solar: " + str(fator_solar)
+                    self.pot_sistema_kwh_ans.text = self.input_pot_sistema_kwh.text + " kWp"
             except:
-                print("Erro nas repostas")
+                    print("Erro nas repostas")
+        else:
+            self.geracao_kwh.text = "Deixe um desses campos em branco"
+            self.geracao.text = "Deixe um desses campos em branco"
+
+        self.calculado = 1
+        self.screen.remove_widget(self.input_municipio)
+        self.screen.remove_widget(self.input_pot_sistema)
+        self.screen.remove_widget(self.input_pot_sistema_kwh)
 
     def limpar3(self,args):
         self.geracao.text = ""
+        self.geracao_kwh.text = ""
+        if self.calculado == 1: 
+            self.screen.add_widget(self.input_municipio)
+            self.screen.add_widget(self.input_pot_sistema)
+            self.screen.add_widget(self.input_pot_sistema_kwh)
+            self.municipio_ans.text = " "
+            self.pot_sistema_ans.text = " "
+            self.pot_sistema_kwh_ans.text = " "
+
         self.calculado = 0
-        self.screen.add_widget(self.input_municipio)
-        self.screen.add_widget(self.input_pot_sistema)
-        self.screen.remove_widget(self.municipio_ans)
-        self.screen.remove_widget(self.pot_sistema_ans)
 
     # Arualiza a seleção de inversores com para os novos
     def atualizar_inversores(self,args):
@@ -1095,11 +1145,9 @@ class CalculadoraSolar(MDApp):
 
     def mostrar(self,args):
         for index in self.dados_consumo:
-            
             if str(self.button_consumo.text.strip(" ")) == str(index[0].strip(" ")):
-                print(self.button_consumo.text.strip(" "), index[0].strip(" "))
-                self.equipamento_ans.text = "Consumo mensal: " + index[3] + " kWh"
-                print( "Consumo mensal: " + index[3] + " kWh")
+                self.equipamento_ans.text = "Consumo Mensal: " + index[3] + " kWh"
+                self.equipamento_horas_ans.text =  "Utilização Diaria: " + index[2] 
   
     #-------------------------------------------------------- TELAS ------------------------------------------------------------------------
     def tela1_android(self):
@@ -1580,8 +1628,16 @@ class CalculadoraSolar(MDApp):
             theme_text_color="ContrastParentBackground",
             font_style="H5"
         )
+        self.pot_sistema_kwh = MDLabel(
+            text="Potência [kWh]",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.38},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5"
+        )
         self.screen.add_widget(self.municipio)
         self.screen.add_widget(self.pot_sistema)
+        self.screen.add_widget(self.pot_sistema_kwh)
 
         # Labels label input ====================================================
         self.municipio_ans = MDLabel(
@@ -1596,7 +1652,14 @@ class CalculadoraSolar(MDApp):
             pos_hint={"center_x": 0.5, "center_y": 0.48},
             theme_text_color="Error",
             font_style="H5",
-            text = ""
+            text = "teste 2"
+        )
+        self.pot_sistema_kwh_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.32},
+            theme_text_color="Error",
+            font_style="H5",
+            text = "teste 1"
         )
         
 
@@ -1626,8 +1689,16 @@ class CalculadoraSolar(MDApp):
             pos_hint={"center_x": 0.5, "center_y": 0.48},
             font_size=22
         )
+        self.input_pot_sistema_kwh = MDTextField(
+            text="",
+            halign="center",
+            size_hint=(0.8, 1),
+            pos_hint={"center_x": 0.5, "center_y": 0.48},
+            font_size=22
+        )
         self.screen.add_widget(self.input_municipio)
         self.screen.add_widget(self.input_pot_sistema)
+        self.screen.add_widget(self.input_pot_sistema_kwh)
         # button =============================================================
         self.button_calcular3 = MDFillRoundFlatButton(
                 text="Calcular",
@@ -1670,8 +1741,16 @@ class CalculadoraSolar(MDApp):
             theme_text_color="ContrastParentBackground",
             font_style="H5"
         )
+        self.pot_sistema_kwh = MDLabel(
+            text="Potência [kWh]",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.38},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5"
+        )
         self.screen.add_widget(self.municipio)
         self.screen.add_widget(self.pot_sistema)
+        self.screen.add_widget(self.pot_sistema_kwh)
 
         # Labels label input ====================================================
         self.municipio_ans = MDLabel(
@@ -1688,9 +1767,27 @@ class CalculadoraSolar(MDApp):
             font_style="H5",
             text = ""
         )
+        self.pot_sistema_kwh_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.32},
+            theme_text_color="Error",
+            font_style="H5",
+            text = ""
+        )
         
+        self.screen.add_widget(self.municipio_ans)
+        self.screen.add_widget(self.pot_sistema_ans)
+        self.screen.add_widget(self.pot_sistema_kwh_ans)
 
         # Labels Answers ====================================================
+        self.geracao_kwh = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.48},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+            text = ""
+        )
+
         self.geracao = MDLabel(
             halign="center",
             pos_hint={"center_x": 0.5, "center_y": 0.30},
@@ -1700,6 +1797,7 @@ class CalculadoraSolar(MDApp):
         )
        
         self.screen.add_widget(self.geracao)
+        self.screen.add_widget(self.geracao_kwh)
 
         # Inputs ========================================================
         self.input_municipio = MDTextField(
@@ -1716,8 +1814,16 @@ class CalculadoraSolar(MDApp):
             pos_hint={"center_x": 0.5, "center_y": 0.48},
             font_size=60
         )
+        self.input_pot_sistema_kwh = MDTextField(
+            text="",
+            halign="center",
+            size_hint=(0.8, 1),
+            pos_hint={"center_x": 0.5, "center_y": 0.32},
+            font_size=60
+        )
         self.screen.add_widget(self.input_municipio)
         self.screen.add_widget(self.input_pot_sistema)
+        self.screen.add_widget(self.input_pot_sistema_kwh)
         # button =============================================================
         self.button_calcular3 = MDFillRoundFlatButton(
                 text="Calcular",
@@ -1777,6 +1883,7 @@ class CalculadoraSolar(MDApp):
             on_press=self.ir_tela3
         )
         self.screen.add_widget(self.button_tela3)
+        
 
         self.button_tela5 = MDFillRoundFlatButton(
             text="Sistema por Consumo",
@@ -1858,15 +1965,26 @@ class CalculadoraSolar(MDApp):
         
 
         # Labels Answers ====================================================
+        
         self.equipamento_ans = MDLabel(
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.30},
+            pos_hint={"center_x": 0.5, "center_y": 0.35},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
             text = ""
         )
        
         self.screen.add_widget(self.equipamento_ans)
+
+        self.equipamento_horas_ans = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.30},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+            text = ""
+        )
+        self.screen.add_widget(self.equipamento_horas_ans)
+
 
         # Inputs ========================================================
         self.dropdown_consumo = DropDown()

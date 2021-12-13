@@ -848,8 +848,6 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.button_marcas)
                 self.screen.remove_widget(self.button_inversores)
                 self.screen.remove_widget(self.button_placas)
-                self.screen.remove_widget(self. button_inform)
-                self.screen.remove_widget(self.button_limpar2)
                 self.screen.remove_widget(self.disjuntor_ans)
                 self.screen.remove_widget(self.potencia_inv_ans)
                 self.screen.remove_widget(self.cabos_ans)
@@ -887,9 +885,6 @@ class CalculadoraSolar(MDApp):
     
     def remove_tela5(self, type):
         if self.tela == 5:
-            if type == "input":
-                self.screen.remove_widget(self.input_municipio)
-                self.screen.remove_widget(self.input_pot_consumo)
             if type == "all":
                 self.calculado = 0
                 self.inf = 0
@@ -1081,7 +1076,7 @@ class CalculadoraSolar(MDApp):
         
 
         self.dropdown_inversores.bind(on_select=lambda instance, x: setattr(self.button_inversores, 'text', x))
-        
+        self.dropdown_inversores.on_select = self.inform
         self.screen.add_widget(self.button_inversores)
     
     # Funções do teclado
@@ -1513,7 +1508,7 @@ class CalculadoraSolar(MDApp):
         
 
         self.dropdown_inversores.bind(on_select=lambda instance, x: setattr(self.button_inversores, 'text', x))
-        
+        self.dropdown_inversores.on_select = self.inform
         self.screen.add_widget(self.button_inversores)
         
         # Buttons placas ===========================================================
@@ -1529,6 +1524,7 @@ class CalculadoraSolar(MDApp):
         # one last thing, listen for the selection in the dropdown list and
         # assign the data to the button text.
         self.dropdown_placas.bind(on_select=lambda instance, x: setattr(self.button_placas, 'text', x))
+        self.dropdown_placas.on_select = self.inform
         self.screen.add_widget(self.button_placas)
 
         # Answers ==================================================
@@ -1559,23 +1555,7 @@ class CalculadoraSolar(MDApp):
             text = ""
         )
 
-         # button =============================================================
-        self.button_inform = MDFillRoundFlatButton(
-        text="Informações",
-        font_size=17,
-        pos_hint={"center_x": 0.8, "center_y": 0.1},
-        on_press=self.inform
-        )
-        
-        self.button_limpar2 = MDFillRoundFlatButton(
-            text="Limpar",
-            font_size=17,
-            pos_hint={"center_x": 0.2, "center_y": 0.1},
-            on_press=self.limpar2
-        )
-        self.screen.add_widget(self.button_inform)
-        self.screen.add_widget(self.button_limpar2)    
-        
+         # button ============================================================= 
         
 
     def tela3_pc(self):
@@ -1883,7 +1863,7 @@ class CalculadoraSolar(MDApp):
             pos_hint={"center_x": 0.5, "center_y": 0.30},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
-            text = "Consumo Mensal: 72 kWh"
+            text = ""
         )
        
         self.screen.add_widget(self.equipamento_ans)

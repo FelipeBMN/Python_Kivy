@@ -1051,7 +1051,7 @@ class CalculadoraSolar(MDApp):
                 # Mostrando respostas
                 try:
                     self.municipio_ans.text = self.input_municipio.text.upper() + " -> Fator Solar: " + str(fator_solar)
-                    self.pot_sistema_ans.text = self.input_pot_sistema.text + " kWp"
+                    self.pot_sistema_ans.text = "Sistema: " + self.input_pot_sistema.text + " kWp"
                 except:
                     print("Erro nas repostas")
         elif self.input_pot_sistema_kwh.text.strip(" ") != "" and self.input_pot_sistema.text.strip(" ") == "":

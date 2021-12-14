@@ -870,6 +870,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.pot_sistema_ans)
                 self.screen.remove_widget(self.pot_sistema_kwh_ans)
                 self.screen.remove_widget(self.geracao)
+                self.screen.remove_widget(self.geracao_kwh)
                 self.screen.remove_widget(self.input_municipio)
                 self.screen.remove_widget(self.button_calcular3)
                 self.screen.remove_widget(self.button_corrigir3)
@@ -992,7 +993,7 @@ class CalculadoraSolar(MDApp):
                     else:
                         self.n_placas_ans.text = "Número de Placas: " + str(int(n_placas_1))
                 self.disjuntor_ans.text = "Disjuntor: " + str(vet_inversores[i][3]) + " A"
-                self.cabos_ans.text = "Cabos :" + str(vet_inversores[i][4]) + " mm²"
+                self.cabos_ans.text = "Cabos: " + str(vet_inversores[i][4]) + " mm²"
                 disj_encontrado = 1
                 break
         if self.button_placas.text == "Potência":
@@ -1071,7 +1072,7 @@ class CalculadoraSolar(MDApp):
                 geracao = round(potencia / fator_solar, 2)
                 if potencia > 0:
                     if fator_solar > 0:
-                        self.geracao_kwh.text = "Geração Mensal: " + str(geracao) + " kWh"
+                        self.geracao_kwh.text = "Sistema: " + str(geracao) + " kWp"
                     else:
                         self.geracao_kwh.text = "Municipio Não Cadastrado"
                 else:
@@ -1080,7 +1081,7 @@ class CalculadoraSolar(MDApp):
                 self.geracao_kwh.text = "Município Não Encontrado"
             try:
                     self.municipio_ans.text = self.input_municipio.text.upper() + " -> Fator Solar: " + str(fator_solar)
-                    self.pot_sistema_kwh_ans.text = self.input_pot_sistema_kwh.text + " kWp"
+                    self.pot_sistema_kwh_ans.text = "Geração: " + self.input_pot_sistema_kwh.text + " kWh"
             except:
                     print("Erro nas repostas")
         else:
@@ -1468,14 +1469,14 @@ class CalculadoraSolar(MDApp):
             pos_hint={"center_x": 0.5, "center_y": 0.28},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
-            text = "Disjuntor: 32 A "
+            text = " "
         )
         self.cabos_ans = MDLabel(
             halign="center",
             pos_hint={"center_x": 0.5, "center_y": 0.22},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
-            text = "Cabos: 6 mm² "
+            text = " "
         )
 
          # button =============================================================

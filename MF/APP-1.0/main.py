@@ -526,99 +526,194 @@ class CalculadoraSolar(MDApp):
                     ["GROWATT",	"MAC 60KTL3-X LV"],
                     ["CANADIAN", "CSI-9K-S2202-E"]]
 
-    dados_inversores = [['GROWATT', 'MID 15KTL3-X', '24,2', 25, 4, '22,5', 1000, 2],
-       ['GROWATT', 'MID 17KTL3-X', '27,4', 32, 6, '25,5', 1000, 2],
-       ['GROWATT', 'MID 20KTL3-X', '31,9', 32, 6, '30', 1000, 2],
-       ['GROWATT', 'MID 22KTL3-X', '35,5', 40, 6, '33', 1000, 2],
-       ['GROWATT', 'MID 25KTL3-X', '35,5', 40, 6, '37,5', 1000, 2],
-       ['GROWATT', 'MID 25KTL3-X', '40,2', 50, 10, '37,5', 1000, 2],
-       ['GROWATT', '7000MTL-S', '33,5', 40, 6, '9,1', 550, 2],
-       ['GROWATT', '8000MTL-S', '35,7', 40, 6, '10,5', 550, 2],
-       ['GROWATT', '7000MTL-S', '33,5', 40, 6, '9,1', 550, 2],
-       ['GROWATT', '8000MTL-S', '35,7', 40, 6, '10,5', 550, 2],
-       ['GROWATT', 'MIN 2500TL-X', '11,3', 16, 4, '3,5', 500, 2],
-       ['GROWATT', 'MIN 2500TL-X', '11,3', 16, 4, '4,2', 500, 2],
-       ['GROWATT', 'MIN 3600TL-X', '16', 20, 4, '5,04', 550, 2],
-       ['GROWATT', 'MIN 4200TL-X', '19', 20, 4, '5,88', 550, 2],
-       ['GROWATT', 'MIN 4600TL-X', '20,9', 25, 4, '6,44', 550, 2],
-       ['GROWATT', 'MIN 5000TL-X', '22,7', 25, 4, '7', 550, 2],
-       ['GROWATT', 'MIN 6000TL-X', '27,2', 25, 4, '8,1', 550, 2],
-       ['GROWATT', 'MAX 50KTL3 LV', '80,5', 100, 35, '65', 1100, 6],
-       ['GROWATT', 'MAX 60KTL3 LV', '96,6', 100, 35, '78', 1100, 6],
-       ['GROWATT', 'MAX 70KTL3 LV', '112,7', 125, 50, '91', 1100, 6],
-       ['GROWATT', 'MAX 80KTL3 LV', '128,8', 150, 70, '104', 1100, 6],
-       ['SOLIS', 'Solis-1P7K-4G', '33,7', 40, 6, '10,5', 600, 3],
-       ['SOLIS', 'Solis-1P8K-4G', '36,6', 40, 6, '12', 600, 3],
-       ['SOLIS', 'Solis-1P9K-4G', '41,3', 50, 16, '13,5', 600, 3],
-       ['SOLIS', 'Solis-1P10K-4G', '45,9', 50, 16, '15', 600, 3],
-       ['SOLIS', 'Solis-25K-5G', '41,8', 50, 16, '37,5', 1100, 6],
-       ['SOLIS', 'Solis-30K-5G', '50,2', 63, 16, '45', 1100, 6],
-       ['SOLIS', 'Solis-33K-5G', '55,1', 63, 16, '49,5', 1100, 6],
-       ['SOLIS', 'Solis-36K-5G', '60,2', 63, 16, '54', 1100, 8],
-       ['SOLIS', 'Solis-40K-5G', '66,9', 80, 25, '60', 1100, 8],
-       ['SOLIS', 'Solis-40K-HV-5G', '53', 63, 16, '60', 1100, 8],
-       ['SOLIS', 'Solis-50K-HV-5G', '66,2', 70, 25, '75', 1100, 8],
-       ['SOLIS', 'Solis-50K', '83,3', 100, 35, '75', 1100, 12],
-       ['SOLIS', 'Solis-50K-HV', '66,2', 70, 25, '75', 1100, 8],
-       ['SOLIS', 'Solis-60K-HV', '80', 100, 35, '90', 1100, 12],
-       ['SOLIS', 'Solis-60K-4G', '100', 125, 50, '90', 1100, 12],
-       ['SOLIS', 'Solis-75K-5G', '114', 125, 50, '120', 1100, 18],
-       ['SOLIS', 'Solis-80K-5G', '133,7', 150, 50, '120', 1100, 18],
-       ['SOLIS', 'Solis-1P2.5K-4G', '13,3', 16, 4, '3,75', 550, 2],
-       ['SOLIS', 'Solis-1P3K-4G', '15,7', 16, 4, '4,5', 600, 2],
-       ['SOLIS', 'Solis-1P3.6K-4G', '16', 20, 4, '5,4', 600, 2],
-       ['SOLIS', 'Solis-1P4K-4G', '21', 25, 4, '6', 600, 2],
-       ['SOLIS', 'Solis-1P4.6K-4G', '23,8', 25, 4, '6,9', 600, 2],
-       ['SOLIS', 'Solis-1P5K-4G', '25', 32, 6, '7,5', 600, 2],
-       ['SOLIS', 'Solis-1P6K-4G', '27,3', 32, 6, '9', 600, 2],
-       ['SOLIS', 'Solis-3P5K-4G', '7,9', 10, 4, '7,5', 1000, 2],
-       ['SOLIS', 'Solis-3P6K-4G', '9,5', 10, 4, '9', 1000, 2],
-       ['SOLIS', 'Solis-3P8K-4G', '12,7', 16, 4, '12', 1000, 2],
-       ['SOLIS', 'Solis-3P9K-4G', '14,3', 16, 4, '13,5', 1000, 2],
-       ['SOLIS', 'Solis-3P10K-4G', '15,9', 16, 4, '15', 1000, 2],
-       ['SOLIS', 'Solis-3P12K-4G', '19,1', 25, 4, '18', 1000, 2],
-       ['SOLIS', 'Solis-3P15K-4G', '23,8', 25, 4, '22,5', 1000, 2],
-       ['SOLIS', 'Solis-3P17K-4G', '27', 32, 6, '25,5', 1000, 2],
-       ['SOLIS', 'Solis-3P20K-4G', '31,8', 32, 6, '30', 1000, 2],
-       ['SMA', 'Sunny Tripower 15000TL', '29', 32, 6, '15', 1000, 3],
-       ['SMA', 'Sunny Tripower 20000TL', '29', 32, 6, '20', 1000, 3],
-       ['SMA', 'Sunny Tripower 25000TL', '36,2', 40, 6, '25', 1000, 3],
-       ['SMA', 'Sunny Tripower CORE1', '72,5', 80, 25, '75', 1000, 6],
-       ['LIVOLTEK', 'GT1-3K-S', '15', 16, 4, '4,4', 600, 1],
-       ['LIVOLTEK', 'GT1-5K-D', '25', 32, 6, '5,5', 600, 2],
-       ['LIVOLTEK', 'GT1-6K-D', '27,3', 32, 6, '8,8', 600, 2],
-       ['CANADIAN', 'CSI-3K-S22002-ED', '13,6', 16, 4, '4,45', 600, 1],
-       ['CANADIAN', 'CSI-5K-S22002-ED', '25', 32, 6, '8,19', 600, 2],
-       ['CANADIAN', 'CSI-5KTL1P-FL', '25', 32, 6, '6,5', 600, 2],
-       ['CANADIAN', 'CSI-7K-S22002-E', '35', 40, 6, '11,25', 600, 2],
-       ['CANADIAN', 'CSI-8KTL1P-GI-FL', '36,4', 40, 6, '10,8', 600, 2],
-       ['CANADIAN', 'CSI-15K-T400GL01-E', '23,8', 25, 4, '22,5', 1000, 2],
-       ['CANADIAN', 'CSI-20KTL-GI-LFL', '31,8', 32, 6, '30', 1000, 2],
+    dados_inversores = [['GROWATT', 'MID 15KTL3-X', '24,2', 25, 4, '22,5', 1000, 2, 2],
+       ['GROWATT', 'MID 17KTL3-X', '27,4', 32, 6, '25,5', 1000, 2, 2],
+       ['GROWATT', 'MID 20KTL3-X', '31,9', 32, 6, '30', 1000, 2, 2],
+       ['GROWATT', 'MID 22KTL3-X', '35,5', 40, 6, '33', 1000, 2, 2],
+       ['GROWATT', 'MID 25KTL3-X', '35,5', 40, 6, '37,5', 1000, 2, 3],
+       ['GROWATT', 'MID 25KTL3-X', '40,2', 50, 10, '37,5', 1000, 2, 3],
+       ['GROWATT', '7000MTL-S', '33,5', 40, 6, '9,1', 550, 2, 2],
+       ['GROWATT', '8000MTL-S', '35,7', 40, 6, '10,5', 550, 2, 2],
+       ['GROWATT', '7000MTL-S', '33,5', 40, 6, '9,1', 550, 2, 2],
+       ['GROWATT', '8000MTL-S', '35,7', 40, 6, '10,5', 550, 2, 2],
+       ['GROWATT', 'MIN 2500TL-X', '11,3', 16, 4, '3,5', 500, 2, 2],
+       ['GROWATT', 'MIN 2500TL-X', '11,3', 16, 4, '4,2', 500, 2, 2],
+       ['GROWATT', 'MIN 3600TL-X', '16', 20, 4, '5,04', 550, 2, 2],
+       ['GROWATT', 'MIN 4200TL-X', '19', 20, 4, '5,88', 550, 2, 2],
+       ['GROWATT', 'MIN 4600TL-X', '20,9', 25, 4, '6,44', 550, 2, 2],
+       ['GROWATT', 'MIN 5000TL-X', '22,7', 25, 4, '7', 550, 2, 2],
+       ['GROWATT', 'MIN 6000TL-X', '27,2', 25, 4, '8,1', 550, 2, 2],
+       ['GROWATT', 'MAX 50KTL3 LV', '80,5', 100, 35, '65', 1100, 6, 2],
+       ['GROWATT', 'MAX 60KTL3 LV', '96,6', 100, 35, '78', 1100, 6, 2],
+       ['GROWATT', 'MAX 70KTL3 LV', '112,7', 125, 50, '91', 1100, 6, 2],
+       ['GROWATT', 'MAX 80KTL3 LV', '128,8', 150, 70, '104', 1100, 6, 2],
+       ['SOLIS', 'Solis-1P7K-4G', '33,7', 40, 6, '10,5', 600, 3, 3],
+       ['SOLIS', 'Solis-1P8K-4G', '36,6', 40, 6, '12', 600, 3, 3],
+       ['SOLIS', 'Solis-1P9K-4G', '41,3', 50, 16, '13,5', 600, 3, 3],
+       ['SOLIS', 'Solis-1P10K-4G', '45,9', 50, 16, '15', 600, 3, 3],
+       ['SOLIS', 'Solis-25K-5G', '41,8', 50, 16, '37,5', 1100, 3, 6],
+       ['SOLIS', 'Solis-30K-5G', '50,2', 63, 16, '45', 1100, 3, 6],
+       ['SOLIS', 'Solis-33K-5G', '55,1', 63, 16, '49,5', 1100, 3, 6],
+       ['SOLIS', 'Solis-36K-5G', '60,2', 63, 16, '54', 1100, 4, 8],
+       ['SOLIS', 'Solis-40K-5G', '66,9', 80, 25, '60', 1100, 4, 8],
+       ['SOLIS', 'Solis-40K-HV-5G', '53', 63, 16, '60', 1100, 4, 8],
+       ['SOLIS', 'Solis-50K-HV-5G', '66,2', 70, 25, '75', 1100, 4, 8],
+       ['SOLIS', 'Solis-50K', '83,3', 100, 35, '75', 1100, 4, 12],
+       ['SOLIS', 'Solis-50K-HV', '66,2', 70, 25, '75', 1100, 4, 8],
+       ['SOLIS', 'Solis-60K-HV', '80', 100, 35, '90', 1100, 4, 12],
+       ['SOLIS', 'Solis-60K-4G', '100', 125, 50, '90', 1100, 4, 12],
+       ['SOLIS', 'Solis-75K-5G', '114', 125, 50, '120', 1100, 9, 18],
+       ['SOLIS', 'Solis-80K-5G', '133,7', 150, 50, '120', 1100, 9, 18],
+       ['SOLIS', 'Solis-1P2.5K-4G', '13,3', 16, 4, '3,75', 550, 2, 2],
+       ['SOLIS', 'Solis-1P3K-4G', '15,7', 16, 4, '4,5', 600, 2, 2],
+       ['SOLIS', 'Solis-1P3.6K-4G', '16', 20, 4, '5,4', 600, 2, 2],
+       ['SOLIS', 'Solis-1P4K-4G', '21', 25, 4, '6', 600, 2, 2],
+       ['SOLIS', 'Solis-1P4.6K-4G', '23,8', 25, 4, '6,9', 600, 2, 2],
+       ['SOLIS', 'Solis-1P5K-4G', '25', 32, 6, '7,5', 600, 2, 2],
+       ['SOLIS', 'Solis-1P6K-4G', '27,3', 32, 6, '9', 600, 2, 2],
+       ['SOLIS', 'Solis-3P5K-4G', '7,9', 10, 4, '7,5', 1000, 2, 2],
+       ['SOLIS', 'Solis-3P6K-4G', '9,5', 10, 4, '9', 1000, 2, 2],
+       ['SOLIS', 'Solis-3P8K-4G', '12,7', 16, 4, '12', 1000, 2, 2],
+       ['SOLIS', 'Solis-3P9K-4G', '14,3', 16, 4, '13,5', 1000, 2, 2],
+       ['SOLIS', 'Solis-3P10K-4G', '15,9', 16, 4, '15', 1000, 2, 2],
+       ['SOLIS', 'Solis-3P12K-4G', '19,1', 25, 4, '18', 1000, 2, 2],
+       ['SOLIS', 'Solis-3P15K-4G', '23,8', 25, 4, '22,5', 1000, 2, 2],
+       ['SOLIS', 'Solis-3P17K-4G', '27', 32, 6, '25,5', 1000, 2, 2],
+       ['SOLIS', 'Solis-3P20K-4G', '31,8', 32, 6, '30', 1000, 2, 2],
+       ['SMA', 'Sunny Tripower 15000TL', '29', 32, 6, '15', 1000, 3, 3],
+       ['SMA', 'Sunny Tripower 20000TL', '29', 32, 6, '20', 1000, 3, 3],
+       ['SMA', 'Sunny Tripower 25000TL', '36,2', 40, 6, '25', 1000, 3, 3],
+       ['SMA', 'Sunny Tripower CORE1', '72,5', 80, 25, '75', 1000, 6, 12],
+       ['LIVOLTEK', 'GT1-3K-S', '15', 16, 4, '4,4', 600, 1, 1],
+       ['LIVOLTEK', 'GT1-5K-D', '25', 32, 6, '5,5', 600, 2, 2],
+       ['LIVOLTEK', 'GT1-6K-D', '27,3', 32, 6, '8,8', 600, 2, 2],
+       ['CANADIAN', 'CSI-3K-S22002-ED', '13,6', 16, 4, '4,45', 600, 1, 1],
+       ['CANADIAN', 'CSI-5K-S22002-ED', '25', 32, 6, '8,19', 600, 2, 2],
+       ['CANADIAN', 'CSI-5KTL1P-FL', '25', 32, 6, '6,5', 600, 2, 2],
+       ['CANADIAN', 'CSI-7K-S22002-E', '35', 40, 6, '11,25', 600, 2, 2],
+       ['CANADIAN', 'CSI-8KTL1P-GI-FL', '36,4', 40, 6, '10,8', 600, 2, 2],
+       ['CANADIAN', 'CSI-15K-T400GL01-E', '23,8', 25, 4, '22,5', 1000, 2,
+        4],
+       ['CANADIAN', 'CSI-20KTL-GI-LFL', '31,8', 32, 6, '30', 1000, 2, 4],
        ['CANADIAN', 'CSI-25K-T400GL02-E', '41,8', 50, 16, '37,5', 1100,
-        3],
-       ['CANADIAN', 'CSI-25KTL-GI-L', '65,6', 80, 25, '37,5', 1100, 2],
-       ['CANADIAN', 'CSI-30KTL-GI-L', '78,8', 80, 25, '45', 1100, 2],
-       ['CANADIAN', 'CSI-50KTL-GI', '76', 80, 25, '58', 1100, 4],
-       ['CANADIAN', 'CSI-60KTL-GI', '86,6', 100, 35, '72', 1100, 4],
+        3, 6],
+       ['CANADIAN', 'CSI-25KTL-GI-L', '65,6', 80, 25, '37,5', 1100, 2, 6],
+       ['CANADIAN', 'CSI-30KTL-GI-L', '78,8', 80, 25, '45', 1100, 2, 6],
+       ['CANADIAN', 'CSI-50KTL-GI', '76', 80, 25, '58', 1100, 4, 12],
+       ['CANADIAN', 'CSI-60KTL-GI', '86,6', 100, 35, '72', 1100, 4, 8],
        ['CANADIAN', 'CSI-75K-T400GL02-E', '114', 125, 50, '112,5', 1100,
-        9],
+        9, 18],
        ['CANADIAN', 'CSI-100K-T400GL02-E', '152', 175, 95, '150', 1100,
-        10],
-       ['LIVOLTEK', 'GT1 8K', '40', 50, 16, '13,2', 550, 2],
-       ['LIVOLTEK', 'GT1 10K', '45,5', 50, 16, '14,7', 550, 2],
-       ['LIVOLTEK', 'GT3-25K', '40', 50, 16, '27,5', 620, 2],
-       ['LIVOLTEK', 'GT3-30K', '48', 50, 16, '33', 620, 2],
-       ['Hoymiles', 'MI-1000', '4,54', 10, 4, '1', 60, 4],
-       ['Hoymiles', 'MI-1200', '5,45', 10, 4, '1,2', 60, 4],
-       ['Hoymiles', 'MI-1500', '6,2', 10, 4, '1.5', 60, 4],
-       ['Hoymiles', 'HMS-1800', '8,18', 10, 4, '1.8', 60, 4],
-       ['Hoymiles', 'HMS-2000', '9,09', 10, 4, '2', 60, 4],
-       ['GROWATT', 'MAC 30KTL3-X LV', '48,3', 50, 16, '45', 1100, 3],
-       ['GROWATT', 'MAC 40KTL3-X LV', '64,4', 80, 25, '60', 1100, 3],
-       ['GROWATT', 'MAC 50KTL3-X LV', '80,5', 100, 35, '75', 1100, 3],
-       ['GROWATT', 'MAC 60KTL3-X LV', '96,6', 100, 35, '90', 1100, 3],
-       ['CANADIAN', 'CSI-9K-S2202-E', '40,9', 50, 16, '13,5', 600, 2]]
-                    
+        10, 20],
+       ['LIVOLTEK', 'GT1 8K', '40', 50, 16, '13,2', 550, 2, 2],
+       ['LIVOLTEK', 'GT1 10K', '45,5', 50, 16, '14,7', 550, 2, 2],
+       ['LIVOLTEK', 'GT3-25K', '40', 50, 16, '27,5', 620, 2, 6],
+       ['LIVOLTEK', 'GT3-30K', '48', 50, 16, '33', 620, 2, 6],
+       ['HOYMILES', 'MI-1000', '4,54', 10, 4, '1', 60, 4, 4],
+       ['HOYMILES', 'MI-1200', '5,45', 10, 4, '1,2', 60, 4, 4],
+       ['HOYMILES', 'MI-1500', '6,2', 10, 4, '1.5', 60, 4, 4],
+       ['HOYMILES', 'HMS-1800', '8,18', 10, 4, '1.8', 60, 4, 4],
+       ['HOYMILES', 'HMS-2000', '9,09', 10, 4, '2', 60, 4, 4],
+       ['GROWATT', 'MAC 30KTL3-X LV', '48,3', 50, 16, '45', 1100, 3, 9],
+       ['GROWATT', 'MAC 40KTL3-X LV', '64,4', 80, 25, '60', 1100, 3, 9],
+       ['GROWATT', 'MAC 50KTL3-X LV', '80,5', 100, 35, '75', 1100, 3, 9],
+       ['GROWATT', 'MAC 60KTL3-X LV', '96,6', 100, 35, '90', 1100, 3, 12],
+       ['CANADIAN', 'CSI-9K-S2202-E', '40,9', 50, 16, '13,5', 600, 2, 2]]
+
+    dados_consumo = [['Aparelho de blu ray', 8, '2 h', '0,19'],
+       ['Aparelho de DVD', 8, '2 h', '0,24'],
+       ['Aparelho de som', 20, '3 h', '6,6'],
+       ['Aquecedor de ambiente', 15, '8 h', '193,44'],
+       ['Aquecedor de mamadeira', 30, '15 min', '0,75'],
+       ['Aquecedor de marmita', 20, '30 min', '0,6'],
+       ['Ar-condicionado tipo janela menor ou igual a 9.000 BTU/h', 30,
+        '8 h', '128,8'],
+       ['Ar-condicionado tipo janela de 9.001 a 14.000 BTU/h', 30, '8 h',
+        '181,6'],
+       ['Ar-condicionado tipo janela maior que 14.000 BTU/h', 30, '8 h',
+        '374'],
+       ['Ar-condicionado tipo split menor ou igual a 10.000 BTU/h', 30,
+        '8 h', '142,28'],
+       ['Ar-condicionado tipo split de 10.001 a 15.000 BTU/h', 30, '8 h',
+        '193,76'],
+       ['Ar-condicionado tipo split de 15.001 a 20.000 BTU/h', 30, '8 h',
+        '293,68'],
+       ['Ar-condicionado tipo split de 20.001 a 30.000 BTU/h', 30, '8 h',
+        '439,2'],
+       ['Ar-condicionado tipo split maior que 30.000 BTU/h', 30, '8 h',
+        '679,2'],
+       ['Aspirador de pó', 30, '20 min', '7,17'],
+       ['Batedeira', 8, '20 min', '0,4'],
+       ['Boiler elétrico de 200 L', 30, '24 h', '346,75'],
+       ["Bomba d'água 1/2 cv", 30, '30 min', '7,2'],
+       ["Bomba d'água 1/3 cv", 30, '30 min', '6,15'],
+       ['Cafeteira elétrica', 30, '1 h', '6,56'],
+       ['Cafeteira expresso', 30, '1 h', '23,82'],
+       ['Chaleira elétrica', 30, '1 h', '28,23'],
+       ['Churrasqueira elétrica', 5, '4 h', '76'],
+       ['Chuveiro elétrico - 4500 W', 30, '32 min', '72'],
+       ['Chuveiro elétrico - 5500 W', 30, '32 min', '88'],
+       ['Computador', 30, '8 h', '15,12'],
+       ['Enceradeira', 2, '2 h', '1,8'],
+       ['Espremedor de frutas', 20, '10 min', '0,18'],
+       ['Exaustor fogão', 30, '2 h', '9,96'],
+       ['Fax modem em stand by', 30, '24 h', '2,16'],
+       ['Ferro elétrico automático a seco - 1050 W', 12, '1 h', '2,4'],
+       ['Ferro elétrico automático a vapor - 1200 W', 12, '1 h', '7,2'],
+       ['Fogão elétrico - cook top\n(por queimador)', 30, '1 h', '68,55'],
+       ['Forno elétrico', 30, '1 h', '15'],
+       ['Forno micro-ondas - 25 L', 30, '20 min', '13,98'],
+       ['Freezer vertical/horizontal', 30, '24 h', '47,55'],
+       ['Freezer vertical frost free', 30, '24 h', '54'],
+       ['Frigobar', 30, '24 h', '18,9'],
+       ['Fritadeira elétrica', 15, '30 min', '6,81'],
+       ['Furadeira', 4, '1 h', '0,94'],
+       ['Geladeira 1 porta', 30, '24 h', '25,2'],
+       ['Geladeira 1 porta frost free', 30, '24 h', '39,6'],
+       ['Geladeira 2 portas', 30, '24 h', '48,24'],
+       ['Geladeira 2 portas frost free', 30, '24 h', '56,88'],
+       ['Grill', 10, '30 min', '3,2'],
+       ['Home theater - 350 W', 8, '2 h', '5,6'],
+       ['Impressora', 30, '1 h', '0,45'],
+       ['Lâmpada fluorescente compacta - 11 W', 30, '5 h', '1,65'],
+       ['Lâmpada fluorescente compacta - 15 W', 30, '5 h', '2,25'],
+       ['Lâmpada fluorescente compacta - 23 W', 30, '5 h', '3,45'],
+       ['Lâmpada incandescente - 40 W', 30, '5 h', '6'],
+       ['Lâmpada incandescente - 60 W', 30, '5 h', '9'],
+       ['Lâmpada incandescente - 100 W', 30, '5 h', '15'],
+       ['Lavadora de louças', 30, '40 min', '30,86'],
+       ['Lavadora de roupas', 12, '1 h', '1,76'],
+       ['Liquidificador', 15, '15 min', '0,8'],
+       ['Máquina de costura', 10, '3 h', '3'],
+       ['Modem de internet', 30, '8 h', '1,92'],
+       ['Monitor', 30, '8 h', '13,2'],
+       ['Monitor LCD', 30, '8 h', '8,16'],
+       ['Multiprocessador', 20, '1 h', '8,56'],
+       ['Nebulizador', 16, '2,5 h', '1,68'],
+       ['Notebook', 30, '8 h', '4,8'],
+       ['Panela elétrica', 20, '1 h', '22'],
+       ['Prancha (chapinha)', 20, '30 min', '0,33'],
+       ['Projetor', 20, '1 h', '4,78'],
+       ['Rádio elétrico pequeno', 30, '10 h', '1,5'],
+       ['Rádio relógio', 30, '24 h', '3,6'],
+       ['Roteador', 30, '8 h', '1,44'],
+       ['Sanduicheira', 30, '10 min', '3,35'],
+       ['Scanner', 30, '1 h', '0,27'],
+       ['Secador de cabelo - 1000 W', 30, '10 min', '5,21'],
+       ['Secadora de roupa', 8, '1 h', '14,92'],
+       ['Tanquinho', 12, '1 h', '0,84'],
+       ['Telefone sem fio', 30, '24 h', '2,16'],
+       ['Torneira elétrica - 3250 W', 30, '30 min', '48,75'],
+       ['Torradeira', 30, '10 min', '4'],
+       ['TV em cores - 14" (tubo)', 30, '5 h', '6,3'],
+       ['TV em cores - 29" (tubo)', 30, '5 h', '15,15'],
+       ['TV em cores - 32" (LCD)', 30, '5 h', '14,25'],
+       ['TV em cores - 40" (LED)', 30, '5 h', '12,45'],
+       ['TV em cores - 42" (LED)', 30, '5 h', '30,45'],
+       ['TV portátil', 30, '5 h', '7,05'],
+       ['Ventilador de mesa', 30, '8 h', '17,28'],
+       ['Ventilador de teto', 30, '8 h', '17,52'],
+       ['Videogame', 15, '4 h', '1,44']]         
     # Variaveis do Programa =======================]==============================
     tela = 4
     pc_android = 1
@@ -805,7 +900,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.pot_consumo_ans)
                 self.screen.remove_widget(self.geracao)
                 self.screen.remove_widget(self.input_municipio)
-                self.screen.remove_widget(self.button_calcular4)
+                self.screen.remove_widget(self.button_mostrar)
                 self.screen.remove_widget(self.button_corrigir4)
                 self.screen.remove_widget(self.input_pot_consumo)
 
@@ -813,7 +908,7 @@ class CalculadoraSolar(MDApp):
     def calcular(self, args):
         potencia = 0
         erro = 0
-
+        fator_solar = 0
         try:
             pot_placas = int(self.input_pot_placas.text)
             n_placas = int(self.input_n_placas.text)
@@ -889,7 +984,7 @@ class CalculadoraSolar(MDApp):
                     tensao_maxima = float(vet_inversores[i][6])
                     potencia_maxima = float(vet_inversores[i][5].replace(',','.')) * 1000
                     tensao_placa = 50
-                    n_mppt = vet_inversores[i][7]
+                    n_mppt = vet_inversores[i][8]
                     print("mppt: ",n_mppt)
                     print("tensão: ", tensao_maxima)
                     n_placas_1 = potencia_maxima / int(self.button_placas.text)
@@ -921,6 +1016,7 @@ class CalculadoraSolar(MDApp):
     def calcular3(self,args):
         potencia = 0
         erro = 0
+        fator_solar = 0
         try:
             potencia_sem_virgula = self.input_pot_sistema.text.replace(",",".")
             potencia = float(potencia_sem_virgula)
@@ -981,7 +1077,7 @@ class CalculadoraSolar(MDApp):
                 self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
                 self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.6, 0.072), background_color = (0.,0.,0.,0.9))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.62},text='Inversor', size_hint=(0.6, 0.072), background_color = (0.,0.,0.,0.9))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1002,14 +1098,15 @@ class CalculadoraSolar(MDApp):
         return True
     # Funções para tela 5
     def limpar4(self,args):
-        self.geracao.text = ""
+        self.equipamento_ans.text = ""
         self.calculado = 0
-        self.screen.add_widget(self.input_municipio)
-        self.screen.add_widget(self.input_pot_consumo)
-        self.screen.remove_widget(self.municipio_ans)
         self.screen.remove_widget(self.pot_consumo_ans)
 
-    def calcular4(self,args):
+    def mostrar(self,args):
+        for index in self.dados_consumo:
+            print(self.button_consumo.text == index[0])
+            if str(self.button_consumo.text) == str(index[0]):
+                self.equipamento_ans = "Consumo mensal: " + index[2]
         return 0
     #-------------------------------------------------------- TELAS ------------------------------------------------------------------------
     def tela1_android(self):
@@ -1363,21 +1460,21 @@ class CalculadoraSolar(MDApp):
         self.marca = MDLabel(
             text="Marca",
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.80},
+            pos_hint={"center_x": 0.5, "center_y": 0.85},
             theme_text_color="ContrastParentBackground",
             font_style="H5"
         )
         self.inversor = MDLabel(
             text="Inversor",
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.64},
+            pos_hint={"center_x": 0.5, "center_y": 0.69},
             theme_text_color="ContrastParentBackground",
             font_style="H5"
         )
         self.pot_placas = MDLabel(
             text="Potência da Placa",
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.49},
+            pos_hint={"center_x": 0.5, "center_y": 0.54},
             theme_text_color="ContrastParentBackground",
             font_style="H5"
         )
@@ -1392,7 +1489,7 @@ class CalculadoraSolar(MDApp):
             btn_marcas.bind(on_release=lambda btn_marcas: self.dropdown_marcas.select(btn_marcas.text))
             self.dropdown_marcas.add_widget(btn_marcas)
         # create a big main button
-        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.72},text='Marca', size_hint=(0.60, 0.1),background_color = (0.,0.,0.,0.9))
+        self.button_marcas = Button(pos_hint={"center_x": 0.5, "center_y": 0.77},text='Marca', size_hint=(0.60, 0.1),background_color = (0.,0.,0.,0.9))
         self.button_marcas.bind(on_release=self.dropdown_marcas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1410,7 +1507,7 @@ class CalculadoraSolar(MDApp):
                 self.btn_inversores.bind(on_release=lambda btn_inversores: self.dropdown_inversores.select(btn_inversores.text))
                 self.dropdown_inversores.add_widget(self.btn_inversores)
         # create a big main button
-        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.57},text='Inversor', size_hint=(0.60, 0.1),background_color = (0.,0.,0.,0.9))
+        self.button_inversores = Button( pos_hint={"center_x": 0.5, "center_y": 0.62},text='Inversor', size_hint=(0.60, 0.1),background_color = (0.,0.,0.,0.9))
         self.button_inversores.bind(on_release=self.dropdown_inversores.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1428,7 +1525,7 @@ class CalculadoraSolar(MDApp):
             btn_placas.bind(on_release=lambda btn_placas: self.dropdown_placas.select(btn_placas.text))
             self.dropdown_placas.add_widget(btn_placas)
         # create a big main button
-        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.42},text='Potência', size_hint=(0.60, 0.1), background_color = (0.,0.,0.,0.9))
+        self.button_placas = Button(pos_hint={"center_x": 0.5, "center_y": 0.47},text='Potência', size_hint=(0.60, 0.1), background_color = (0.,0.,0.,0.9))
         self.button_placas.bind(on_release=self.dropdown_placas.open)
 
         # one last thing, listen for the selection in the dropdown list and
@@ -1439,26 +1536,26 @@ class CalculadoraSolar(MDApp):
         # Answers ==================================================
         self.potencia_inv_ans = MDLabel(
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.30},
+            pos_hint={"center_x": 0.5, "center_y": 0.32},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
         )
         self.n_placas_ans = MDLabel(
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.25},
+            pos_hint={"center_x": 0.5, "center_y": 0.27},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
         )
         self.cabos_ans = MDLabel(
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.2},
+            pos_hint={"center_x": 0.5, "center_y": 0.22},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
             text = ""
         )
         self.disjuntor_ans = MDLabel(
             halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.15},
+            pos_hint={"center_x": 0.5, "center_y": 0.17},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
             text = ""
@@ -1728,36 +1825,36 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.Menu)
         # button =============================================================
         self.button_tela1 = MDFillRoundFlatButton(
-            text=" Sistema - Modulo",
+            text=" Geração - Modulo",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            pos_hint={"center_x": 0.5, "center_y": 0.4},
             on_press=self.ir_tela1
         )
         self.screen.add_widget(self.button_tela1)
 
         self.button_tela2 = MDFillRoundFlatButton(
-            text="Inversores",
+            text="Dados Inversores",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.3},
+            pos_hint={"center_x": 0.5, "center_y": 0.2},
             on_press=self.ir_tela2
         )
         self.screen.add_widget(self.button_tela2)
 
         self.button_tela3 = MDFillRoundFlatButton(
-            text="Sistema - kWp",
+            text="Geração - kWp",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.4},
+            pos_hint={"center_x": 0.5, "center_y": 0.3},
             on_press=self.ir_tela3
         )
         self.screen.add_widget(self.button_tela3)
 
         self.button_tela5 = MDFillRoundFlatButton(
-            text="Sistema - Consumo",
+            text="Consumo de Equipamentos",
             font_size=20,
-            pos_hint={"center_x": 0.5, "center_y": 0.4},
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
             on_press=self.ir_tela5
         )
-        #self.screen.add_widget(self.button_tela5)
+        self.screen.add_widget(self.button_tela5)
         
     def tela5_pc(self):
         return 0
@@ -1771,76 +1868,53 @@ class CalculadoraSolar(MDApp):
         #self.screen.add_widget(self.logo1)
 
         # Labels Form ====================================================
-        self.municipio = MDLabel(
-            text="Município",
+        self.equipamento = MDLabel(
+            text="Equipamento",
             halign="center",
             pos_hint={"center_x": 0.5, "center_y": 0.8},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
         )
-        self.pot_consumo = MDLabel(
-            text="Consumo [kWh]",
-            halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.6},
-            theme_text_color="ContrastParentBackground",
-            font_style="H5"
-        )
-        self.screen.add_widget(self.municipio)
-        self.screen.add_widget(self.pot_consumo)
 
-        # Labels label input ====================================================
-        self.municipio_ans = MDLabel(
-            halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.8},
-            theme_text_color="Error",
-            font_style="H5",
-            text = ""
-        )
-        self.pot_consumo_ans = MDLabel(
-            halign="center",
-            pos_hint={"center_x": 0.5, "center_y": 0.6},
-            theme_text_color="Error",
-            font_style="H5",
-            text = ""
-        )
+        self.screen.add_widget(self.equipamento)
         
 
         # Labels Answers ====================================================
-        self.geracao = MDLabel(
+        self.equipamento_ans = MDLabel(
             halign="center",
             pos_hint={"center_x": 0.5, "center_y": 0.30},
             theme_text_color="ContrastParentBackground",
             font_style="H5",
-            text = "Sera necessario instalar um sistema de: 4.5 kWp"
+            text = "Consumo Mensal: 72 kWh"
         )
        
-        self.screen.add_widget(self.geracao)
+        self.screen.add_widget(self.equipamento_ans)
 
         # Inputs ========================================================
-        self.input_municipio = MDTextField(
-            text="",
-            halign="center",
-            size_hint=(0.8, 1),
-            pos_hint={"center_x": 0.5, "center_y": 0.7},
-            font_size=60
-        )
-        self.input_pot_consumo = MDTextField(
-            text="",
-            halign="center",
-            size_hint=(0.8, 1),
-            pos_hint={"center_x": 0.5, "center_y": 0.5},
-            font_size=60
-        )
-        self.screen.add_widget(self.input_municipio)
-        self.screen.add_widget(self.input_pot_consumo)
+        self.dropdown_consumo = DropDown()
+        print(self.dados_consumo[1][1])
+        for index in self.dados_consumo:
+            btn_consumo = Button(text = index[0], size_hint_y=None, height=100, background_color = (0.,0.,0.,0.9))
+            btn_consumo.bind(on_release=lambda btn_consumo: self.dropdown_consumo.select(btn_consumo.text))
+            self.dropdown_consumo.add_widget(btn_consumo)
+        # create a big main button
+        self.button_consumo = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Equipamento', size_hint=(0.6, 0.072))
+        self.button_consumo.bind(on_release=self.dropdown_consumo.open)
+
+        # one last thing, listen for the selection in the dropdown list and
+        # assign the data to the button text.
+        self.dropdown_consumo.bind(on_select=lambda instance, x: setattr(self.button_consumo, 'text', x))
+        self.screen.add_widget(self.button_consumo)
+
+
         # button =============================================================
-        self.button_calcular4 = MDFillRoundFlatButton(
-                text="Calcular",
+        self.button_mostrar = MDFillRoundFlatButton(
+                text="Mostrar",
                 font_size=17,
                 pos_hint={"center_x": 0.8, "center_y": 0.1},
-                on_press=self.calcular3
+                on_press=self.mostrar
             )
-        self.screen.add_widget(self.button_calcular4)
+        self.screen.add_widget(self.button_mostrar)
 
         self.button_corrigir4 = MDFillRoundFlatButton(
             text="Alterar",

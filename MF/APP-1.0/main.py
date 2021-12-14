@@ -894,15 +894,11 @@ class CalculadoraSolar(MDApp):
                 self.calculado = 0
                 self.inf = 0
                 #self.screen.remove_widget(self.logo1)
-                self.screen.remove_widget(self.municipio)
-                self.screen.remove_widget(self.pot_consumo)
-                self.screen.remove_widget(self.municipio_ans)
-                self.screen.remove_widget(self.pot_consumo_ans)
-                self.screen.remove_widget(self.geracao)
-                self.screen.remove_widget(self.input_municipio)
-                self.screen.remove_widget(self.button_mostrar)
-                self.screen.remove_widget(self.button_corrigir4)
-                self.screen.remove_widget(self.input_pot_consumo)
+                self.screen.remove_widget(self.equipamento)
+                self.screen.remove_widget(self.equipamento_ans)
+                self.screen.remove_widget(self.button_consumo)
+
+   
 
     # botoes =================================================================
     def calcular(self, args):
@@ -1104,10 +1100,12 @@ class CalculadoraSolar(MDApp):
 
     def mostrar(self,args):
         for index in self.dados_consumo:
-            print(self.button_consumo.text == index[0])
-            if str(self.button_consumo.text) == str(index[0]):
-                self.equipamento_ans = "Consumo mensal: " + index[2]
-        return 0
+            
+            if str(self.button_consumo.text.strip(" ")) == str(index[0].strip(" ")):
+                print(self.button_consumo.text.strip(" "), index[0].strip(" "))
+                self.equipamento_ans.text = "Consumo mensal: " + index[3] + " kWh"
+                print( "Consumo mensal: " + index[3] + " kWh")
+  
     #-------------------------------------------------------- TELAS ------------------------------------------------------------------------
     def tela1_android(self):
         self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
@@ -1900,29 +1898,12 @@ class CalculadoraSolar(MDApp):
         # create a big main button
         self.button_consumo = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Equipamento', size_hint=(0.6, 0.072))
         self.button_consumo.bind(on_release=self.dropdown_consumo.open)
-
+        self.dropdown_consumo.on_select = self.mostrar
         # one last thing, listen for the selection in the dropdown list and
         # assign the data to the button text.
         self.dropdown_consumo.bind(on_select=lambda instance, x: setattr(self.button_consumo, 'text', x))
         self.screen.add_widget(self.button_consumo)
 
-
-        # button =============================================================
-        self.button_mostrar = MDFillRoundFlatButton(
-                text="Mostrar",
-                font_size=17,
-                pos_hint={"center_x": 0.8, "center_y": 0.1},
-                on_press=self.mostrar
-            )
-        self.screen.add_widget(self.button_mostrar)
-
-        self.button_corrigir4 = MDFillRoundFlatButton(
-            text="Alterar",
-            font_size=17,
-            pos_hint={"center_x": 0.2, "center_y": 0.1},
-            on_press=self.limpar4
-        )
-        self.screen.add_widget(self.button_corrigir4)
         
     #---------------------------------------------------------Principal---------------------------------------------------------
     def build(self):

@@ -1992,7 +1992,7 @@ class CalculadoraSolar(MDApp):
             btn_consumo.bind(on_release=lambda btn_consumo: self.dropdown_consumo.select(btn_consumo.text))
             self.dropdown_consumo.add_widget(btn_consumo)
         # create a big main button
-        self.button_consumo = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Equipamento', size_hint=(0.6, 0.072))
+        self.button_consumo = Button(pos_hint={"center_x": 0.5, "center_y": 0.73},text='Equipamento', size_hint=(0.9, 0.072))
         self.button_consumo.bind(on_release=self.dropdown_consumo.open)
         self.dropdown_consumo.on_select = self.mostrar
         # one last thing, listen for the selection in the dropdown list and

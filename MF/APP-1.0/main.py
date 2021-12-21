@@ -783,7 +783,7 @@ class CalculadoraSolar(MDApp):
         if self.tela == 5:
             self.remove_tela5("all")
         if self.pc_android == 1:
-            self.tela4_android()
+            self.menu_android()
         else:
             self.tela4_pc()
         self.tela = 4
@@ -1893,7 +1893,7 @@ class CalculadoraSolar(MDApp):
 
 
 
-    def tela4_android(self):
+    def menu_android(self):
         self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
         self.logo1 = Image(
             source="logomenu.png",
@@ -1958,10 +1958,24 @@ class CalculadoraSolar(MDApp):
             theme_text_color="ContrastParentBackground",
             font_style="H5",
         )
-
+        self.quantidade = MDLabel(
+            text="Quantidade",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.65},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+        )
         self.screen.add_widget(self.equipamento)
+        self.screen.add_widget(self.quantidade)
         
-
+        #  button ===========================================================
+        self.button_calcular = MDFillRoundFlatButton(
+            text="Acrescentar",
+            font_size=17,
+            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            on_press=self.calcular
+        )
+        self.screen.add_widget(self.button_calcular)
         # Labels Answers ====================================================
         
         self.equipamento_ans = MDLabel(

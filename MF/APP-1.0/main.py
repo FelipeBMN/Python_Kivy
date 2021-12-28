@@ -17,10 +17,11 @@ from kivy.uix.button import Button
 from kivy.base import runTouchApp
 from kivy.core.window import Window
 
-
+def login():
+    return True
 # Função principal =====================================================
 class CalculadoraSolar(MDApp):
-
+    
     # Dados Para o Programa =====================================================
     dados_placas = [
                     400,
@@ -735,6 +736,8 @@ class CalculadoraSolar(MDApp):
             self.remove_tela4("all")
         if self.tela == 4:
             self.remove_tela5("all")
+        if self.tela == 6:
+            self.remove_login()
 
         if self.pc_android == 1:
             self.tela1_android()
@@ -742,7 +745,8 @@ class CalculadoraSolar(MDApp):
             self.tela1_pc()
         self.tela = 1
         
-    
+    def acrescentar ():
+       return 0
     def ir_tela2(self, args):
         if self.tela == 1:
             self.remove_tela1("all")
@@ -752,6 +756,8 @@ class CalculadoraSolar(MDApp):
             self.remove_tela4("all")
         if self.tela == 5:
             self.remove_tela5("all")
+        if self.tela == 6:
+            self.remove_login()
         if self.pc_android == 1:
             self.tela2_android()
         else:
@@ -767,6 +773,9 @@ class CalculadoraSolar(MDApp):
             self.remove_tela4("all")
         if self.tela == 5:
             self.remove_tela5("all")
+        if self.tela == 6:
+            self.remove_login()
+
         if self.pc_android == 1:
             self.tela3_android()
         else:
@@ -782,6 +791,9 @@ class CalculadoraSolar(MDApp):
             self.remove_tela3("all")
         if self.tela == 5:
             self.remove_tela5("all")
+        if self.tela == 6:
+            self.remove_login()
+
         if self.pc_android == 1:
             self.menu_android()
         else:
@@ -795,6 +807,9 @@ class CalculadoraSolar(MDApp):
             self.remove_tela2("all")
         if self.tela == 4:
             self.remove_tela4("all")
+        if self.tela == 6:
+            self.remove_login()
+
         if self.pc_android == 1:
             self.tela5_android()
         else:
@@ -894,10 +909,22 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.equipamento_ans)
                 self.screen.remove_widget(self.equipamento_horas_ans)
                 self.screen.remove_widget(self.button_consumo)
+                self.screen.remove_widget(self.quantidade)
+                self.screen.remove_widget(self.button_acrescentar)
 
    
+    def remove_login(self):
+        self.screen.remove_widget(self.id)
+        self.screen.remove_widget(self.senha)
+        self.screen.remove_widget(self.input_login)
+        self.screen.remove_widget(self.input_senha)
+        self.screen.remove_widget(self.button_entrar)
 
     # botoes =================================================================
+    def entrar(self, args):
+        if login() == True:
+            self.ir_tela4()
+
     def calcular(self, args):
         potencia = 0
         erro = 0
@@ -1969,13 +1996,13 @@ class CalculadoraSolar(MDApp):
         self.screen.add_widget(self.quantidade)
         
         #  button ===========================================================
-        self.button_calcular = MDFillRoundFlatButton(
+        self.button_acrescentar = MDFillRoundFlatButton(
             text="Acrescentar",
             font_size=17,
             pos_hint={"center_x": 0.5, "center_y": 0.5},
-            on_press=self.calcular
+            on_press=self.acrescentar
         )
-        self.screen.add_widget(self.button_calcular)
+        self.screen.add_widget(self.button_acrescentar)
         # Labels Answers ====================================================
         
         self.equipamento_ans = MDLabel(
@@ -2014,7 +2041,59 @@ class CalculadoraSolar(MDApp):
         self.dropdown_consumo.bind(on_select=lambda instance, x: setattr(self.button_consumo, 'text', x))
         self.screen.add_widget(self.button_consumo)
 
+    def tela_login(self):
+        self.tela = 6
+
+        self.logo = Image(
+            source="logomenu.png",
+            pos_hint={"center_x": 0.5, "center_y": 0.8}
+        )
+        self.screen.add_widget(self.logo)
+
+        # Labels Form ====================================================
+        self.id = MDLabel(
+            text="Login",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.7},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5",
+        )
+        self.senha = MDLabel(
+            text="Senha",
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.54},
+            theme_text_color="ContrastParentBackground",
+            font_style="H5"
+        )
+        self.screen.add_widget(self.id)
+        self.screen.add_widget(self.senha)
+        # Input Form ====================================================
+        self.input_login = MDTextField(
+            text="",
+            halign="center",
+            size_hint=(0.8, 1),
+            pos_hint={"center_x": 0.5, "center_y": 0.64},
+            font_size=60
+        )
+        self.input_senha = MDTextField(
+            text="",
+            halign="center",
+            size_hint=(0.8, 1),
+            pos_hint={"center_x": 0.5, "center_y": 0.48},
+            font_size=60
+        )
+
+        self.screen.add_widget(self.input_login)
+        self.screen.add_widget(self.input_senha)
         
+        # Buttons ---------------------------------------------------------
+        self.button_entrar = MDFillRoundFlatButton(
+        text="Entrar",
+        font_size=17,
+        pos_hint={"center_x": 0.5, "center_y": 0.3},
+        on_press=self.entrar
+        )
+        self.screen.add_widget(self.button_entrar)
     #---------------------------------------------------------Principal---------------------------------------------------------
     def build(self):
         self.state = 0  # initial state
@@ -2025,7 +2104,7 @@ class CalculadoraSolar(MDApp):
         self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
         self.screen.add_widget(self.toobar)
         self.icon = "logo256.png"
-        self.ir_tela4()
+        self.tela_login()
         self.on_pre_enter()
         return self.screen
 

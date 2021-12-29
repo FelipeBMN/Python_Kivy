@@ -17,8 +17,12 @@ from kivy.uix.button import Button
 from kivy.base import runTouchApp
 from kivy.core.window import Window
 
-def login():
-    return True
+def login(nome,senha):
+    print(nome, senha)
+    if nome == "Felipe" and senha == "mfenergy":
+        print("Login efetuado")
+        return True
+
 # Função principal =====================================================
 class CalculadoraSolar(MDApp):
     
@@ -747,6 +751,7 @@ class CalculadoraSolar(MDApp):
         
     def acrescentar ():
        return 0
+
     def ir_tela2(self, args):
         if self.tela == 1:
             self.remove_tela1("all")
@@ -919,11 +924,14 @@ class CalculadoraSolar(MDApp):
         self.screen.remove_widget(self.input_login)
         self.screen.remove_widget(self.input_senha)
         self.screen.remove_widget(self.button_entrar)
+        self.screen.remove_widget(self.erro_login)
 
     # botoes =================================================================
     def entrar(self, args):
-        if login() == True:
+        if login(self.input_login.text,self.input_senha.text) == True:
             self.ir_tela4()
+        else:
+            self.erro_login.text="Nome ou Senha Incorretos"
 
     def calcular(self, args):
         potencia = 0
@@ -1278,9 +1286,6 @@ class CalculadoraSolar(MDApp):
             on_press=self.calcular
         )
         self.screen.add_widget(self.button_calcular)
-
-        
-        
 
         self.button_corrigir = MDFillRoundFlatButton(
             text="Alterar",
@@ -2049,7 +2054,16 @@ class CalculadoraSolar(MDApp):
             pos_hint={"center_x": 0.5, "center_y": 0.8}
         )
         self.screen.add_widget(self.logo)
-
+        # Erro ao efetuar login =========================================
+        self.erro_login = MDLabel(
+            text="",
+            halign="center",
+            
+            pos_hint={"center_x": 0.5, "center_y": 0.40},
+            theme_text_color="Error",
+            font_size="10",
+        )
+        self.screen.add_widget(self.erro_login)
         # Labels Form ====================================================
         self.id = MDLabel(
             text="Login",
@@ -2078,6 +2092,7 @@ class CalculadoraSolar(MDApp):
         self.input_senha = MDTextField(
             text="",
             halign="center",
+            password="True",
             size_hint=(0.8, 1),
             pos_hint={"center_x": 0.5, "center_y": 0.48},
             font_size=60

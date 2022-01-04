@@ -493,9 +493,9 @@ class CalculadoraSolar(MDApp):
                     ["SOLIS", "Solis-3P15K-4G"],
                     ["SOLIS", "Solis-3P17K-4G"],
                     ["SOLIS", "Solis-3P20K-4G"],
-                    ["SMA",	"Sunny Tripower 15000TL"],
-                    ["SMA",	"Sunny Tripower 20000TL"],
-                    ["SMA",	"Sunny Tripower 25000TL"],
+                    ["SMA",	"Sunny Tripower 15000TL-30"],
+                    ["SMA",	"Sunny Tripower 20000TL-30"],
+                    ["SMA",	"Sunny Tripower 25000TL-30"],
                     ["SMA",	"Sunny Tripower CORE1"],
                     ["LIVOLTEK", "GT1-3K-S"],
                     ["LIVOLTEK", "GT1-5K-D"],
@@ -518,11 +518,9 @@ class CalculadoraSolar(MDApp):
                     ["LIVOLTEK", "GT1 10K"],
                     ["LIVOLTEK", "GT3-25K"],
                     ["LIVOLTEK", "GT3-30K"],
-                    ["HOYMILES", "MI-1000"],
                     ["HOYMILES", "MI-1200"],
                     ["HOYMILES", "MI-1500"],
-                    ["HOYMILES", "HMS-1800"],
-                    ["HOYMILES", "HMS-2000"],
+                    ["HOYMILES", "HMS-1800-4T"],
                     ["GROWATT",	"MAC 30KTL3-X LV"],
                     ["GROWATT",	"MAC 40KTL3-X LV"],
                     ["GROWATT",	"MAC 50KTL3-X LV"],
@@ -749,7 +747,8 @@ class CalculadoraSolar(MDApp):
             self.tela1_pc()
         self.tela = 1
         
-    def acrescentar ():
+    def acrescentar (self, args):
+
        return 0
 
     def ir_tela2(self, args):
@@ -916,10 +915,12 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.button_consumo)
                 self.screen.remove_widget(self.quantidade)
                 self.screen.remove_widget(self.button_acrescentar)
+                self.screen.remove_widget(self.input_quantidade)
 
    
     def remove_login(self):
         self.screen.remove_widget(self.id)
+        self.screen.remove_widget(self.logo)
         self.screen.remove_widget(self.senha)
         self.screen.remove_widget(self.input_login)
         self.screen.remove_widget(self.input_senha)
@@ -1999,7 +2000,15 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.equipamento)
         self.screen.add_widget(self.quantidade)
-        
+        # input ===========================================================
+        self.input_quantidade = MDTextField(
+            text="",
+            halign="center",
+            size_hint=(0.8, 1),
+            pos_hint={"center_x": 0.5, "center_y": 0.60},
+            font_size=22
+        )
+        self.screen.add_widget(self.input_quantidade)
         #  button ===========================================================
         self.button_acrescentar = MDFillRoundFlatButton(
             text="Acrescentar",
@@ -2029,7 +2038,14 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.equipamento_horas_ans)
 
-
+        self.equipamento_total = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.20},
+            theme_text_color="Error",
+            font_style="H5",
+            text = ""
+        )
+        self.screen.add_widget(self.equipamento_total)
         # Inputs ========================================================
         self.dropdown_consumo = DropDown()
         print(self.dados_consumo[1][1])

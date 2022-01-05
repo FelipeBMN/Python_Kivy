@@ -240,7 +240,6 @@ class CalculadoraSolar(MDApp):
         ["Lisieux", 120],
         ["Jaibaras", 121],
         ["Aprazível", 123],
-
         ["Sobral", 118],
         ["Carire", 122],
         ["Pires Ferreira", 121],
@@ -456,10 +455,6 @@ class CalculadoraSolar(MDApp):
                     ["GROWATT",	"MIN 4600TL-X"],
                     ["GROWATT",	"MIN 5000TL-X"],
                     ["GROWATT",	"MIN 6000TL-X"],
-                    ["GROWATT",	"MAX 50KTL3 LV"],
-                    ["GROWATT",	"MAX 60KTL3 LV"],
-                    ["GROWATT",	"MAX 70KTL3 LV"],
-                    ["GROWATT",	"MAX 80KTL3 LV"],
                     ["SOLIS", "Solis-1P7K-4G"],
                     ["SOLIS", "Solis-1P8K-4G"],
                     ["SOLIS", "Solis-1P9K-4G"],
@@ -502,16 +497,9 @@ class CalculadoraSolar(MDApp):
                     ["LIVOLTEK", "GT1-6K-D"],
                     ["CANADIAN", "CSI-3K-S22002-ED"],
                     ["CANADIAN", "CSI-5K-S22002-ED"],
-                    ["CANADIAN", "CSI-5KTL1P-FL"],
                     ["CANADIAN", "CSI-7K-S22002-ED"],
-                    ["CANADIAN", "CSI-8KTL1P-GI-FL"],
                     ["CANADIAN", "CSI-15K-T400GL01-E"],
-                    ["CANADIAN", "CSI-20KTL-GI-LFL"],
                     ["CANADIAN", "CSI-25K-T400GL02-E"],
-                    ["CANADIAN", "CSI-25KTL-GI-L"],
-                    ["CANADIAN", "CSI-30KTL-GI-L"],
-                    ["CANADIAN", "CSI-50KTL-GI"],
-                    ["CANADIAN", "CSI-60KTL-GI"],
                     ["CANADIAN", "CSI-75K-T400GL02-E"],
                     ["CANADIAN", "CSI-100K-T400GL02-E"],
                     ["LIVOLTEK", "GT1 8K"],
@@ -521,10 +509,6 @@ class CalculadoraSolar(MDApp):
                     ["HOYMILES", "MI-1200"],
                     ["HOYMILES", "MI-1500"],
                     ["HOYMILES", "HMS-1800-4T"],
-                    ["GROWATT",	"MAC 30KTL3-X LV"],
-                    ["GROWATT",	"MAC 40KTL3-X LV"],
-                    ["GROWATT",	"MAC 50KTL3-X LV"],
-                    ["GROWATT",	"MAC 60KTL3-X LV"],
                     ["CANADIAN", "CSI-9K-S2202-E"]]
 
     dados_inversores = [['GROWATT', 'MID 15KTL3-X', '24,2', 25, 4, '22,5', 1000, 2, 2],
@@ -721,13 +705,10 @@ class CalculadoraSolar(MDApp):
 
     # Funções para o Menu =====================================================
 
-
     def menu(self, button):
         if self.tela != 4: 
             self.ir_tela4()
         return 0
-
-
 
     def ir_tela1(self, args):
         if self.tela == 2:
@@ -748,8 +729,19 @@ class CalculadoraSolar(MDApp):
         self.tela = 1
         
     def acrescentar (self, args):
-
-       return 0
+        self.equipamento_erro.text =""
+        try:
+            print(self.soma," ",self.consumo_mensal)
+            self.soma = self.soma+self.consumo_mensal
+            print(self.soma," ",self.consumo_mensal)
+            self.equipamento_total.text ="Consumo Total: {:.2f} kWh".format(self.soma)
+            print("Consumo Total: {:.2f}  kWh".format(self.soma))
+        except:
+            self.equipamento_erro.text ="Selecione um equipamento"
+        
+    def zerar(self,args):
+        self.soma = 0
+        self.equipamento_total.text ="Consumo Total: {:.2f} kWh".format(self.soma)
 
     def ir_tela2(self, args):
         if self.tela == 1:
@@ -848,7 +840,6 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.button_calcular)
                 self.screen.remove_widget(self.button_corrigir)
                 
-
     def remove_tela2(self, type):
         if self.tela == 2:
             if type == "all":
@@ -865,8 +856,7 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.disjuntor_ans)
                 self.screen.remove_widget(self.potencia_inv_ans)
                 self.screen.remove_widget(self.cabos_ans)
-                
-      
+                  
     def remove_tela3(self, type):
         if self.tela == 3:
 
@@ -893,7 +883,6 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.input_pot_sistema)
                 self.screen.remove_widget(self.input_pot_sistema_kwh)
                 
-
     def remove_tela4(self, type):
         if type == "all":
             self.screen.remove_widget(self.logo1)
@@ -916,8 +905,8 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.quantidade)
                 self.screen.remove_widget(self.button_acrescentar)
                 self.screen.remove_widget(self.input_quantidade)
-
-   
+                self.soma=0
+ 
     def remove_login(self):
         self.screen.remove_widget(self.id)
         self.screen.remove_widget(self.logo)
@@ -1171,6 +1160,7 @@ class CalculadoraSolar(MDApp):
         if (key==27 and not(self.tela == 4)):
             self.ir_tela4()
         return True
+   
     # Funções para tela 5
     def limpar4(self,args):
         self.equipamento_ans.text = ""
@@ -1180,6 +1170,7 @@ class CalculadoraSolar(MDApp):
     def mostrar(self,args):
         for index in self.dados_consumo:
             if str(self.button_consumo.text.strip(" ")) == str(index[0].strip(" ")):
+                self.consumo_mensal = float(index[3].replace(',', '.'))
                 self.equipamento_ans.text = "Consumo Mensal: " + index[3] + " kWh"
                 self.equipamento_horas_ans.text =  "Utilização Diaria: " + index[2] 
   
@@ -1408,7 +1399,6 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.button_corrigir)
 
-
     def tela2_pc(self):
         # Labels Form ====================================================
         self.marca = MDLabel(
@@ -1636,7 +1626,6 @@ class CalculadoraSolar(MDApp):
 
          # button ============================================================= 
         
-
     def tela3_pc(self):
         #self.logo1 = Image(
         #    source="logo_pequena.png",
@@ -1747,7 +1736,6 @@ class CalculadoraSolar(MDApp):
         )
         self.screen.add_widget(self.button_corrigir3)
     
-
     def tela3_android(self):
         self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
         self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
@@ -1871,9 +1859,6 @@ class CalculadoraSolar(MDApp):
             on_press=self.limpar3
         )
         self.screen.add_widget(self.button_corrigir3)
-        
-        
-        
     
     # Tela 4 ================================================================================
     def tela4_pc(self):
@@ -1923,8 +1908,6 @@ class CalculadoraSolar(MDApp):
             on_press=self.ir_tela5
         )
         self.screen.add_widget(self.button_tela5)
-
-
 
     def menu_android(self):
         self.toobar.left_action_items = [["menu", lambda x: self.menu(x)]]
@@ -1976,6 +1959,7 @@ class CalculadoraSolar(MDApp):
         return 0
 
     def tela5_android(self):
+        self.soma = 0
         self.toobar.left_action_items = [["backburger", lambda x: self.menu(x)]]
         #self.logo1 = Image(
         #    source="logo_pequena.png",
@@ -2006,17 +1990,25 @@ class CalculadoraSolar(MDApp):
             halign="center",
             size_hint=(0.8, 1),
             pos_hint={"center_x": 0.5, "center_y": 0.60},
-            font_size=22
+            font_size=60
         )
         self.screen.add_widget(self.input_quantidade)
         #  button ===========================================================
         self.button_acrescentar = MDFillRoundFlatButton(
             text="Acrescentar",
             font_size=17,
-            pos_hint={"center_x": 0.5, "center_y": 0.5},
+            pos_hint={"center_x": 0.4, "center_y": 0.5},
             on_press=self.acrescentar
         )
         self.screen.add_widget(self.button_acrescentar)
+        
+        self.button_zerar = MDFillRoundFlatButton(
+            text="Zerar",
+            font_size=17,
+            pos_hint={"center_x": 0.6, "center_y": 0.5},
+            on_press=self.zerar
+        )
+        self.screen.add_widget(self.button_zerar)
         # Labels Answers ====================================================
         
         self.equipamento_ans = MDLabel(
@@ -2046,6 +2038,15 @@ class CalculadoraSolar(MDApp):
             text = ""
         )
         self.screen.add_widget(self.equipamento_total)
+
+        self.equipamento_erro = MDLabel(
+            halign="center",
+            pos_hint={"center_x": 0.5, "center_y": 0.10},
+            theme_text_color="Error",
+            font_style="H5",
+            text = ""
+        )
+        self.screen.add_widget(self.equipamento_erro)
         # Inputs ========================================================
         self.dropdown_consumo = DropDown()
         print(self.dados_consumo[1][1])

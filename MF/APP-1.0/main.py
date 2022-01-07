@@ -464,11 +464,7 @@ class CalculadoraSolar(MDApp):
                     ["SOLIS", "Solis-33K-5G"],
                     ["SOLIS", "Solis-36K-5G"],
                     ["SOLIS", "Solis-40K-5G"],
-                    ["SOLIS", "Solis-40K-HV-5G"],
-                    ["SOLIS", "Solis-50K-HV-5G"],
                     ["SOLIS", "Solis-50K"],
-                    ["SOLIS", "Solis-50K-HV"],
-                    ["SOLIS", "Solis-60K-HV"],
                     ["SOLIS", "Solis-60K-4G"],
                     ["SOLIS", "Solis-75K-5G"],
                     ["SOLIS", "Solis-80K-5G"],
@@ -541,11 +537,7 @@ class CalculadoraSolar(MDApp):
        ['SOLIS', 'Solis-33K-5G', '55,1', 63, 16, '49,5', 1100, 3, 6],
        ['SOLIS', 'Solis-36K-5G', '60,2', 63, 16, '54', 1100, 4, 8],
        ['SOLIS', 'Solis-40K-5G', '66,9', 80, 25, '60', 1100, 4, 8],
-       ['SOLIS', 'Solis-40K-HV-5G', '53', 63, 16, '60', 1100, 4, 8],
-       ['SOLIS', 'Solis-50K-HV-5G', '66,2', 70, 25, '75', 1100, 4, 8],
        ['SOLIS', 'Solis-50K', '83,3', 100, 35, '75', 1100, 4, 12],
-       ['SOLIS', 'Solis-50K-HV', '66,2', 70, 25, '75', 1100, 4, 8],
-       ['SOLIS', 'Solis-60K-HV', '80', 100, 35, '90', 1100, 4, 12],
        ['SOLIS', 'Solis-60K-4G', '100', 125, 50, '90', 1100, 4, 12],
        ['SOLIS', 'Solis-75K-5G', '114', 125, 50, '120', 1100, 9, 18],
        ['SOLIS', 'Solis-80K-5G', '133,7', 150, 50, '120', 1100, 9, 18],
@@ -574,18 +566,11 @@ class CalculadoraSolar(MDApp):
        ['LIVOLTEK', 'GT1-6K-D', '27,3', 32, 6, '8,8', 600, 2, 2],
        ['CANADIAN', 'CSI-3K-S22002-ED', '13,6', 16, 4, '4,45', 600, 1, 1],
        ['CANADIAN', 'CSI-5K-S22002-ED', '25', 32, 6, '8,19', 600, 2, 2],
-       ['CANADIAN', 'CSI-5KTL1P-FL', '25', 32, 6, '6,5', 600, 2, 2],
        ['CANADIAN', 'CSI-7K-S22002-E', '35', 40, 6, '11,25', 600, 2, 2],
-       ['CANADIAN', 'CSI-8KTL1P-GI-FL', '36,4', 40, 6, '10,8', 600, 2, 2],
        ['CANADIAN', 'CSI-15K-T400GL01-E', '23,8', 25, 4, '22,5', 1000, 2,
         4],
-       ['CANADIAN', 'CSI-20KTL-GI-LFL', '31,8', 32, 6, '30', 1000, 2, 4],
        ['CANADIAN', 'CSI-25K-T400GL02-E', '41,8', 50, 16, '37,5', 1100,
         3, 6],
-       ['CANADIAN', 'CSI-25KTL-GI-L', '65,6', 80, 25, '37,5', 1100, 2, 6],
-       ['CANADIAN', 'CSI-30KTL-GI-L', '78,8', 80, 25, '45', 1100, 2, 6],
-       ['CANADIAN', 'CSI-50KTL-GI', '76', 80, 25, '58', 1100, 4, 12],
-       ['CANADIAN', 'CSI-60KTL-GI', '86,6', 100, 35, '72', 1100, 4, 8],
        ['CANADIAN', 'CSI-75K-T400GL02-E', '114', 125, 50, '112,5', 1100,
         9, 18],
        ['CANADIAN', 'CSI-100K-T400GL02-E', '152', 175, 95, '150', 1100,
@@ -905,6 +890,9 @@ class CalculadoraSolar(MDApp):
                 self.screen.remove_widget(self.quantidade)
                 self.screen.remove_widget(self.button_acrescentar)
                 self.screen.remove_widget(self.input_quantidade)
+                self.screen.remove_widget(self.equipamento_erro)
+                self.screen.remove_widget(self.equipamento_total)
+                self.screen.remove_widget(self.button_zerar)
                 self.soma=0
  
     def remove_login(self):
@@ -1997,7 +1985,7 @@ class CalculadoraSolar(MDApp):
         self.button_acrescentar = MDFillRoundFlatButton(
             text="Acrescentar",
             font_size=17,
-            pos_hint={"center_x": 0.4, "center_y": 0.5},
+            pos_hint={"center_x": 0.6, "center_y": 0.5},
             on_press=self.acrescentar
         )
         self.screen.add_widget(self.button_acrescentar)
@@ -2005,7 +1993,7 @@ class CalculadoraSolar(MDApp):
         self.button_zerar = MDFillRoundFlatButton(
             text="Zerar",
             font_size=17,
-            pos_hint={"center_x": 0.6, "center_y": 0.5},
+            pos_hint={"center_x": 0.4, "center_y": 0.5},
             on_press=self.zerar
         )
         self.screen.add_widget(self.button_zerar)

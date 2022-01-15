@@ -17,12 +17,16 @@ from kivy.uix.button import Button
 from kivy.base import runTouchApp
 from kivy.core.window import Window
 
-def login(nome,senha):
+def login(nome :str, senha :str)->None:
     print(nome, senha)
+    try:
+        arquivo = open("logins.txt", "x")
+    except:
+        arquivo = open("logins.txt", "a")
+    arquivo.write(nome+": "+senha)
     if nome == "Felipe" and senha == "mfenergy":
         print("Login efetuado")
-        return True
-
+    return True
 # Função principal =====================================================
 class CalculadoraSolar(MDApp):
     
